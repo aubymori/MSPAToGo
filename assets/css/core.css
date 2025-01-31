@@ -1,0 +1,45 @@
+:root {
+    --page-bg: #535353;
+    --page-color: #000000;
+    --links-bg: #5a5a5a;
+    --links-color: #ffffff;
+    --links-white: #ffffff;
+    --links-green: #29ff4a;
+    --links-blue: #39d5f6;
+    --links-yellow: #f7f72a;
+    --links-orange: #ffb529;
+    --candycorn-image: url("/assets/img/candycorn.gif");
+}
+
+body {
+    margin: 0;
+    background: var(--page-bg);
+}
+
+body, button, input, table, td, th {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: var(--page-color);
+}
+
+#menu-container {
+    background: var(--links-bg);
+}
+
+.candycorn {
+    width: 32px;
+    height: 32px;
+    background: no-repeat var(--candycorn-image);
+    background-size: 32px 32px;
+    image-rendering: pixelated;
+}
+
+#menu-button {
+    background: transparent;
+    border: 0;
+    color: var(--links-color);
+    font-weight: 700;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
