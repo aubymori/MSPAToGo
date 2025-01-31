@@ -48,4 +48,4 @@ else
     $template = "404";
 }
 
-echo $twig->render($template . ".twig", [$data]);
+echo $twig->render($template . ".html", [$data]);
