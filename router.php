@@ -25,13 +25,18 @@ function betterParseUrl($url) {
     return $response;
 }
 
+function replace_mspa_links(string &$str): void
+{
+    $str = preg_replace('/"(?:http:\/\/www.mspaintadventures.com\/|)\?s=(.*?)&p=(.*?)"/m', "/read/$1/$2", $str);
+}
+
 $routerUrl = betterParseUrl($_SERVER["REQUEST_URI"]);
 $template = "404";
 $data->theme = null;
 
 if (isset($routerUrl->path[0]))
 {
-    switch ($routerUrl->path[0])
+    switch (strtolower($routerUrl->path[0]))
     {
         case "":
             // Load auto-save
@@ -102,6 +107,46 @@ if (isset($routerUrl->path[0]))
             $data->p = $p;
             $template = "read";
 
+            break;
+        case "log":
+            if (count($routerUrl->path) > 3)
+            {
+                http_response_code(404);
+                break;
+            }
+
+            if (count($routerUrl->path) >= 2)
+            {
+                $reverse = false;
+                if (isset($routerUrl->path[2]))
+                {
+                    if (strtolower($routerUrl->path[2]) == "rev")
+                    {
+                        $reverse = true;
+                    }
+                    else
+                    {
+                        http_response_code(404);
+                        break;
+                    }
+                }
+
+                $s = $routerUrl->path[1];
+            $text = "";
+            $url = "http://www.mspaintadventures.com/logs/" . ($reverse ? "log_rev_" : "log_") . "$s.txt";
+            $status = http_get($url, $text);
+            replace_mspa_links($text);
+
+            $data->reversed = $reverse;
+            $data->log_html = $text;
+            $data->s = $s;
+            }
+            else
+            {
+                $data->adventures = json_decode(file_get_contents("static/adventures.json"));
+            }
+            
+            $template = "log";
             break;
         default:
             http_response_code(404);

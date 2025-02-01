@@ -1,0 +1,28 @@
+{% extends "pageframe.html" %}
+
+{% block page %}
+{% if data.log_html %}
+<h2 id="title">Adventure Log</h2>
+<div id="content" class="log">
+    {% if data.reversed %}
+    <a href="/log/{{ data.s }}">View newest to oldest</a>
+    {% else %}
+    <a href="/log/{{ data.s }}/rev">View oldest to newest</a>
+    {% endif %}
+    <br>
+    <br>
+    {{ data.log_html|raw }}
+</div>
+{% else %}
+<h2 id="title">Select Log</h2>
+<div id="content">
+    <div class="adventure-list">
+        {% for adv in data.adventures %}
+        {% if not adv.hidden %}
+        <a href="/log/{{ adv.id }}">{{ adv.title }}</a>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}

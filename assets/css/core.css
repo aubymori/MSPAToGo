@@ -150,7 +150,6 @@ body, button, input, table, td, th {
     display: flex;
     flex-direction: column;
     font-weight: 700;
-    line-height: 1.5;
     background: var(--card-bg);
     flex: 1;
     width: 270px;
@@ -162,6 +161,10 @@ body, button, input, table, td, th {
     top: 0;
     right: -270px;
     transition: right .15s;
+}
+
+#options-menu a {
+    margin-bottom: 12px;
 }
 
 :root.options-menu-open #options-menu {
@@ -281,4 +284,21 @@ body, button, input, table, td, th {
 
 #options-link {
     margin-left: auto;
+}
+
+.adventure-list {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 24px;
+    padding-bottom: 150px;
+}
+
+.adventure-list a {
+    margin-bottom: .5em;
+}
+
+.log {
+    font-size: .75em;
+    font-weight: 700;
 }
