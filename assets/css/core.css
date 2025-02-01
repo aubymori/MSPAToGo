@@ -412,3 +412,12 @@ img {
     color: #000;
     padding: 4px 8px;
 }
+
+#media {
+    display: flex;
+    flex-direction: column;
+}
+
+#media > :not(:last-child) {
+    margin-bottom: 20px;
+}
