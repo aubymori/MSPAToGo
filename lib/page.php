@@ -27,7 +27,7 @@ function get_page_data(string $s, string $p): object|null
     $response->media = [];
     foreach ($medias as $media)
     {
-        $media = preg_replace("/http:\/\/(www|cdn)\.mspaintadventures\.com\//", "/mspa/", $media);
+        $media = preg_replace("/http:\/\/(www\.|cdn\.|)mspaintadventures\.com\//", "/mspa/", $media);
         // Flash
         if (substr($media, 0, 2) == "F|")
         {
@@ -46,7 +46,19 @@ function get_page_data(string $s, string $p): object|null
         // Supercartridge
         else if (substr($media, 0, 2) == "S|")
         {
+            $response->supercartridge = true;
+            $media = substr(trim($media), 2);
+            $media = str_replace("/mspa/", "http://cdn.mspaintadventures.com/", $media);
+            $text = "";
+            $status = http_get($media . "/index.html", $text);
+            if ($status != 200)
+                return null;
 
+            $text = preg_replace("/http:\/\/(www\.|cdn\.|)mspaintadventures\.com\//", "/mspa/", $text);
+            $response->media[] = [
+                "type" => "supercartridge",
+                "html" => $text
+            ];
         }
         // JS game
         else if (substr($media, 0, 2) == "J|")

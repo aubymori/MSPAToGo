@@ -1,6 +1,9 @@
 {% extends "pageframe.html" %}
 
 {% block page %}
+{% if data.page.supercartridge %}
+{{ data.page.media[0].html|raw }}
+{% else %}
 <h2 id="title">{{ data.page.title|raw }}</h2>
 {% for media in data.page.media %}
 {% if media.type == "image" %}
@@ -36,7 +39,7 @@
 			"allowScriptAccess","always",
 			"movie", "{{ media.url }}",
 			"salign", ""
-			); //end AC code
+		); //end AC code
 	}
 </script>
 <noscript>
@@ -48,6 +51,7 @@
 </noscript>
 {% endif %}
 {% endfor %}
+{% endif %}
 <div id="content" data-s="{{ data.s }}" data-p="{{ data.p }}">
     {% if data.page.log_type %}
     <div class="read-log {{ data.page.log_type == '|AUTHORLOG|' ? 'authorlog open' : '' }}">
