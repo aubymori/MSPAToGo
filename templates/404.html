@@ -1,1 +1,14 @@
-hey man
+{% extends "pageframe.html" %}
+
+{% block page %}
+<h2 id="title">404 Not Found</h2>
+<img src="/assets/img/404.gif" alt="404 Not Found">
+<div id="content">
+    <p class="comic-text">Wonders where the fuck that page went???</p>
+    <div id="page-footer">
+        <ul id="page-footer-left">
+            <li><a href="/">Start Over</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

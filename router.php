@@ -26,15 +26,82 @@ function betterParseUrl($url) {
 }
 
 $routerUrl = betterParseUrl($_SERVER["REQUEST_URI"]);
-
 $template = "404";
-$data = (object)[];
+$data->theme = null;
+
 if (isset($routerUrl->path[0]))
 {
     switch ($routerUrl->path[0])
     {
         case "":
+            // Load auto-save
+            if (isset($_COOKIE["autosave"])
+            && isset($_COOKIE["s_cookie"]) && isset($_COOKIE["p_cookie"]))
+            {
+                header("Location: /read/" . $_COOKIE["s_cookie"] . "/" . $_COOKIE["p_cookie"]);
+                die();
+            }
+
             $template = "home";
+            break;
+        case "mspa":
+            require "lib/mspa_funnel.php";
+            break;
+        case "read":
+            $s = null;
+            $p = null;
+            if (count($routerUrl->path) == 3)
+            {
+                $s = $routerUrl->path[1];
+                $p = $routerUrl->path[2];
+            }
+            // Retrieve first page statically
+            else if (count($routerUrl->path) == 2)
+            {
+                $s = $routerUrl->path[1];
+                $adventures = json_decode(file_get_contents("static/adventures.json"));
+                //var_dump($adventures);
+                foreach ($adventures as $adv)
+                {
+                    if ($adv->id == $s)
+                    {
+                        $p = $adv->firstPage;
+                        break;
+                    }
+                }
+
+                if (is_null($p))
+                {
+                    http_response_code(404);
+                    break;
+                }
+            }
+            else
+            {
+                http_response_code(404);
+                break;
+            }
+
+            require "lib/page.php";
+            $page = get_page_data($s, $p);
+            if (is_null($page))
+            {
+                http_response_code(404);
+                break;
+            }
+
+            // Auto-save
+            if (isset($_COOKIE["autosave"]))
+            {
+                setcookie("s_cookie", $s, time() + 34560000, "/"); // 400 days
+                setcookie("p_cookie", $p, time() + 34560000, "/");
+            }
+
+            $data->page = $page;
+            $data->s = $s;
+            $data->p = $p;
+            $template = "read";
+
             break;
         default:
             http_response_code(404);
@@ -47,5 +114,40 @@ else
     http_response_code(404);
     $template = "404";
 }
+
+// Init static data shared across all pages
+$data->links = [
+    [
+        "text" => "MSPA TO GO",
+        "url" => "/",
+        "color" => "white"
+    ],
+    [
+        "text" => "ARCHIVE",
+        "url" => "/archive",
+        "color" => "green"
+    ],
+    [
+        "text" => "GITHUB",
+        "url" => "https://github.com/aubymori/MSPAToGo",
+        "color" => "green",
+        "newtab" => true
+    ],
+    [
+        "text" => "MAP",
+        "url" => "/map",
+        "color" => "blue"
+    ],
+    [
+        "text" => "LOG",
+        "url" => "/log",
+        "color" => "blue"
+    ],
+    [
+        "text" => "SEARCH",
+        "url" => "/search",
+        "color" => "blue"
+    ],
+];
 
 echo $twig->render($template . ".html", [$data]);

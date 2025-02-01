@@ -1,0 +1,40 @@
+[
+    {
+        "title": "Ryanquest",
+        "id": "ryanquest",
+        "firstPage": "000001",
+        "hidden": true
+    },
+    {
+        "title": "Homestuck",
+        "id": "6",
+        "firstPage": "001901"
+    },
+    {
+        "title": "Homestuck BETA",
+        "id": "5",
+        "firstPage": "001893",
+        "hidden": true
+    },
+    {
+        "title": "Problem Sleuth",
+        "id": "4",
+        "firstPage": "000219"
+    },
+    {
+        "title": "??????",
+        "id": "3",
+        "firstPage": "MC0001",
+        "hidden": true
+    },
+    {
+        "title": "Bard Quest",
+        "id": "2",
+        "firstPage": "000136"
+    },
+    {
+        "title": "Jailbreak",
+        "id": "1",
+        "firstPage": "000002"
+    }
+]

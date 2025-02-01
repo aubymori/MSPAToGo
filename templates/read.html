@@ -1,0 +1,31 @@
+{% extends "pageframe.html" %}
+
+{% block page %}
+<h2 id="title">{{ data.page.title|raw }}</h2>
+{% for media in data.page.media %}
+{% if media.type == "image" %}
+<img src="{{ media.url }}">
+{% endif %}
+{% endfor %}
+<div id="content" data-s="{{ data.s }}" data-p="{{ data.p }}">
+    <p class="comic-text">
+        {{ data.page.text|raw|nl2br }}
+    </p>
+    <div id="commands">
+        {% for command in data.page.commands %}
+        <div class="command">
+            &gt; <a href="/read/{{ data.s }}/{{ command.page }}">{{ command.title|raw }}</a>
+        </div>
+        {% endfor %}
+    </div>
+    <div id="page-footer">
+        {% if data.page.prev_page %}
+        <ul id="page-footer-left">
+            <li><a href="/read/{{ data.s }}">Start Over</a></li>
+            <li><a href="/read/6/{{ data.page.prev_page }}">Go Back</a></li>
+        </ul>
+        {% endif %}
+        <a id="options-link" href="javascript:void(0)">Options</a>
+    </div>
+</div>
+{% endblock %}

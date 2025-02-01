@@ -1,1 +1,21 @@
 {% extends "pageframe.html" %}
+
+{% block page %}
+<h2 id="title">MSPA TO GO</h2>
+<div id="content">
+    <p class="comic-text">
+        MSPA To Go is a webserver that serves pages from MS Paint Adventures in a format
+        digestible on mobile phones. With the redirection of the original MS Paint Adventures
+        site to the VIZ Media-run site, and the VIZ Media site's constant HTTP 500 errors, there
+        is no good way to read MSPA on mobile. At least there wasn't until now!
+    </p>
+    <div id="commands">
+        <div class="command">
+            &gt; <a href="/read/6/001901">Read Homestuck.</a>
+        </div>
+        <div class="command">
+            &gt; <a href="/archive">Read other adventures.</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

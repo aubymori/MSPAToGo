@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="{{ data.theme ? 'theme-' + data.theme : '' }}">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,10 +16,30 @@
     </head>
     <body>
         <div id="menu-container">
+            <div id="menu-background"></div>
+            <div id="menu">
+                {% for link in data.links %}
+                    <div class="menu-item">
+                        <div class="candycorn"></div>
+                        <a href="{{ link.url }}" {{ link.newtab ? 'target="_blank"' : "" }} class="link-{{ link.color }}">{{ link.text }}</a>
+                    </div>
+                {% endfor %}
+            </div>
+            <div id="options-menu">
+                <a href="javascript:void(0)" id="save-game">Save Game</a>
+                <a href="javascript:void(0)" id="load-game">Load Game</a>
+                <a href="javascript:void(0)" id="auto-save">Auto-Save!</a>
+                <a href="javascript:void(0)" id="delete-game-data">Delete Game Data</a>
+            </div>
+        </div>
+        <div id="menu-bar">
             <button id="menu-button">
                 <div class="candycorn"></div>
                 <span>MENU</span>
             </button>
+        </div>
+        <div id="page">
+            {% block page %}{% endblock %}
         </div>
         <div id="footer">
             <div id="footer-image"></div>
