@@ -226,6 +226,7 @@ body, button, input, table, td, th {
 
 #page img {
     image-rendering: crisp-edges;
+    max-width: 100%;
 }
 
 #page > img {
