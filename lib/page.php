@@ -132,7 +132,6 @@ function get_page_data(string $s, string $p): object|null
         $response->text = $text;
     }
 
-    // Commands (next page)
     $response->commands = [];
     foreach (explode("\n", $split[5]) as $cid)
     {

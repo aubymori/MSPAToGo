@@ -63,7 +63,15 @@
         <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
         <script>
             window.RufflePlayer.config = {
-                autoplay: "auto"
+                autoplay: "auto",
+                urlRewriteRules: [
+                    // Redirect MSPA links in flashes (mainly Insert disc 2 and Insert disc three)
+                    // back to our own site.
+                    [
+                        /(?:http:\/\/|)(?:(?:www\.|)mspaintadventures\.com\/\?s=)(.*?)&p=(.*?)$/,
+                        "/read/$1/$2"
+                    ]
+                ]
             };
         </script>
         <script src="/assets/js/core.js"></script>
