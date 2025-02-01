@@ -72,7 +72,7 @@
                     // Redirect MSPA links in flashes (mainly Insert disc 2 and Insert disc three)
                     // back to our own site.
                     [
-                        /(?:http:\/\/|)(?:(?:www\.|)mspaintadventures\.com\/\?s=)(.*?)&p=(.*?)$/,
+                        /(?:http:\/\/|)(?:www\.|)mspaintadventures\.com\/(?:scratch\.php|)\?s=(.*?)&p=(.*?)$/,
                         "/read/$1/$2"
                     ]
                 ]

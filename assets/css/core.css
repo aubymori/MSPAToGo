@@ -85,6 +85,7 @@
     --links-green: #ffffff;
     --links-blue: #ffffff;
     --link-color: #2cff4b;
+    --log-bg: #000000;
     --candycorn-image: url("/assets/img/candycorn_scratch.png");
     --footer-image: url("/assets/img/scratch_footer.png");
 }
