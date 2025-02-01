@@ -94,34 +94,37 @@ window.addEventListener("resize", fixFlashSizes);
 const banner = document.getElementById("banner");
 let tooltipEl = null;
 
-banner.addEventListener("click", (event) => {
-    if (!banner.getAttribute("title") && !banner.getAttribute("data-img-tooltip"))
-        return null;
+if (banner)
+{
+    banner.addEventListener("click", (event) => {
+        if (!banner.getAttribute("title") && !banner.getAttribute("data-img-tooltip"))
+            return null;
 
-    let x = event.clientX;
-    let y = event.clientY;
+        let x = event.clientX;
+        let y = event.clientY;
 
-    if (!tooltipEl)
-    {
-        if (banner.getAttribute("title"))
+        if (!tooltipEl)
         {
-            tooltipEl = document.createElement("div");
-            tooltipEl.classList.add("tooltip");
-            tooltipEl.textContent = banner.getAttribute("title");
+            if (banner.getAttribute("title"))
+            {
+                tooltipEl = document.createElement("div");
+                tooltipEl.classList.add("tooltip");
+                tooltipEl.textContent = banner.getAttribute("title");
+            }
+            else
+            {
+                tooltipEl = document.createElement("img");
+                tooltipEl.classList.add("imgtip");
+                tooltipEl.src = banner.dataset.imgTooltip;
+            }
+            document.body.appendChild(tooltipEl);
         }
-        else
-        {
-            tooltipEl = document.createElement("img");
-            tooltipEl.classList.add("imgtip");
-            tooltipEl.src = banner.dataset.imgTooltip;
-        }
-        document.body.appendChild(tooltipEl);
-    }
 
-    tooltipEl.hidden = false;
-    tooltipEl.style.left = `${x}px`;
-    tooltipEl.style.top = `${y}px`;
-});
+        tooltipEl.hidden = false;
+        tooltipEl.style.left = `${x}px`;
+        tooltipEl.style.top = `${y}px`;
+    });
+}
 
 document.addEventListener("click", (event) => {
     if (tooltipEl && !banner.contains(event.target))
