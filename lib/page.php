@@ -25,6 +25,20 @@ function get_page_data(string $s, string $p): object|null
     // Media
     $medias = explode("\n", $split[3]);
     $response->media = [];
+    // Cascade is a special case. It was a supercartridge page
+    // before supercartridgees were officially a thing, and thus
+    // the specialties of it are baked into the cascade.php file.
+    // Just make it into a supercartridge page from a static HTML
+    // file.
+    if ($p == "006009")
+    {
+        $response->supercartridge = true;
+        $response->media[] = [
+            "type" => "supercartridge",
+            "html" => file_get_contents("static/cascade.html")
+        ];
+    }
+    else
     foreach ($medias as $media)
     {
         $media = preg_replace("/http:\/\/(www\.|cdn\.|)mspaintadventures\.com\//", "/mspa/", $media);

@@ -1,11 +1,16 @@
 <?php
 
-$url = "http://cdn.mspaintadventures.com/" . substr($_SERVER["REQUEST_URI"], 6);
+$uri = substr($_SERVER["REQUEST_URI"], 6);
+$url = match ($uri) {
+    "cascade.swf" => "https://www.homestuck.com/flash/hs2/cascade/cascade.swf",
+    default => "http://cdn.mspaintadventures.com/" . $uri
+};
 $ch = curl_init($url);
 curl_setopt_array($ch, [
     CURLOPT_FOLLOWLOCATION => 0,
     CURLOPT_HEADER => 1,
-    CURLOPT_RETURNTRANSFER => 1
+    CURLOPT_RETURNTRANSFER => 1,
+    CURLOPT_USERAGENT => $_SERVER["HTTP_USER_AGENT"]
 ]);
 
 $response = curl_exec($ch);

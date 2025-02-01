@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="{{ data.theme ? 'theme-' + data.theme : '' }}">
+<html lang="en" class="{% if data.theme %}theme-{{ data.theme }}{% endif %}">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +15,16 @@
         {% block css %}{% endblock %}
     </head>
     <body>
+        {% if data.banner %}
+        <a href="/"
+           id="banner"
+{% if data.banner.tooltip %}
+            title="{{ data.banner.tooltip }}"
+{% endif %}
+        >
+            <img src="{{ data.banner.image }}">
+        </a>
+        {% endif %}
         <div id="menu-container">
             <div id="menu-background"></div>
             <div id="menu">

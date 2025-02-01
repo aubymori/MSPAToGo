@@ -47,7 +47,6 @@
     --page-bg: #535353;
     --page-color: #000000;
     --card-bg: #efefef;
-    --card-bg-dark: #c6c6c6;
     --links-bg: #5a5a5a;
     --links-color: #ffffff;
     --links-white: #ffffff;
@@ -58,6 +57,13 @@
     --footer-color: #ffffff;
     --log-border: grey;
     --log-bg: var(--card-bg);
+    --link-color: revert; /* Browser default */
+}
+
+:root.theme-cascade {
+    --page-bg: #000000;
+    --card-bg: #262626;
+    --link-color: #0066ff;
 }
 
 body {
@@ -69,6 +75,18 @@ body, button, input, table, td, th {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 18px;
     color: var(--page-color);
+}
+
+a {
+    color: var(--link-color) !important;
+}
+
+#banner {
+    display: flex;
+}
+
+#banner img {
+    width: 100%;
 }
 
 #menu-bar {

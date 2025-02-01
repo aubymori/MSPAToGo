@@ -102,6 +102,15 @@ if (isset($routerUrl->path[0]))
                 setcookie("p_cookie", $p, time() + 34560000, "/");
             }
 
+            $ip = intval($p);
+            if ($ip == 6009)
+            {
+                $data->theme = "cascade";
+                $data->banner = [
+                    "image" => "/mspa/images/header_cascade.gif"
+                ];
+            }
+
             $data->page = $page;
             $data->s = $s;
             $data->p = $p;
