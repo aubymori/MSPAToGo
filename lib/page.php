@@ -54,7 +54,47 @@ function get_page_data(string $s, string $p): object|null
     }
 
     // Text
-    $response->text = $split[4];
+    $text = trim($split[4]);
+    $log_type = substr($text, 0, 11);
+    $log_name = null;
+    switch ($log_type)
+    {
+        case "|PESTERLOG|":
+            $log_name = "Pesterlog";
+            break;
+        case "|SPRITELOG|":
+            $log_name = "Spritelog";
+            break;
+        case "|JOURNALOG|":
+            $log_name = "Journalog";
+            break;
+        case "|RECAP LOG|":
+            $log_name = "Recap log";
+            break;
+        case "|SRIOUSBIZ|":
+            $log_name = "Serious Business";
+            break;
+        case "|DIALOGLOG|":
+            $log_name = "Dialoglog";
+            break;
+        case "|AUTHORLOG|":
+            $log_name = "Authorlog";
+            break;
+        case "|TRKSTRLOG|":
+            $log_name = "Tricksterlog";
+            break;
+    }
+
+    if (!is_null($log_name))
+    {
+        $response->log_type = $log_type;
+        $response->log_name = $log_name;
+        $response->text = trim(substr($text, 11));
+    }
+    else
+    {
+        $response->text = $text;
+    }
 
     // Commands (next page)
     $response->commands = [];

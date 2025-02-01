@@ -64,4 +64,10 @@ document.addEventListener("click", (event) =>
     {
         document.documentElement.classList.add("menu-open");
     }
+
+    if (clicked.classList.contains("log-show")
+    || clicked.classList.contains("log-hide"))
+    {
+        clicked.parentElement.classList.toggle("open");
+    }
 });
