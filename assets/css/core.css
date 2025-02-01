@@ -315,3 +315,7 @@ body, button, input, table, td, th {
     padding-top: .6em;
     padding-bottom: 150px;
 }
+
+#map > * {
+    margin: 0 auto;
+}
