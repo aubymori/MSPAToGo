@@ -57,7 +57,6 @@
     --footer-color: #ffffff;
     --log-border: grey;
     --log-bg: var(--card-bg);
-    --link-color: revert; /* Browser default */
 }
 
 :root.theme-cascade {
@@ -77,7 +76,7 @@ body, button, input, table, td, th {
     color: var(--page-color);
 }
 
-a {
+:root[class*="theme-"] {
     color: var(--link-color) !important;
 }
 
