@@ -31,7 +31,17 @@ function get_page_data(string $s, string $p): object|null
         // Flash
         if (substr($media, 0, 2) == "F|")
         {
-
+            $media = substr(trim($media), 2);
+            $flash_filename = substr($media, -5);
+            $flash_link = "$media/$flash_filename";
+            $js_link = "$media/AC_RunActiveContent.js";
+            $response->media[] = [
+                "type" => "flash",
+                "url" => $flash_link,
+                "js_url" => $js_link,
+                "width" => 650,
+                "height" => 450
+            ];
         }
         // Supercartridge
         else if (substr($media, 0, 2) == "S|")
