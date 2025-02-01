@@ -203,23 +203,15 @@ a {
 }
 
 .link-white {
-    color: var(--links-white);
+    color: var(--links-white) !important;
 }
 
 .link-green {
-    color: var(--links-green);
+    color: var(--links-green) !important;
 }
 
 .link-blue {
-    color: var(--links-blue);
-}
-
-.link-yellow {
-    color: var(--links-yellow);
-}
-
-.link-orange {
-    color: var(--links-orange);
+    color: var(--links-blue) !important;
 }
 
 #footer {
@@ -369,4 +361,16 @@ a {
 
 .read-log.open .log-show {
     display: none;
+}
+
+.tooltip, .imgtip {
+    position: absolute;
+    pointer-events: none;
+    max-width: 80vw;
+}
+
+.tooltip {
+    background: #fff;
+    color: #000;
+    padding: 4px 8px;
 }

@@ -16,14 +16,15 @@
     </head>
     <body>
         {% if data.banner %}
-        <a href="/"
-           id="banner"
+        <div id="banner"
 {% if data.banner.tooltip %}
             title="{{ data.banner.tooltip }}"
+{% elseif data.banner.imagetip %}
+            data-img-tooltip="{{ data.banner.imagetip }}"
 {% endif %}
         >
             <img src="{{ data.banner.image }}">
-        </a>
+        </div>
         {% endif %}
         <div id="menu-container">
             <div id="menu-background"></div>
