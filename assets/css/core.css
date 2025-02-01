@@ -302,3 +302,7 @@ body, button, input, table, td, th {
     font-size: .75em;
     font-weight: 700;
 }
+
+.search {
+    text-align: center;
+}

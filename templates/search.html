@@ -1,0 +1,37 @@
+{% extends "pageframe.html" %}
+
+{% block page %}
+{% if data.search_html %}
+<h2 id="title">SEARCH</h2>
+<div id="content">
+    <div class="search">
+        <b>
+            Hey, welcome to the super cool low-tech search page!
+            <br><br>
+            To search for something, open your browser's menu, hit Find in page, and
+            type what you're looking for. Let your browser do all the work!!! If your text
+            is in one of the commands or captions, it'll show up here.
+            <br><br>
+            Dang, it doesn't get much easier!
+            <br><br>
+            <img src="/assets/img/search_sleuth.gif">
+            <br><br>
+        </b>
+        {{ data.search_html|raw }}
+    </div>
+</div>
+{% else %}
+<h2 id="title">Search Story</h2>
+<div id="content">
+    {# Unique from anything else, so static. #}
+    <div class="adventure-list">
+        <a href="/search/6_3">Homestuck Act 6</a>
+        <a href="/search/6_2">Homestuck Act 5</a>
+        <a href="/search/6_1">Homestuck Acts 1-4</a>
+        <a href="/search/4">Problem Sleuth</a>
+        <a href="/search/2">Bard Quest</a>
+        <a href="/search/1">Jailbreak</a>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

@@ -135,6 +135,11 @@ if (isset($routerUrl->path[0]))
             $text = "";
             $url = "http://www.mspaintadventures.com/logs/" . ($reverse ? "log_rev_" : "log_") . "$s.txt";
             $status = http_get($url, $text);
+            if ($status != 200)
+            {
+                http_response_code(404);
+                break;
+            }
             replace_mspa_links($text);
 
             $data->reversed = $reverse;
@@ -147,6 +152,30 @@ if (isset($routerUrl->path[0]))
             }
             
             $template = "log";
+            break;
+        case "search":
+            if (count($routerUrl->path) > 2)
+            {
+                http_response_code(404);
+                break;
+            }
+
+            if (isset($routerUrl->path[1]))
+            {
+                $text = "";
+                $search = $routerUrl->path[1];
+                $status = http_get("http://www.mspaintadventures.com/search/search_$search.txt", $text);
+                if ($status != 200)
+                {
+                    http_response_code(404);
+                    break;
+                }
+                
+                replace_mspa_links($text);
+                $data->search_html = $text;
+            }
+
+            $template = "search";
             break;
         default:
             http_response_code(404);
