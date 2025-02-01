@@ -100,23 +100,52 @@
     font-family: "Comic Sans MS", Verdana, Arial, Helvetica, sans-serif !important;
 }
 
+:root.theme-trickster {
+    --page-bg: url("/assets/img/Z2.gif");
+    --page-color: #f9fd6b;
+    --card-bg: #ff73fd;
+    --links-bg: #000000;
+    --footer-image: url("/assets/img/footer_trickster.gif");
+}
+
 body {
     margin: 0;
     background: var(--page-bg);
+    display: flex;
+    flex-direction: column;
 }
 
-body, button, input, table, td, th {
+* {
+    image-rendering: crisp-edges;
+}
+
+body, table, td, th {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 18px;
     color: var(--page-color);
 }
 
-img {
-    image-rendering: crisp-edges;
+button, input {
+    font-size: 18px;
 }
 
 :root[class*="theme-"]:not(.theme-sbahj) a {
     color: var(--link-color);
+}
+
+@keyframes scroll {
+    from {
+        background-position: 605px 0;
+    }
+    to {
+        background-position: 0 0;
+    }
+}
+
+#trickster-banner {
+    height: 20px;
+    background: url("/assets/img/trickster_banner.png") #000000;
+    animation: scroll 20s linear infinite;
 }
 
 #banner {
@@ -136,7 +165,6 @@ img {
     height: 32px;
     background: no-repeat var(--candycorn-image);
     background-size: 32px 32px;
-    image-rendering: pixelated;
 }
 
 #menu-button {
@@ -275,7 +303,6 @@ img {
 }
 
 #page img {
-    image-rendering: crisp-edges;
     max-width: 100%;
 }
 

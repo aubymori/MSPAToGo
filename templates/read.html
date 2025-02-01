@@ -73,7 +73,13 @@
     <div id="commands">
         {% for command in data.page.commands %}
         <div class="command">
-            &gt; <a href="/read/{{ data.s }}/{{ command.page }}">{{ command.title|raw }}</a>
+            &gt; <a href="/read/{{ data.s }}/{{ command.page }}">
+				{% if data.theme == "trickster" %}
+				<img src="/assets/img/sucker.gif">
+				{% else %}
+				{{ command.title|raw }}
+				{% endif %}
+			</a>
         </div>
         {% endfor %}
     </div>

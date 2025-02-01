@@ -128,6 +128,10 @@ if (isset($routerUrl->path[0]))
             {
                 $data->theme = "sbahj";
             }
+            else if ($ip > 7613 && $ip < 7678)
+            {
+                $data->theme = "trickster";
+            }
 
             $data->page = $page;
             $data->s = $s;

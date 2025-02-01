@@ -15,6 +15,10 @@
         {% block css %}{% endblock %}
     </head>
     <body>
+        {% if data.theme == "trickster" %}
+        <div id="trickster-banner"></div>
+        <script src="/assets/js/trickster_banner.js"></script>
+        {% endif %}
         {% if data.banner %}
         <div id="banner"
 {% if data.banner.tooltip %}
