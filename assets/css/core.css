@@ -43,6 +43,18 @@
     src: local("Verdana Bold Italic"), url("/assets/fonts/verdanaz.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: "Comic Sans MS";
+    font-weight: 400;
+    src: local("Comic Sans MS"), url("/assets/fonts/comic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Comic Sans MS";
+    font-weight: 700;
+    src: local("Comic Sans MS Bold"), url("/assets/fonts/comicbd.ttf") format("truetype");
+}
+
 :root {
     --page-bg: #535353;
     --page-color: #000000;
@@ -65,6 +77,29 @@
     --link-color: #0066ff;
 }
 
+:root.theme-scratch {
+    --page-bg: #000000;
+    --page-color: #ffffff;
+    --card-bg: #0e4603;
+    --links-bg: #000000;
+    --links-green: #ffffff;
+    --links-blue: #ffffff;
+    --link-color: #2cff4b;
+    --candycorn-image: url("/assets/img/candycorn_scratch.png");
+    --footer-image: url("/assets/img/scratch_footer.png");
+}
+
+:root.theme-sbahj {
+    --page-bg: #0707ec;
+    --card-bg: #14ff23;
+    --links-bg: #000000;
+    --footer-image: url("/assets/img/sbahj_footer.png");
+}
+
+:root.theme-sbahj * {
+    font-family: "Comic Sans MS", Verdana, Arial, Helvetica, sans-serif !important;
+}
+
 body {
     margin: 0;
     background: var(--page-bg);
@@ -76,8 +111,12 @@ body, button, input, table, td, th {
     color: var(--page-color);
 }
 
-:root[class*="theme-"] {
-    color: var(--link-color) !important;
+img {
+    image-rendering: crisp-edges;
+}
+
+:root[class*="theme-"]:not(.theme-sbahj) a {
+    color: var(--link-color);
 }
 
 #banner {

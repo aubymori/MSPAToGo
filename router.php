@@ -110,6 +110,24 @@ if (isset($routerUrl->path[0]))
                     "image" => "/mspa/images/header_cascade.gif"
                 ];
             }
+            else if ($ip > 5663 && $ip < 5982)
+            {
+                $data->theme = "scratch";
+                $scratch_banners = json_decode(file_get_contents("static/scratch_banners.json"));
+                if (isset($scratch_banners->{$p}))
+                {
+                    $banner = $scratch_banners->{$p};
+                    $data->banner = [
+                        "image" => $banner->image,
+                        "tooltip" => isset($banner->tooltip) ? $banner->tooltip : null,
+                        "imgtip" => isset($banner->imgtip) ? $banner->imgtip : null,
+                    ];
+                }
+            }
+            else if ($ip == 5982)
+            {
+                $data->theme = "sbahj";
+            }
 
             $data->page = $page;
             $data->s = $s;
