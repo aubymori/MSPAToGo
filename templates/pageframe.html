@@ -74,6 +74,11 @@
                     [
                         /(?:http:\/\/|)(?:www\.|)mspaintadventures\.com\/(?:scratch\.php|)\?s=(.*?)&p=(.*?)$/,
                         "/read/$1/$2"
+                    ],
+                    // Proxy assets
+                    [
+                        /(?:http:\/\/|)(?:www\.|cdn\.|)mspaintadventures\.com\/storyfiles\/hs2\/(.*?)$/,
+                        "/mspa/storyfiles/hs2/$1"
                     ]
                 ]
             };
