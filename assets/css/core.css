@@ -301,10 +301,12 @@ body, button, input, table, td, th {
 .log {
     font-size: .75em;
     font-weight: 700;
+    padding-bottom: 150px;
 }
 
 .search {
     text-align: center;
+    padding-bottom: 150px;
 }
 
 #map {
