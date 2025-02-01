@@ -27,7 +27,7 @@ function betterParseUrl($url) {
 
 function replace_mspa_links(string &$str): void
 {
-    $str = preg_replace('/"(?:http:\/\/www.mspaintadventures.com\/|)\?s=(.*?)&p=(.*?)"/m', "/read/$1/$2", $str);
+    $str = preg_replace('/"(?:http:\/\/www.mspaintadventures.com\/(?:index.php|)|)\?s=(.*?)&p=(.*?)"/m', "\"/read/$1/$2\"", $str);
 }
 
 $routerUrl = betterParseUrl($_SERVER["REQUEST_URI"]);
@@ -177,6 +177,33 @@ if (isset($routerUrl->path[0]))
 
             $template = "search";
             break;
+            case "map":
+                if (count($routerUrl->path) > 2)
+                {
+                    http_response_code(404);
+                    break;
+                }
+    
+                if (isset($routerUrl->path[1]))
+                {
+                    $text = "";
+                    $map = $routerUrl->path[1];
+                    $status = http_get("http://www.mspaintadventures.com/maps/$map.html", $text);
+                    if ($status != 200)
+                    {
+                        http_response_code(404);
+                        break;
+                    }
+                    
+                    replace_mspa_links($text);
+                    $data->map_html = $text;
+                }
+                else
+                {
+                    $data->adventures = json_decode(file_get_contents("static/adventures.json"));
+                }
+                $template = "map";
+                break;
         default:
             http_response_code(404);
             $template = "404";

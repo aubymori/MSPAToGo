@@ -306,3 +306,9 @@ body, button, input, table, td, th {
 .search {
     text-align: center;
 }
+
+#map {
+    text-align: center;
+    padding-top: .6em;
+    padding-bottom: 150px;
+}

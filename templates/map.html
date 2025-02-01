@@ -1,0 +1,47 @@
+{% extends "pageframe.html" %}
+
+{% block page %}
+{% if data.map_html %}
+<h2 id="title">Adventure Map</h2>
+<div id="map">
+    {{ data.map_html|raw }}
+</div>
+<script>
+    // Homestuck map is FUCKING HUGE!!!!!
+    // And the table HTML is no good
+    // Gotta resize it with JS :/
+    function fixMap()
+    {
+        const page = document.getElementById("page");
+        const map = document.getElementById("map");
+        if (map.children[0].clientWidth <= page.clientWidth)
+        {
+            map.style.transform = null;
+            map.style.transformOrigin = null;
+            map.style.height = null;
+            return;
+        }
+
+        let height = map.children[0].clientHeight;
+        let ratio = page.clientWidth / map.children[0].clientWidth;
+        map.style.transform = `scale(${ratio})`;
+        map.style.transformOrigin = "top left";
+        map.style.height = `${height * ratio + 30}px`;
+    }
+
+    window.addEventListener("resize", fixMap);
+    window.addEventListener("load", fixMap);
+</script>
+{% else %}
+<h2 id="title">Select Map</h2>
+<div id="content">
+    <div class="adventure-list">
+        {% for adv in data.adventures %}
+        {% if not adv.hidden %}
+        <a href="/map/{{ adv.id }}">{{ adv.title }}</a>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}
