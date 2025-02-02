@@ -106,9 +106,24 @@ if (isset($routerUrl->path[0]))
                     $template = "DOTA";
                     break;
                 }
+                else if ($p == "007395")
+                {
+                    $template = "caliborn_crowbar";
+                    break;
+                }
+                else if ($p == "007680")
+                {
+                    $template = "caliborn_crowbar2";
+                    break;
+                }
                 else if ($p == "008801")
                 {
                     $template = "GAMEOVER";
+                    break;
+                }
+                else if ($p == "010030")
+                {
+                    $template = "endcredits";
                     break;
                 }
             }
