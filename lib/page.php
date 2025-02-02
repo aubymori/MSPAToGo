@@ -66,12 +66,18 @@ function get_page_data(string $s, string $p, bool $ignore_commands = false, bool
                     $flash_filename = substr($media, -5);
                     $flash_link = "$media/$flash_filename";
                     $js_link = "$media/AC_RunActiveContent.js";
+
+                    $flash_height = 450;
+                    $flash_height_map = json_decode(file_get_contents("static/flash_heights.json"));
+                    if (isset($flash_height_map->{$p}))
+                        $flash_height = $flash_height_map->{$p};
+
                     $response->media[] = [
                         "type" => "flash",
                         "url" => $flash_link,
                         "js_url" => $js_link,
                         "width" => 650,
-                        "height" => 450
+                        "height" => $flash_height
                     ];
                 }
                 // Supercartridge
