@@ -194,6 +194,14 @@ if (isset($routerUrl->path[0]))
                     "image" => "/assets/img/act6act5act1x2combo.gif"
                 ];
             }
+            else if (($ip > 8142 && $ip < 8178)
+            || ($ip > 8374 && $ip < 8431)
+            || ($ip > 8752 && $ip < 8802)
+            || ($ip > 8820 && $ip < 8844)
+            || ($ip > 9308 && $ip < 9348))
+            {
+                $data->theme = "homosuck";
+            }
 
             require "lib/page.php";
             $page = get_page_data($s, $p, $x2combo);
@@ -381,5 +389,22 @@ $data->links = [
         "color" => "blue"
     ],
 ];
+
+$homosuck_link_overrides = [
+    "WORTHLESS GARBAGE.",
+    "STUPID.",
+    "BULLSHIT.",
+    "WOW.",
+    "NO.",
+    "BORING."
+];
+
+if ($data->theme == "homosuck")
+{
+    for ($i = 0; $i < count($homosuck_link_overrides); $i++)
+    {
+        $data->links[$i]["text"] = $homosuck_link_overrides[$i];
+    }
+}
 
 echo $twig->render($template . ".html", [$data]);

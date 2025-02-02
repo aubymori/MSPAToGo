@@ -126,6 +126,20 @@
     --links-white: #000000;
 }
 
+:root.theme-homosuck {
+    --page-bg: #042300;
+    --page-color: #2ed73a;
+    --card-bg: #073c00;
+    --link-color: #2ed73a;
+    --links-bg: #042300;
+    --links-white: #2ed73a;
+    --links-green: #2ed73a;
+    --links-blue: #2ed73a;
+    --candycorn-image: url("/assets/img/a6a6_tooth.gif");
+    --footer-image: url("/assets/img/footer_a6a6.png");
+    --footer-color: #2ed73a;
+}
+
 body {
     margin: 0;
     background: var(--page-bg);
@@ -364,6 +378,10 @@ button, input {
     font-size: 48px;
 }
 
+:root.theme-homosuck .commands {
+    color: #000000;
+}
+
 #page-footer {
     padding-bottom: 15px;
     font-size: .75em;
@@ -371,6 +389,10 @@ button, input {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+:root.theme-homosuck #page-footer {
+    color: #000000;
 }
 
 :root.theme-collide #page-footer,
