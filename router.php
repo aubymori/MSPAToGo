@@ -323,7 +323,8 @@ if (isset($routerUrl->path[0]))
             $data->s = $s;
             $data->p = $p;
             $template = $x2combo ? "read_x2_combo" : "read";
-
+            if ($p == "009535")
+                $template = "echidna";
             break;
         case "log":
             if (count($routerUrl->path) > 3)
