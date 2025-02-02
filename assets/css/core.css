@@ -502,6 +502,30 @@ button, input {
     margin-bottom: 20px;
 }
 
+#media.hscroll {
+    display: block;
+    overflow-x: scroll;
+}
+
+#media.hscroll img {
+    margin: 0;
+    max-width: unset;
+    height: calc(100vw * 9/13);
+}
+
+@keyframes blink {
+    to {
+        visibility: hidden;
+    }
+}
+
+#hscroll-arrow {
+    font-size: 24px;
+    user-select: none;
+    margin: 4px;
+    animation: blink 2s steps(2, start) infinite;
+}
+
 #gamepad {
     width: 100%;
     table-layout: fixed;

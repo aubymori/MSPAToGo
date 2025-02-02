@@ -13,7 +13,7 @@ onload="Sburb.initialize('JterniaDeploy', '{{ media.xml_url }}', false);"
 {{ data.page.media[0].html|raw }}
 {% else %}
 <h2 id="title">{{ data.page.title|raw }}</h2>
-<div id="media">
+<div id="media" class="{{ data.hscroll ? 'hscroll' : '' }}">
 {% for media in data.page.media %}
 {% if media.type == "image" %}
 <img src="{{ media.url }}">
@@ -63,6 +63,9 @@ onload="Sburb.initialize('JterniaDeploy', '{{ media.xml_url }}', false);"
 <script src="{{ media.js_url }}"></script>
 {% endif %}
 {% endfor %}
+{% if data.hscroll %}
+<div id="hscroll-arrow">==&gt;</div>
+{% endif %}
 </div>
 {% endif %}
 <div id="content" data-s="{{ data.s }}" data-p="{{ data.p }}">

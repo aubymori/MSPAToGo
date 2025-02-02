@@ -271,6 +271,13 @@ if (isset($routerUrl->path[0]))
             {
                 $data->theme = "homosuck";
             }
+            // hscroll
+            else if ($ip == 8848
+            || $ip == 8850
+            || $ip == 8857)
+            {
+                $data->hscroll = true;
+            }
 
             require "lib/page.php";
             $page = get_page_data($s, $p, $x2combo);
