@@ -518,7 +518,7 @@ button, input {
     aspect-ratio: 6/2 !important;
 }
 
-#JterniaDeploy > div, #SBURBStage, #SBURBmovieBin, #SBURBmovieBin div {
+#JterniaDeploy > div, #SBURBStage {
     width: 100vw !important;
     height: calc(100vw * (9 / 13)) !important;
 }

@@ -23,3 +23,51 @@ registerButton("gamepad-down", "ArrowDown", 40);
 registerButton("gamepad-left", "ArrowLeft", 37);
 registerButton("gamepad-right", "ArrowRight", 39);
 registerButton("gamepad-space", "Space", 32);
+
+// Sburb's reported mouse position is fucked when we resize the canvas, calculate manually.
+function onPointerMove(event)
+{
+    if (event.target.id == "SBURBStage")
+    {
+        let canvas = event.target;
+        canvas.onmousemove = undefined;
+        canvas.removeAttribute("onmousemove");
+        
+        var totalOffsetX = 0;
+        var totalOffsetY = 0;
+        var canvasX = 0;
+        var canvasY = 0;
+        var currentElement = canvas;
+        do{
+            totalOffsetX += currentElement.offsetLeft;
+            totalOffsetY += currentElement.offsetTop;
+        }
+        while(currentElement = currentElement.offsetParent)
+        canvasX = event.pageX - totalOffsetX;
+        canvasY = event.pageY - totalOffsetY;
+        
+        Sburb.Mouse.x = Math.floor(canvasX / canvas.clientWidth * canvas.width);
+        Sburb.Mouse.y = Math.floor(canvasY / canvas.clientHeight * canvas.height);
+    }
+}
+document.addEventListener("pointermove", onPointerMove);
+
+// Fix for tapping
+document.addEventListener("pointerdown", (event) => {
+    if (event.poinertType != "mouse" && event.target.id == "SBURBStage")
+    {
+        // Mobile doesn't fire pointermove, call manually
+        onPointerMove(event);
+        Sburb.onMouseDown(event, event.target);
+    }
+});
+document.addEventListener("pointerup", (event) => {
+    if (event.poinertType != "mouse" && event.target.id == "SBURBStage")
+    {
+        // Mobile doesn't fire pointermove, call manually
+        onPointerMove(event);
+        Sburb.onMouseUp(event, event.target);
+    }
+});
+
+console.log(window.relM)
