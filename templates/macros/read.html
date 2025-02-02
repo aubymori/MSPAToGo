@@ -1,0 +1,41 @@
+{% macro read_text(page) %}
+{% if page.log_type %}
+<div class="read-log {{ page.log_type == '|AUTHORLOG|' ? 'authorlog open' : '' }}">
+    {% if page.log_type != "|AUTHORLOG|" %}
+    <button class="log-show">Show {{ page.log_name }}</button>
+    <button class="log-hide">Hide {{ page.log_name }}</button>
+    {% endif %}
+    <p class="log-content comic-text">
+        {{ page.text|raw|nl2br }}
+    </p>
+</div>
+{% else %}
+<p class="comic-text">{{ page.text|raw|nl2br }}</p>
+{% endif %}
+{% endmacro %}
+
+{% macro read_footer(page) %}
+<div id="page-footer">
+    {% if page.prev_page %}
+    <ul id="page-footer-left">
+        <li><a href="/read/{{ data.s }}">Start Over</a></li>
+        <li><a href="/read/{{ data.s }}/{{ page.prev_page }}">Go Back</a></li>
+    </ul>
+    {% endif %}
+    <a id="options-link" href="javascript:void(0)">Options</a>
+</div>
+{% endmacro %}
+
+{% macro read_commands(page) %}
+{% for command in page.commands %}
+<div class="command">
+    &gt; <a href="/read/{{ data.s }}/{{ command.page }}">
+        {% if data.theme == "trickster" %}
+        <img src="/assets/img/sucker.gif">
+        {% else %}
+        {{ command.title|raw }}
+        {% endif %}
+    </a>
+</div>
+{% endfor %}
+{% endmacro %}

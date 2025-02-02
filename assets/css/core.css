@@ -351,16 +351,16 @@ button, input {
     padding: 30px 0;
 }
 
-#commands {
+.commands {
     padding-bottom: 30px;
     font-size: 26px;
 }
 
-:root.theme-collide #commands {
+:root.theme-collide .commands {
     font-size: 34px;
 }
 
-:root.theme-act7 #commands {
+:root.theme-act7 .commands {
     font-size: 48px;
 }
 
@@ -476,7 +476,7 @@ button, input {
     flex-direction: column;
 }
 
-#media > img:not(:last-child) {
+#media img:not(:last-child) {
     margin-bottom: 20px;
 }
 

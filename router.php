@@ -113,14 +113,6 @@ if (isset($routerUrl->path[0]))
                 }
             }
 
-            require "lib/page.php";
-            $page = get_page_data($s, $p);
-            if (is_null($page))
-            {
-                http_response_code(404);
-                break;
-            }
-
             // Auto-save
             if (isset($_COOKIE["autosave"]))
             {
@@ -129,6 +121,7 @@ if (isset($routerUrl->path[0]))
             }
 
             $ip = intval($p);
+            $x2combo = false;
             if ($ip == 6009)
             {
                 $data->theme = "cascade";
@@ -172,6 +165,39 @@ if (isset($routerUrl->path[0]))
                     "image" => "/mspa/images/act7_header.gif"
                 ];
             }
+            else if ($ip > 7687 && $ip < 7826)
+            {
+                // Make sure we're not combining two unrelated pages
+                if ($ip % 2 != 0)
+                {
+                    $redirp = str_pad(strval(intval($p) - 1), 6, "0", STR_PAD_LEFT);
+                    header("Location: /read/$s/$redirp");
+                    break;
+                }
+                $x2combo = true;
+                $data->banner = [
+                    "image" => "/assets/img/act6act5act1x2combo.gif"
+                ];
+            }
+
+            require "lib/page.php";
+            $page = get_page_data($s, $p, $x2combo);
+            if (is_null($page))
+            {
+                http_response_code(404);
+                break;
+            }
+
+            if ($x2combo)
+            {
+                $p2 = str_pad(strval(intval($p) + 1), 6, "0", STR_PAD_LEFT);
+                $page2 = get_page_data($s, $p2, false, true);
+                if (is_null($page2))
+                {
+                    http_response_code(404);
+                    break;
+                }
+            }
 
             switch ($ip)
             {
@@ -191,9 +217,11 @@ if (isset($routerUrl->path[0]))
             }
 
             $data->page = $page;
+            if (isset($page2))
+                $data->page2 = $page2;
             $data->s = $s;
             $data->p = $p;
-            $template = "read";
+            $template = $x2combo ? "read_x2_combo" : "read";
 
             break;
         case "log":

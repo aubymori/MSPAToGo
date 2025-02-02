@@ -1,0 +1,71 @@
+{% extends "pageframe.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="/assets/css/read_x2_combo.css">
+{% endblock %}
+
+{% block js %}
+<script src="/assets/js/read_x2_combo.js"></script>
+{% endblock %}
+
+{% block page %}
+{# There's two titles here, but we only use the one for the left page, since
+   it's the only one that's not always "==> ==>". (It's not this once.) #}
+<h2 id="title">{{ data.page.title|raw }}</h2>
+<div id="media">
+    {# Only images here. #}
+    <div id="media-1">
+        {% for media in data.page.media %}
+        <img src="{{ media.url }}">
+        {% endfor %}
+    </div>
+    <div id="media-2">
+        {% for media in data.page2.media %}
+        <img src="{{ media.url }}">
+        {% endfor %}
+    </div>
+</div>
+<div id="content">
+    {% from "macros/read.html" import read_text, read_footer, read_commands %}
+    {% if not data.page.log_type or not data.page2.log_type %}
+        {# Single text #}
+        {% if (data.page.log_type) %}
+        {{ read_text(data.page) }}
+        {% elseif data.page2.log_type %}
+        {{ read_text(data.page2) }}
+        {% else %}
+        {# For spacing #}
+        <p class="comic-text"></p>
+        {% endif %}
+        <div class="commands">
+        {{ read_commands(data.page2) }}
+        </div>
+    {% else %}
+        {# Double text #}
+        <div id="text-1">
+            {{ read_text(data.page) }}
+            <div class="commands">
+                <div class="command">
+                    &gt;
+                    <a href="javascript:void(0)" class="tilted-arrow">
+                        <div>==&gt;&emsp;</div><div class="tilted-arrow-link">==&gt;</div>
+                    </a>
+                </div> 
+            </div>
+        </div>
+        <div id="text-2">
+            {{ read_text(data.page2) }}
+            <div class="commands">
+                <div class="command">
+                    &gt;
+                    <a href="javascript:void(0)" class="tilted-arrow flip">
+                        <div>==&gt;&emsp;</div><div class="tilted-arrow-link">==&gt;</div>
+                    </a>
+                </div>
+                {{ read_commands(data.page2) }}
+            </div>
+        </div>
+    {% endif %}
+    {{ read_footer(data.page) }}
+</div>
+{% endblock %}

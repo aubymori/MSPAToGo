@@ -69,42 +69,11 @@ onload="Sburb.initialize('JterniaDeploy', '{{ media.xml_url }}', false);"
 	{% if data.gamepad %}
 	{% include "include/gamepad.html" %}
 	{% endif %}
-    {% if data.page.log_type %}
-    <div class="read-log {{ data.page.log_type == '|AUTHORLOG|' ? 'authorlog open' : '' }}">
-        {% if data.page.log_type != "|AUTHORLOG|" %}
-        <button class="log-show">Show {{ data.page.log_name }}</button>
-        <button class="log-hide">Hide {{ data.page.log_name }}</button>
-        {% endif %}
-        <p class="log-content comic-text">
-            {{ data.page.text|raw|nl2br }}
-        </p>
-    </div>
-    {% else %}
-    <p class="comic-text">
-        {{ data.page.text|raw|nl2br }}
-    </p>
-    {% endif %}
-    <div id="commands">
-        {% for command in data.page.commands %}
-        <div class="command">
-            &gt; <a href="/read/{{ data.s }}/{{ command.page }}">
-				{% if data.theme == "trickster" %}
-				<img src="/assets/img/sucker.gif">
-				{% else %}
-				{{ command.title|raw }}
-				{% endif %}
-			</a>
-        </div>
-        {% endfor %}
-    </div>
-    <div id="page-footer">
-        {% if data.page.prev_page %}
-        <ul id="page-footer-left">
-            <li><a href="/read/{{ data.s }}">Start Over</a></li>
-            <li><a href="/read/{{ data.s }}/{{ data.page.prev_page }}">Go Back</a></li>
-        </ul>
-        {% endif %}
-        <a id="options-link" href="javascript:void(0)">Options</a>
-    </div>
+	{% from "macros/read.html" import read_text, read_footer, read_commands %}
+	{{ read_text(data.page) }}
+	<div class="commands">
+    {{ read_commands(data.page) }}
+	</div>
+    {{ read_footer(data.page) }}
 </div>
 {% endblock %}

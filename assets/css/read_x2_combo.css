@@ -1,0 +1,47 @@
+#media {
+    flex-direction: row;
+}
+
+#media img:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+#media-1 {
+    margin-right: 10px;
+}
+
+#media-1, #media-2 {
+    flex: 1;
+}
+
+#page img {
+    width: 100%;
+}
+
+.tilted-arrow {
+    display: inline-block;
+    text-decoration: none;
+}
+
+.tilted-arrow > div {
+    display: inline-block;
+    text-decoration: underline;
+}
+
+.tilted-arrow.flip {
+    transform: scaleX(-100%);
+}
+
+.tilted-arrow-link {
+    transform-origin: 0 100%;
+    transform: rotate(-30deg);
+    z-index: -1;
+}
+
+#content:not(.text-2) #text-2 {
+    display: none;
+}
+
+#content.text-2 #text-1 {
+    display: none;
+}
