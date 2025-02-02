@@ -99,6 +99,15 @@ if (isset($routerUrl->path[0]))
                 break;
             }
 
+            if ($s == "6")
+            {
+                if ($p == "006715")
+                {
+                    $template = "DOTA";
+                    break;
+                }
+            }
+
             require "lib/page.php";
             $page = get_page_data($s, $p);
             if (is_null($page))

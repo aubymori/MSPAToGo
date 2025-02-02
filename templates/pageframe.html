@@ -64,27 +64,9 @@
                 &copy; 2025 aubymori
             </div>
         </div>
-        <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
-        <script>
-            window.RufflePlayer.config = {
-                autoplay: "auto",
-                splashScreen: false,
-                urlRewriteRules: [
-                    // Redirect MSPA links in flashes (mainly Insert disc 2 and Insert disc three)
-                    // back to our own site.
-                    [
-                        /(?:http:\/\/|)(?:www\.|)mspaintadventures\.com\/(?:scratch\.php|)\?s=(.*?)&p=(.*?)$/,
-                        "/read/$1/$2"
-                    ],
-                    // Proxy assets
-                    [
-                        /(?:http:\/\/|)(?:www\.|cdn\.|)mspaintadventures\.com\/storyfiles\/hs2\/(.*?)$/,
-                        "/mspa/storyfiles/hs2/$1"
-                    ]
-                ]
-            };
-        </script>
+        {% include "include/ruffle.html" %}
         <script src="/assets/js/core.js"></script>
+        <script src="/assets/js/flash_size_fix.js"></script>
         {% block js %}{% endblock %}
     </body>
 </html>
