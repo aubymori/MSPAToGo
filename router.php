@@ -101,29 +101,90 @@ if (isset($routerUrl->path[0]))
 
             if ($s == "6")
             {
+                // DOTA
                 if ($p == "006715")
                 {
                     $template = "DOTA";
                     break;
                 }
+                // Caliborn hitting MSPA with crowbar
                 else if ($p == "007395")
                 {
                     $template = "caliborn_crowbar";
                     break;
                 }
+                // Caliborn hitting MSPA with crowbar TWO
                 else if ($p == "007680")
                 {
                     $template = "caliborn_crowbar2";
                     break;
                 }
+                // GAME OVER
                 else if ($p == "008801")
                 {
                     $template = "GAMEOVER";
                     break;
                 }
+                // End credits
                 else if ($p == "010030")
                 {
                     $template = "endcredits";
+                    break;
+                }
+                // Terezi passwords
+                else if ($p == "009058"
+                || $p == "009109"
+                || $p == "009135"
+                || $p == "009150"
+                || $p == "009188"
+                || $p == "009204"
+                || $p == "009222"
+                || $p == "009263")
+                {
+                    if (isset($_GET["pw"]))
+                    {
+                        $pw = strtolower($_GET["pw"]);
+                        switch (strtolower($pw))
+                        {
+                            // real password from mspa, even viz kept it
+                            // keeping for funsies :3
+                            case "testpass":
+                                header("Location: /");
+                                break;
+                            case "home":
+                                header("Location: /read/6/009059");
+                                break;
+                            case "r3un1on":
+                                header("Location: /read/6/009110");
+                                break;
+                            case "fr4m3d":
+                                header("Location: /read/6/009136");
+                                break;
+                            case "mom3nt":
+                                header("Location: /read/6/009151");
+                                break;
+                            case "murd3r":
+                                header("Location: /read/6/009189");
+                                break;
+                            case "just1c3":
+                                header("Location: /read/6/009205");
+                                break;
+                            case "honk":
+                                header("Location: /read/6/009223");
+                                break;
+                            case "fl1p":
+                                header("Location: /read/6/009264");
+                                break;
+                            case "":
+                                break;
+                            default:
+                                $data->wrong_pw = true;
+                                break;
+                        }
+                    }
+
+                    $template = "password";
+                    
                     break;
                 }
             }
@@ -137,6 +198,7 @@ if (isset($routerUrl->path[0]))
 
             $ip = intval($p);
             $x2combo = false;
+            // Cascade
             if ($ip == 6009)
             {
                 $data->theme = "cascade";
@@ -144,6 +206,7 @@ if (isset($routerUrl->path[0]))
                     "image" => "/mspa/images/header_cascade.gif"
                 ];
             }
+            // Scratch interlude
             else if ($ip > 5663 && $ip < 5982)
             {
                 $data->theme = "scratch";
@@ -158,14 +221,17 @@ if (isset($routerUrl->path[0]))
                     ];
                 }
             }
+            // SNOP
             else if ($ip == 5982)
             {
                 $data->theme = "sbahj";
             }
+            // Trickster mode
             else if ($ip > 7613 && $ip < 7678)
             {
                 $data->theme = "trickster";
             }
+            // Collide
             else if ($ip == 9987)
             {
                 $data->theme = "collide";
@@ -173,6 +239,7 @@ if (isset($routerUrl->path[0]))
                     "image" => "/mspa/images/collide_header.gif"
                 ];
             }
+            // ACT 7
             else if ($ip == 10027)
             {
                 $data->theme = "act7";
@@ -180,6 +247,7 @@ if (isset($routerUrl->path[0]))
                     "image" => "/mspa/images/act7_header.gif"
                 ];
             }
+            // ACT 6 ACT 5 ACT 1 x2 COMBO!!!
             else if ($ip > 7687 && $ip < 7826)
             {
                 // Make sure we're not combining two unrelated pages
@@ -194,6 +262,7 @@ if (isset($routerUrl->path[0]))
                     "image" => "/assets/img/act6act5act1x2combo.gif"
                 ];
             }
+            // HOMOSUCK
             else if (($ip > 8142 && $ip < 8178)
             || ($ip > 8374 && $ip < 8431)
             || ($ip > 8752 && $ip < 8802)
@@ -211,6 +280,7 @@ if (isset($routerUrl->path[0]))
                 break;
             }
 
+            // Get second page for A6A5A1x2
             if ($x2combo)
             {
                 $p2 = str_pad(strval(intval($p) + 1), 6, "0", STR_PAD_LEFT);
@@ -222,6 +292,7 @@ if (isset($routerUrl->path[0]))
                 }
             }
 
+            // Gamepad for walkarounds
             switch ($ip)
             {
                 case 2153: // [S] YOU THERE. BOY.
@@ -232,7 +303,7 @@ if (isset($routerUrl->path[0]))
                 case 5221: // [S] Kanaya: Return to the core.
                 case 5338: // [S] Equius: Seek the highb100d.
                 case 5595: // [S] Seer: Descend.
-                case 5617: // [S] Terezi: Proceed.
+                case 5617: // [S] Terezi: Proceed. (not playable, but you need to hit an arrow key to proceed with it)
                 case 7163: // [S] ACT 6 INTERMISSION 3
                 case 7208: // [S][A6I3] ==>
                 case 7298: // [S][A6I3] ==>
@@ -270,7 +341,7 @@ if (isset($routerUrl->path[0]))
                     }
                 }
 
-                $s = $routerUrl->path[1];
+            $s = $routerUrl->path[1];
             $text = "";
             $url = "http://www.mspaintadventures.com/logs/" . ($reverse ? "log_rev_" : "log_") . "$s.txt";
             $status = http_get($url, $text);

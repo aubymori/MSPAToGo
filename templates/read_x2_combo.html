@@ -25,7 +25,7 @@
         {% endfor %}
     </div>
 </div>
-<div id="content">
+<div id="content" data-s="{{ data.s }}" data-p="{{ data.p }}">
     {% from "macros/read.html" import read_text, read_footer, read_commands %}
     {% if not data.page.log_type or not data.page2.log_type %}
         {# Single text #}
