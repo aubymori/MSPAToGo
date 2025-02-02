@@ -54,6 +54,32 @@ if (isset($routerUrl->path[0]))
         case "archive":
             $template = "archive";
             break;
+        case "options":
+            if ($_SERVER["REQUEST_METHOD"] == "POST")
+            {
+                $autologs = (isset($_POST["auto-open-logs"]) && $_POST["auto-open-logs"] == "on");
+                $theme = $_POST["theme"];
+                $theme_override = (isset($_POST["override-theme"]) && $_POST["override-theme"] == "on");
+
+                setcookie("auto-open-logs", $autologs ? "true" : "false", time() + 34560000, "/"); // 400 days
+                setcookie("theme", $theme, time() + 34560000, "/");
+                setcookie("override-theme", $theme_override ? "true" : "false", time() + 34560000, "/");
+            }
+            else
+            {
+                $autologs = (isset($_COOKIE["auto-open-logs"]) && $_COOKIE["auto-open-logs"] == "true");
+                $theme = $_COOKIE["theme"] ?? "default";
+                $theme_override = (isset($_COOKIE["override-theme"]) && $_COOKIE["override-theme"] == "true");
+            }
+
+            $data->autologs_opt = $autologs;
+            $data->theme_opt = $theme;
+            $data->theme = ($theme == "default") ? null : $theme;
+            $dont_change_theme = true;
+            $data->theme_override = $theme_override;
+
+            $template = "options";
+            break;
         case "mspa":
             require "lib/mspa_funnel.php";
             mspa_funnel(substr($_SERVER["REQUEST_URI"], 6));
@@ -517,7 +543,22 @@ $data->links = [
         "url" => "/search",
         "color" => "blue"
     ],
+    [
+        "text" => "OPTIONS",
+        "url" => "/options",
+        "color" => "orange"
+    ],
 ];
+
+// Options
+$data->autologs = (isset($_COOKIE["auto-open-logs"]) && $_COOKIE["auto-open-logs"] == "true");
+$theme = $_COOKIE["theme"] ?? null;
+$theme = ($theme == "default") ? null : $theme;
+if ((!isset($dont_change_theme) || !$dont_change_theme)
+&& (is_null($data->theme) || (isset($_COOKIE["override-theme"]) && $_COOKIE["override-theme"] == "true")))
+{
+    $data->theme = $theme;
+}
 
 $homosuck_link_overrides = [
     "WORTHLESS GARBAGE.",
@@ -525,7 +566,8 @@ $homosuck_link_overrides = [
     "BULLSHIT.",
     "WOW.",
     "NO.",
-    "BORING."
+    "BORING.",
+    "WHO CARES?",
 ];
 
 if ($data->theme == "homosuck")

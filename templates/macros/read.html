@@ -1,6 +1,6 @@
 {% macro read_text(page) %}
 {% if page.log_type %}
-<div class="read-log {{ page.log_type == '|AUTHORLOG|' ? 'authorlog open' : '' }}">
+<div class="read-log {{ page.log_type == '|AUTHORLOG|' ? 'authorlog' : '' }} {{ data.autologs or page.log_type == '|AUTHORLOG|' ? 'open' : '' }}">
     {% if page.log_type != "|AUTHORLOG|" %}
     <button class="log-show">Show {{ page.log_name }}</button>
     <button class="log-hide">Hide {{ page.log_name }}</button>
