@@ -55,6 +55,9 @@
 </div>
 {% endif %}
 <div id="content" data-s="{{ data.s }}" data-p="{{ data.p }}">
+	{% if data.gamepad %}
+	{% include "include/gamepad.html" %}
+	{% endif %}
     {% if data.page.log_type %}
     <div class="read-log {{ data.page.log_type == '|AUTHORLOG|' ? 'authorlog open' : '' }}">
         {% if data.page.log_type != "|AUTHORLOG|" %}

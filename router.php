@@ -133,6 +133,23 @@ if (isset($routerUrl->path[0]))
                 $data->theme = "trickster";
             }
 
+            switch ($ip)
+            {
+                case 2153: // [S] YOU THERE. BOY.
+                case 2376: // [S] ==>
+                case 3258: // [S] ACT 4 ==>
+                case 4692: // [S] Past Karkat: Wake up.
+                case 4979: // [S] John: Enter village.
+                case 5221: // [S] Kanaya: Return to the core.
+                case 5338: // [S] Equius: Seek the highb100d.
+                case 5595: // [S] Seer: Descend.
+                case 5617: // [S] Terezi: Proceed.
+                case 7163: // [S] ACT 6 INTERMISSION 3
+                case 7208: // [S][A6I3] ==>
+                case 7298: // [S][A6I3] ==>
+                    $data->gamepad = true;
+            }
+
             $data->page = $page;
             $data->s = $s;
             $data->p = $p;

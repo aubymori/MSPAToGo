@@ -106,6 +106,7 @@
     --page-color: #f9fd6b;
     --card-bg: #ff73fd;
     --links-bg: #000000;
+    --link-color: #fb060b;
     --footer-image: url("/assets/img/footer_trickster.gif");
 }
 
@@ -448,4 +449,20 @@ button, input {
 
 #media > img:not(:last-child) {
     margin-bottom: 20px;
+}
+
+#gamepad {
+    width: 100%;
+    table-layout: fixed;
+    margin-top: 30px;
+}
+
+#gamepad button, #gamepad div {
+    min-width: 100%;
+    min-height: 100%;
+    aspect-ratio: 3/2;
+}
+
+#gamepad-space {
+    aspect-ratio: 6/2 !important;
 }
