@@ -106,6 +106,11 @@ if (isset($routerUrl->path[0]))
                     $template = "DOTA";
                     break;
                 }
+                else if ($p == "008801")
+                {
+                    $template = "GAMEOVER";
+                    break;
+                }
             }
 
             require "lib/page.php";
