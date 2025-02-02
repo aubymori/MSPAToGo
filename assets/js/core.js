@@ -75,7 +75,7 @@ document.addEventListener("click", (event) =>
 // Make flashes fit to window
 function fixFlashSizes()
 {
-    for (const flash of document.querySelectorAll("embed, ruffle-embed"))
+    for (const flash of document.querySelectorAll("embed, ruffle-embed, iframe"))
     {
         // Reverse since we calculate by width and not height
         if (!flash.aspectRatio)

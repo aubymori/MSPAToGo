@@ -110,6 +110,22 @@
     --footer-image: url("/assets/img/footer_trickster.gif");
 }
 
+:root.theme-collide {
+    --page-bg: #000000;
+    --card-bg: #262626;
+    --link-color: #ff0000;
+}
+
+:root.theme-act7 {
+    --page-bg: #ffffff;
+    --footer-color: #000000;
+    --card-bg: #dbdbdb;
+    --link-color: #ffffff;
+    --links-bg: #f2f2f2;
+    --links-color: #000000;
+    --links-white: #000000;
+}
+
 body {
     margin: 0;
     background: var(--page-bg);
@@ -340,6 +356,14 @@ button, input {
     font-size: 26px;
 }
 
+:root.theme-collide #commands {
+    font-size: 34px;
+}
+
+:root.theme-act7 #commands {
+    font-size: 48px;
+}
+
 #page-footer {
     padding-bottom: 15px;
     font-size: .75em;
@@ -347,6 +371,11 @@ button, input {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+:root.theme-collide #page-footer,
+:root.theme-act7 #page-footer {
+    font-size: 1em;
 }
 
 #page-footer ul {
@@ -467,7 +496,7 @@ button, input {
     aspect-ratio: 6/2 !important;
 }
 
-/* #JterniaDeploy > div, #SBURBStage, #SBURBmovieBin, #SBURBmovieBin div {
+#JterniaDeploy > div, #SBURBStage, #SBURBmovieBin, #SBURBmovieBin div {
     width: 100vw !important;
     height: calc(100vw * (9 / 13)) !important;
-} */
+}

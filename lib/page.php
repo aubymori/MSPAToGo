@@ -25,77 +25,96 @@ function get_page_data(string $s, string $p): object|null
     // Media
     $medias = explode("\n", $split[3]);
     $response->media = [];
-    // Cascade is a special case. It was a supercartridge page
-    // before supercartridgees were officially a thing, and thus
-    // the specialties of it are baked into the cascade.php file.
-    // Just make it into a supercartridge page from a static HTML
-    // file.
-    if ($p == "006009")
-    {
-        $response->supercartridge = true;
-        $response->media[] = [
-            "type" => "supercartridge",
-            "html" => file_get_contents("static/cascade.html")
-        ];
-    }
-    else
-    foreach ($medias as $media)
-    {
-        $media = preg_replace("/http:\/\/(www\.|cdn\.|)mspaintadventures\.com\//", "/mspa/", $media);
-        // Flash
-        if (substr($media, 0, 2) == "F|")
-        {
-            $media = substr(trim($media), 2);
-            $flash_filename = substr($media, -5);
-            $flash_link = "$media/$flash_filename";
-            $js_link = "$media/AC_RunActiveContent.js";
-            $response->media[] = [
-                "type" => "flash",
-                "url" => $flash_link,
-                "js_url" => $js_link,
-                "width" => 650,
-                "height" => 450
-            ];
-        }
-        // Supercartridge
-        else if (substr($media, 0, 2) == "S|")
-        {
-            $response->supercartridge = true;
-            $media = substr(trim($media), 2);
-            $media = str_replace("/mspa/", "http://cdn.mspaintadventures.com/", $media);
-            $text = "";
-            $status = http_get($media . "/index.html", $text);
-            if ($status != 200)
-                return null;
 
-            $text = preg_replace("/http:\/\/(www\.|cdn\.|)mspaintadventures\.com\//", "/mspa/", $text);
+    switch ($p)
+    {
+        // Cascade is a special case. It was a supercartridge page
+        // before supercartridgees were officially a thing, and thus
+        // the specialties of it are baked into the cascade.php file.
+        // Just make it into a supercartridge page from a static HTML
+        // file.
+        case "006009":
+            $response->supercartridge = true;
             $response->media[] = [
                 "type" => "supercartridge",
-                "html" => $text
+                "html" => file_get_contents("static/cascade.html")
             ];
-        }
-        // JS game
-        else if (substr($media, 0, 2) == "J|")
-        {
-            $pint = intval($p);
-            $media = substr(trim($media), 2);
-            // thanks hussie for changing it after using openbound once
-            $xml_url = $media . "/levels/" . (($pint == 7163) ? "openbound/openbound.xml" : "init.xml");
-            $js_url = $media . "/Sburb.min.js";
+            break;
+        case "009987":
+            $response->supercartridge = true;
             $response->media[] = [
-                "type" => "jternia",
-                "xml_url" => $xml_url,
-                "js_url" => $js_url
+                "type" => "supercartridge",
+                "html" => file_get_contents("static/collide.html")
             ];
-        }
-        // GIF
-        else
-        {
+            break;
+        case "0010027":
+            $response->supercartridge = true;
             $response->media[] = [
-                "type" => "image",
-                "url" => $media
+                "type" => "supercartridge",
+                "html" => file_get_contents("static/ACT7.html")
             ];
-        }
+            break;
+            break;
+        default:
+            foreach ($medias as $media)
+            {
+                $media = preg_replace("/http:\/\/(www\.|cdn\.|)mspaintadventures\.com\//", "/mspa/", $media);
+                // Flash
+                if (substr($media, 0, 2) == "F|")
+                {
+                    $media = substr(trim($media), 2);
+                    $flash_filename = substr($media, -5);
+                    $flash_link = "$media/$flash_filename";
+                    $js_link = "$media/AC_RunActiveContent.js";
+                    $response->media[] = [
+                        "type" => "flash",
+                        "url" => $flash_link,
+                        "js_url" => $js_link,
+                        "width" => 650,
+                        "height" => 450
+                    ];
+                }
+                // Supercartridge
+                else if (substr($media, 0, 2) == "S|")
+                {
+                    $response->supercartridge = true;
+                    $media = substr(trim($media), 2);
+                    $media = str_replace("/mspa/", "http://cdn.mspaintadventures.com/", $media);
+                    $text = "";
+                    $status = http_get($media . "/index.html", $text);
+                    if ($status != 200)
+                        return null;
+        
+                    $text = preg_replace("/http:\/\/(www\.|cdn\.|)mspaintadventures\.com\//", "/mspa/", $text);
+                    $response->media[] = [
+                        "type" => "supercartridge",
+                        "html" => $text
+                    ];
+                }
+                // JS game
+                else if (substr($media, 0, 2) == "J|")
+                {
+                    $pint = intval($p);
+                    $media = substr(trim($media), 2);
+                    // thanks hussie for changing it after using openbound once
+                    $xml_url = $media . "/levels/" . (($pint == 7163) ? "openbound/openbound.xml" : "init.xml");
+                    $js_url = $media . "/Sburb.min.js";
+                    $response->media[] = [
+                        "type" => "jternia",
+                        "xml_url" => $xml_url,
+                        "js_url" => $js_url
+                    ];
+                }
+                // GIF
+                else
+                {
+                    $response->media[] = [
+                        "type" => "image",
+                        "url" => $media
+                    ];
+                }
+            }
+            break;
     }
 
     // Text

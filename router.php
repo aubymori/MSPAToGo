@@ -144,6 +144,20 @@ if (isset($routerUrl->path[0]))
             {
                 $data->theme = "trickster";
             }
+            else if ($ip == 9987)
+            {
+                $data->theme = "collide";
+                $data->banner = [
+                    "image" => "/mspa/images/collide_header.gif"
+                ];
+            }
+            else if ($ip == 10027)
+            {
+                $data->theme = "act7";
+                $data->banner = [
+                    "image" => "/mspa/images/act7_header.gif"
+                ];
+            }
 
             switch ($ip)
             {
