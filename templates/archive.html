@@ -1,0 +1,93 @@
+{% extends "pageframe.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="/assets/css/archive.css">
+{% endblock %}
+
+{% block page %}
+<h2 id="title">ARCHIVE</h2>
+<div id="content">
+    <span>Adventures listed from newest to oldest.</span>
+    <div class="archive-adventure">
+        <a href="/read/6" class="archive-image">
+            <img src="/assets//img/archive_hs.gif">
+        </a>
+        <div class="archive-info">
+            <a href="/read/6" class="archive-title">HOMESTUCK</a>
+            <span class="archive-desc">
+                A tale about a boy and his friends and a game they play together. About 8100 pages.
+                <b>[FINISHED]</b>
+            </span>
+            <div class="archive-links">
+                <a href="/map/6">MAP</a>
+                |
+                <a href="/log/6">LOG</a>
+                |
+                {# Multiple Homestuck searches, best to just direct user to menu. #}
+                <a href="/search">SEARCH</a>
+                |
+                <a href="http://www.mspaintadventures.com/credits.html" target="_blank">
+                    SOUND AND ART CREDITS
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="archive-adventure">
+        <a href="/read/4" class="archive-image">
+            <img src="/assets/img/archive_ps.gif">
+        </a>
+        <div class="archive-info">
+            <a href="/read/4" class="archive-title">PROBLEM SLEUTH</a>
+            <span class="archive-desc">
+                An adventure about a hard boiled detective in his office. 22 chapters, about 1700 pages.
+                <b>[FINISHED]</b>
+            </span>
+        </div>
+        <div class="archive-links">
+            <a href="/map/4">MAP</a>
+            |
+            <a href="/log/4">LOG</a>
+            |
+            <a href="/search/4">SEARCH</a>
+        </div>
+    </div>
+    <div class="archive-adventure">
+        <a href="/read/2" class="archive-image">
+            <img src="/assets/img/archive_bq.gif">
+        </a>
+        <div class="archive-info">
+            <a href="/read/2" class="archive-title">BARD QUEST</a>
+            <span class="archive-desc">
+                A young bard's endeavor to slay some dragons. Branching "choose your own adventure" style. 47 pages.
+                <b>[CANCELLED]</b>
+            </span>
+        </div>
+        <div class="archive-links">
+            <a href="/map/2"><s>MAP</s></a>
+            |
+            <a href="/log/2">LOG</a>
+            |
+            <a href="/search/2">SEARCH</a>
+        </div>
+    </div>
+    <div class="archive-adventure">
+        <a href="/read/1" class="archive-image">
+            <img src="/assets/img/archive_jb.gif">
+        </a>
+        <div class="archive-info">
+            <a href="/read/1" class="archive-title">JAILBREAK</a>
+            <span class="archive-desc">
+                A guy tries to escape from prison. 134 pages.
+                <b>[CANCELLED]</b>
+            </span>
+        </div>
+        <div class="archive-links">
+            <a href="/map/1"><s>MAP</s></a>
+            |
+            <a href="/log/1">LOG</a>
+            |
+            <a href="/search/1">SEARCH</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+.archive-adventure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 32px;
+}
+
+.archive-adventure:last-child {
+    margin-bottom: 16px;
+}
+
+.archive-info {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.archive-title {
+    font-family: "Courier New", Courier, monospace;
+    font-weight: 700;
+    font-size: 36px;
+    margin: 16px 0;
+}
+
+.archive-links {
+    margin-top: 16px;
+}

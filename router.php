@@ -28,6 +28,7 @@ function betterParseUrl($url) {
 function replace_mspa_links(string &$str): void
 {
     $str = preg_replace('/"(?:http:\/\/www\.mspaintadventures\.com\/(?:index\.php|)|)\?s=(.*?)(?:&|&amp;)p=(.*?)"/m', "\"/read/$1/$2\"", $str);
+    $str = preg_replace('/"(?:http:\/\/www\.mspaintadventures\.com\/(?:index\.php|)|)\?s=(.*?)"/m', "\"/read/$1\"", $str);
     $str = preg_replace("/http:\/\/(www\.|cdn\.|)mspaintadventures\.com\//", "/mspa/", $str);
 }
 
@@ -50,9 +51,57 @@ if (isset($routerUrl->path[0]))
 
             $template = "home";
             break;
+        case "archive":
+            $template = "archive";
+            break;
         case "mspa":
             require "lib/mspa_funnel.php";
             mspa_funnel(substr($_SERVER["REQUEST_URI"], 6));
+            break;
+        case "jailbreak":
+        case "bard-quest":
+        case "blood-spade":
+        case "problem-sleuth":
+        case "beta":
+        case "homestuck":
+        case "ryanquest":
+            $s = match ($routerUrl->path[0]) {
+                "jailbreak" => "1",
+                "bard-quest" => "2",
+                "blood-spade" => "3",
+                "problem-sleuth" => "4",
+                "beta" => "5",
+                "homestuck" => "6",
+                "ryanquest" => "ryanquest"
+            };
+
+            $offset = match ($routerUrl->path[0]) {
+                "jailbreak" => 1,
+                "bard-quest" => 135,
+                "blood-spade" => null,
+                "problem-sleuth" => 218,
+                "beta" => 1892,
+                "homestuck" => 1900,
+                "ryanquest" => 0
+            };
+
+            switch (count($routerUrl->path))
+            {
+                case 1:
+                    header("Location: /read/6");
+                    break;
+                case 2:
+                    if ($s == "3")
+                        $p = "MC0001";
+                    else
+                        $p = str_pad(strval(intval($routerUrl->path[1]) + $offset), 6, "0", STR_PAD_LEFT);
+
+                    header("Location: /read/$s/$p");
+                    break;
+                default:
+                    http_response_code(404);
+                    break;
+            }
             break;
         case "read":
             // I HATE OPENBOUND I HATE OPENBOUND I HATE OPENBOUND I HATE OPENBOUND
