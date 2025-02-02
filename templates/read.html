@@ -1,5 +1,13 @@
 {% extends "pageframe.html" %}
 
+{% block body_attrs %}
+{% for media in data.page.media %}
+{% if media.type == "jternia" %}
+onload="Sburb.initialize('JterniaDeploy', '{{ media.xml_url }}', false);"
+{% endif %}
+{% endfor %}
+{% endblock %}
+
 {% block page %}
 {% if data.page.supercartridge %}
 {{ data.page.media[0].html|raw }}
@@ -50,6 +58,9 @@
 	<param name="movie" value="{{ media.url }}" /><param name="quality" value="high" /><param name="bgcolor" value="#ffffff" />	<embed src="{{ media.url }}" quality="high" bgcolor="#ffffff" width="{{ media.width }}" height="{{ media.height }}" name="{{ media.url }}" align="middle" allowScriptAccess="sameDomain" allowFullScreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
 	</object>
 </noscript>
+{% elseif media.type == "jternia" %}
+<div id="JterniaDeploy"></div>
+<script src="{{ media.js_url }}"></script>
 {% endif %}
 {% endfor %}
 </div>

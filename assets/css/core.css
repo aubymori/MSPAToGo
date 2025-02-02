@@ -466,3 +466,8 @@ button, input {
 #gamepad-space {
     aspect-ratio: 6/2 !important;
 }
+
+/* #JterniaDeploy > div, #SBURBStage, #SBURBmovieBin, #SBURBmovieBin div {
+    width: 100vw !important;
+    height: calc(100vw * (9 / 13)) !important;
+} */

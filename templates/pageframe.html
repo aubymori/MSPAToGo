@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="/assets/css/core.css">
         {% block css %}{% endblock %}
     </head>
-    <body>
+    <body {% block body_attrs %}{% endblock %}>
         {% if data.theme == "trickster" %}
         <div id="trickster-banner"></div>
         <script src="/assets/js/trickster_banner.js"></script>

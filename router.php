@@ -51,8 +51,20 @@ if (isset($routerUrl->path[0]))
             break;
         case "mspa":
             require "lib/mspa_funnel.php";
+            mspa_funnel(substr($_SERVER["REQUEST_URI"], 6));
             break;
         case "read":
+            // I HATE OPENBOUND I HATE OPENBOUND I HATE OPENBOUND I HATE OPENBOUND
+            // I HATE OPENBOUND I HATE OPENBOUND I HATE OPENBOUND I HATE OPENBOUND
+            // I HATE OPENBOUND I HATE OPENBOUND I HATE OPENBOUND I HATE OPENBOUND
+            // I HATE OPENBOUND I HATE OPENBOUND I HATE OPENBOUND I HATE OPENBOUND
+            // I HATE OPENBOUND I HATE OPENBOUND I HATE OPENBOUND I HATE OPENBOUND
+            if (count($routerUrl->path) > 3 && $routerUrl->path[2] == "storyfiles")
+            {
+                require "lib/mspa_funnel.php";
+                mspa_funnel(substr($_SERVER["REQUEST_URI"], 8));
+            }
+
             $s = null;
             $p = null;
             if (count($routerUrl->path) == 3)

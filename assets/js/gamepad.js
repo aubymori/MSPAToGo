@@ -1,8 +1,8 @@
 function sendInput(key, code, up)
 {
-    const game = document.querySelector("ruffle-embed");
+    let game = document.getElementById("SBURBgameDiv");
     if (!game)
-        game = document.getElementById("SBURBgameDiv");
+        game = document.querySelector("ruffle-embed");
     if (!game) return;
 
     game.focus();

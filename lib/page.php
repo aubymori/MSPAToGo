@@ -77,7 +77,16 @@ function get_page_data(string $s, string $p): object|null
         // JS game
         else if (substr($media, 0, 2) == "J|")
         {
-
+            $pint = intval($p);
+            $media = substr(trim($media), 2);
+            // thanks hussie for changing it after using openbound once
+            $xml_url = $media . "/levels/" . (($pint == 7163) ? "openbound/openbound.xml" : "init.xml");
+            $js_url = $media . "/Sburb.min.js";
+            $response->media[] = [
+                "type" => "jternia",
+                "xml_url" => $xml_url,
+                "js_url" => $js_url
+            ];
         }
         // GIF
         else
