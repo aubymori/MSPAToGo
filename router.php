@@ -27,7 +27,8 @@ function betterParseUrl($url) {
 
 function replace_mspa_links(string &$str): void
 {
-    $str = preg_replace('/"(?:http:\/\/www.mspaintadventures.com\/(?:index.php|)|)\?s=(.*?)&p=(.*?)"/m', "\"/read/$1/$2\"", $str);
+    $str = preg_replace('/"(?:http:\/\/www\.mspaintadventures\.com\/(?:index\.php|)|)\?s=(.*?)(?:&|&amp;)p=(.*?)"/m', "\"/read/$1/$2\"", $str);
+    $str = preg_replace("/http:\/\/(www\.|cdn\.|)mspaintadventures\.com\//", "/mspa/", $str);
 }
 
 $routerUrl = betterParseUrl($_SERVER["REQUEST_URI"]);

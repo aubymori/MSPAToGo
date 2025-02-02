@@ -546,3 +546,66 @@ button, input {
     width: 100vw !important;
     height: calc(100vw * (9 / 13)) !important;
 }
+
+/* Transcripts */
+@keyframes green-sun {
+    from {
+        color: #00ed4f;
+    }
+    to {
+        color: #00d246;
+    }
+}
+
+.greensun-text {
+    color: #00ed4f;
+    animation: green-sun 100ms steps(2, start) infinite;
+}
+
+/* Why does this have to be based on percentages? Why can't I just
+   specify n keyframes and have that be the whole animation. I hate CSS. */
+@keyframes trickster {
+    0% {
+        color: #ffd1d1;
+    }
+    14.2857% {
+        color: #ffe6d1;
+    }
+    28.5714% {
+        color: #fff6d1;
+    }
+    42.8571% {
+        color: #d1ffe3;
+    }
+    57.1429% {
+        color: #d1f9ff;
+    }
+    71.4286% {
+        color: #d1dcff;
+    }
+    100% {
+        color: #f0d1ff;
+    }
+}
+
+.trickster-text {
+    color: #ffd1d1;
+    animation: trickster 350ms steps(7, start) infinite;
+}
+
+@keyframes trickster-2 {
+    0% {
+        color: #d1dcff;
+    }
+    71.4286% {
+        color: #d1dcff;
+    }
+    100% {
+        color: #f0d1ff;
+    }
+}
+
+.trickster-text-2 {
+    color: #d1dcff;
+    animation: trickster-2 350ms steps(7, start) infinite;
+}

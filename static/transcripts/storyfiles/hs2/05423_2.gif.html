@@ -1,0 +1,29 @@
+<p id="joke-text" class="comic-text">
+    SPOILER WARNING: DO NOT OPEN DIALOGLOG UNTIL FULLY LOADED.
+</p>
+<style>
+    #media img {
+        margin-bottom: 0 !important;
+    }
+
+    .read-log {
+        margin-top: 0;
+    }
+</style>
+<script>
+    function revertText()
+    {
+        setTimeout(() => {
+            document.getElementById("joke-text").innerText = "SPOILER WARNING: DO NOT OPEN DIALOGLOG UNTIL FULLY LOADED.";
+            jokeText();
+        }, 20000);
+    }
+    function jokeText()
+    {
+        setTimeout(() => {
+            document.getElementById("joke-text").innerText = "heheheheheheheh";
+            revertText();
+        }, 81100);
+    }
+    jokeText();
+</script>

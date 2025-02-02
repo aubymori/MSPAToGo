@@ -61,6 +61,8 @@ onload="Sburb.initialize('JterniaDeploy', '{{ media.xml_url }}', false);"
 {% elseif media.type == "jternia" %}
 <div id="JterniaDeploy"></div>
 <script src="{{ media.js_url }}"></script>
+{% elseif media.type == "supercartridge" %}
+{{ media.html|raw }}
 {% endif %}
 {% endfor %}
 {% if data.hscroll %}
