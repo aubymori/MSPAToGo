@@ -387,6 +387,7 @@ if (isset($routerUrl->path[0]))
                 case 5338: // [S] Equius: Seek the highb100d.
                 case 5595: // [S] Seer: Descend.
                 case 5617: // [S] Terezi: Proceed. (not playable, but you need to hit an arrow key to proceed with it)
+                case 5660: // [S] Flip. (ditto)
                 case 7163: // [S] ACT 6 INTERMISSION 3
                 case 7208: // [S][A6I3] ==>
                 case 7298: // [S][A6I3] ==>
