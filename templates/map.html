@@ -37,6 +37,13 @@
     window.addEventListener("resize", fixMap);
     window.addEventListener("load", fixMap);
 </script>
+<style>
+    /* Force the PS map to its actual size. This makes it use the above JS to fix its size.
+       HTML maps aren't responsive! */
+    img[src="/mspa/maps/map_04.gif"] {
+        min-width: 610px;
+    }
+</style>
 {% else %}
 <h2 id="title">Select Map</h2>
 <div id="content">
