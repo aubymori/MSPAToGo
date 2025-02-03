@@ -153,7 +153,7 @@ body {
 }
 
 * {
-    image-rendering: crisp-edges;
+    image-rendering: pixelated;
 }
 
 body, table, td, th {
