@@ -359,6 +359,8 @@ button, input {
     font-weight: 700;
     text-align: center;
     margin: 0 5%;
+    overflow: hidden;
+    overflow-wrap: break-word;
 }
 
 :root.theme-cascade #title {
