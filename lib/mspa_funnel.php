@@ -1,10 +1,10 @@
 <?php
 
-function mspa_funnel(string $uri)
+function mspa_funnel(string $uri, bool $nocdn = false)
 {
     $url = match ($uri) {
         "cascade.swf" => "https://www.homestuck.com/flash/hs2/cascade/cascade.swf",
-        default => "http://cdn.mspaintadventures.com/" . $uri
+        default => ($nocdn ? "http://www.mspaintadventures.com/" : "http://cdn.mspaintadventures.com/") . $uri
     };
     $ch = curl_init($url);
     curl_setopt_array($ch, [
@@ -18,6 +18,11 @@ function mspa_funnel(string $uri)
     $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
     $headers = substr($response, 0, $header_size);
     $body = substr($response, $header_size);
+
+    // Try to get off main server if CDN fails
+    $status = intval(substr($headers, 9, 3));
+    if ($status != 200)
+        return mspa_funnel($uri, true);
 
     foreach (explode("\n", $headers) as $header)
     {
