@@ -380,6 +380,8 @@ button, input {
     text-align: center;
     margin: 0;
     padding: 30px 0;
+    overflow: hidden;
+    overflow-wrap: break-word;
 }
 
 .commands {
