@@ -354,6 +354,11 @@ if (isset($routerUrl->path[0]))
             {
                 $data->hscroll = true;
             }
+            // Fireflies
+            else if ($ip >= 9000 && $ip <= 9024)
+            {
+                $data->fireflies = true;
+            }
 
             require "lib/page.php";
             $page = get_page_data($s, $p, $x2combo);

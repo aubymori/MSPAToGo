@@ -8,6 +8,18 @@ onload="Sburb.initialize('JterniaDeploy', '{{ media.xml_url }}', false);"
 {% endfor %}
 {% endblock %}
 
+{% block js %}
+{% if data.fireflies %}
+<script src="/assets/js/firefly.js"></script>
+{% endif %}
+{% endblock %}
+
+{% block css %}
+{% if data.fireflies %}
+<link rel="stylesheet" href="/assets/css/firefly.css">
+{% endif %}
+{% endblock %}
+
 {% block page %}
 {% if data.page.supercartridge %}
 {{ data.page.media[0].html|raw }}
@@ -68,6 +80,14 @@ onload="Sburb.initialize('JterniaDeploy', '{{ media.xml_url }}', false);"
 {% if data.hscroll %}
 <div id="hscroll-arrow">==&gt;</div>
 {% endif %}
+</div>
+{% endif %}
+{% if data.fireflies %}
+<div class="content">
+	<canvas id="fbox_0" class="boxtemplate" style="top: {{ random(0, 100) }}%; left: {{ random(25, 75) }}%;"></canvas>
+	<canvas id="fbox_1" class="boxtemplate" style="top: {{ random(0, 100) }}%; left: {{ random(25, 75) }}%;"></canvas>
+	<canvas id="fbox_2" class="boxtemplate" style="top: {{ random(0, 100) }}%; left: {{ random(25, 75) }}%;"></canvas>
+	<canvas id="fbox_3" class="boxtemplate" style="top: {{ random(0, 100) }}%; left: {{ random(25, 75) }}%;"></canvas>
 </div>
 {% endif %}
 <div id="content" data-s="{{ data.s }}" data-p="{{ data.p }}">
