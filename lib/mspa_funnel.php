@@ -21,7 +21,7 @@ function mspa_funnel(string $uri, bool $nocdn = false)
 
     // Try to get off main server if CDN fails
     $status = intval(substr($headers, 9, 3));
-    if ($status != 200)
+    if (!$nocdn && $status != 200)
         return mspa_funnel($uri, true);
 
     foreach (explode("\n", $headers) as $header)
