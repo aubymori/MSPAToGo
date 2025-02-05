@@ -201,6 +201,12 @@ if (isset($routerUrl->path[0]))
                     $template = "GAMEOVER";
                     break;
                 }
+                // shes8ack
+                else if ($p == "009305")
+                {
+                    $template = "shes8ack";
+                    break;
+                }
                 // End credits
                 else if ($p == "010030")
                 {
