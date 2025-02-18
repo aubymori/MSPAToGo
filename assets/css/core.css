@@ -64,6 +64,7 @@
     --links-white: #ffffff;
     --links-green: #29ff4a;
     --links-blue: #39d5f6;
+    --links-yellow: #f7f72a;
     --links-orange: #ffb529;
     --candycorn-image: url("/assets/img/candycorn.gif");
     --footer-image: url("/assets/img/footer.gif");
@@ -86,6 +87,7 @@
     --links-bg: #000000;
     --links-green: #ffffff;
     --links-blue: #ffffff;
+    --links-yellow: #ffffff;
     --links-orange: #ffffff;
     --link-color: #2cff4b;
     --log-bg: #000000;
@@ -139,6 +141,7 @@
     --links-white: #2ed73a;
     --links-green: #2ed73a;
     --links-blue: #2ed73a;
+    --links-yellow: #2ed73a;
     --links-orange: #2ed73a;
     --candycorn-image: url("/assets/img/a6a6_tooth.gif");
     --footer-image: url("/assets/img/footer_a6a6.png");
@@ -315,6 +318,10 @@ button, input {
 
 .link-blue {
     color: var(--links-blue) !important;
+}
+
+.link-yellow {
+    color: var(--links-yellow) !important;
 }
 
 .link-orange {

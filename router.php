@@ -557,9 +557,33 @@ $data->links = [
         "color" => "blue"
     ],
     [
+        "text" => "SHOP",
+        "url" => "https://topatoco.com/collections/hussie",
+        "color" => "yellow",
+        "newtab" => true
+    ],
+    [
+        "text" => "MUSIC",
+        "url" => "https://homestuck.bandcamp.com/",
+        "color" => "yellow",
+        "newtab" => true
+    ],
+    [
         "text" => "OPTIONS",
         "url" => "/options",
         "color" => "orange"
+    ],
+    [
+        "text" => "SECRETS",
+        "url" => "http://www.mspaintadventures.com/unlock.html",
+        "color" => "orange",
+        "newtab" => true
+    ],
+    [
+        "text" => "CREDITS",
+        "url" => "http://www.mspaintadventures.com/credits.html",
+        "color" => "orange",
+        "newtab" => true
     ],
 ];
 
@@ -576,11 +600,15 @@ if ((!isset($dont_change_theme) || !$dont_change_theme)
 $homosuck_link_overrides = [
     "WORTHLESS GARBAGE.",
     "STUPID.",
-    "BULLSHIT.",
+    "WHO CARES?",
     "WOW.",
     "NO.",
     "BORING.",
+    "BULLSHIT.",
+    "DUMB NOISE.",
     "WHO CARES?",
+    "WHATEVER.",
+    "MORONS."
 ];
 
 if ($data->theme == "homosuck")
