@@ -27,8 +27,16 @@ function betterParseUrl($url) {
 
 function replace_mspa_links(string &$str): void
 {
-    $str = preg_replace('/"(?:http:\/\/www\.mspaintadventures\.com\/(?:index\.php|)|)\?s=(.*?)(?:&|&amp;)p=(.*?)"/m', "\"/read/$1/$2\"", $str);
+    $str = preg_replace('/"(?:http:\/\/www\.mspaintadventures\.com\/(?:(?:index|scratch|cascade|trickster|ACT6ACT5ACT1x2COMBO|ACT6ACT6)\.php|)|)\?s=(.*?)(?:&|&amp;)p=(.*?)"/m', "\"/read/$1/$2\"", $str);
     $str = preg_replace('/"(?:http:\/\/www\.mspaintadventures\.com\/(?:index\.php|)|)\?s=(.*?)"/m', "\"/read/$1\"", $str);
+    // For map:
+    $str = str_replace("http://www.mspaintadventures.com/DOTA/", "/read/6/006715", $str);
+    $str = str_replace("http://www.mspaintadventures.com/007395/", "/read/6/007395", $str);
+    $str = str_replace("http://www.mspaintadventures.com/GAMEOVER/", "/read/6/008801", $str);
+    $str = str_replace("http://www.mspaintadventures.com/shes8ack/", "/read/6/009305", $str);
+    $str = str_replace("http://www.mspaintadventures.com/collide.html", "/read/6/009987", $str);
+    $str = str_replace("http://www.mspaintadventures.com/ACT7.html", "/read/6/010027", $str);
+    $str = str_replace("http://www.mspaintadventures.com/endcredits.html", "/read/6/010030", $str);
     $str = preg_replace("/http:\/\/(www\.|cdn\.|)mspaintadventures\.com\/(?!oilretcon\.html|storyfiles\/hs2\/waywardvagabond|sweetbroandhellajeff)/", "/mspa/", $str);
 }
 
