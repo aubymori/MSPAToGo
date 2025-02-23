@@ -27,6 +27,9 @@ function betterParseUrl($url) {
 
 function replace_mspa_links(string &$str): void
 {
+    // Cascade on map. Hussie is a fucking idiot, got the page number wrong. Even hardcoded an "END OF ACT 5"
+    // link into cascade.php as a band-aid fix
+    $str = str_replace("http://www.mspaintadventures.com/cascade.php?s=6&p=6009", "/read/6/006009", $str);
     $str = preg_replace('/"(?:http:\/\/www\.mspaintadventures\.com\/(?:(?:index|scratch|cascade|trickster|ACT6ACT5ACT1x2COMBO|ACT6ACT6)\.php|)|)\?s=(.*?)(?:&|&amp;)p=(.*?)"/m', "\"/read/$1/$2\"", $str);
     $str = preg_replace('/"(?:http:\/\/www\.mspaintadventures\.com\/(?:index\.php|)|)\?s=(.*?)"/m', "\"/read/$1\"", $str);
     // For map:
