@@ -2,10 +2,14 @@
 
 function mspa_funnel(string $uri, bool $nocdn = false)
 {
-    $url = match ($uri) {
-        "cascade.swf" => "https://www.homestuck.com/flash/hs2/cascade/cascade.swf",
-        default => ($nocdn ? "http://www.mspaintadventures.com/" : "http://cdn.mspaintadventures.com/") . $uri
-    };
+    if ($uri == "cascade.swf")
+    {
+        header("Content-Type: application/x-shockwave-flash");
+        echo file_get_contents("static/cascade.swf");
+        die();
+    }
+
+    $url = ($nocdn ? "http://www.mspaintadventures.com/" : "http://cdn.mspaintadventures.com/") . $uri;
     $ch = curl_init($url);
     curl_setopt_array($ch, [
         CURLOPT_FOLLOWLOCATION => 0,
