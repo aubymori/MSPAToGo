@@ -27,9 +27,20 @@ function betterParseUrl($url) {
 
 function replace_mspa_links(string &$str): void
 {
-    $str = preg_replace('/"(?:http:\/\/www\.mspaintadventures\.com\/(?:index\.php|)|)\?s=(.*?)(?:&|&amp;)p=(.*?)"/m', "\"/read/$1/$2\"", $str);
+    // Cascade on map. Hussie is a fucking idiot, got the page number wrong. Even hardcoded an "END OF ACT 5"
+    // link into cascade.php as a band-aid fix
+    $str = str_replace("http://www.mspaintadventures.com/cascade.php?s=6&p=6009", "/read/6/006009", $str);
+    $str = preg_replace('/"(?:http:\/\/www\.mspaintadventures\.com\/(?:(?:index|scratch|cascade|trickster|ACT6ACT5ACT1x2COMBO|ACT6ACT6)\.php|)|)\?s=(.*?)(?:&|&amp;)p=(.*?)"/m', "\"/read/$1/$2\"", $str);
     $str = preg_replace('/"(?:http:\/\/www\.mspaintadventures\.com\/(?:index\.php|)|)\?s=(.*?)"/m', "\"/read/$1\"", $str);
-    $str = preg_replace("/http:\/\/(www\.|cdn\.|)mspaintadventures\.com\/(?!oilretcon\.html)/", "/mspa/", $str);
+    // For map:
+    $str = str_replace("http://www.mspaintadventures.com/DOTA/", "/read/6/006715", $str);
+    $str = str_replace("http://www.mspaintadventures.com/007395/", "/read/6/007395", $str);
+    $str = str_replace("http://www.mspaintadventures.com/GAMEOVER/", "/read/6/008801", $str);
+    $str = str_replace("http://www.mspaintadventures.com/shes8ack/", "/read/6/009305", $str);
+    $str = str_replace("http://www.mspaintadventures.com/collide.html", "/read/6/009987", $str);
+    $str = str_replace("http://www.mspaintadventures.com/ACT7.html", "/read/6/010027", $str);
+    $str = str_replace("http://www.mspaintadventures.com/endcredits.html", "/read/6/010030", $str);
+    $str = preg_replace("/http:\/\/(www\.|cdn\.|)mspaintadventures\.com\/(?!oilretcon\.html|storyfiles\/hs2\/waywardvagabond|sweetbroandhellajeff)/", "/mspa/", $str);
 }
 
 $routerUrl = betterParseUrl($_SERVER["REQUEST_URI"]);
@@ -557,9 +568,33 @@ $data->links = [
         "color" => "blue"
     ],
     [
+        "text" => "SHOP",
+        "url" => "https://topatoco.com/collections/hussie",
+        "color" => "yellow",
+        "newtab" => true
+    ],
+    [
+        "text" => "MUSIC",
+        "url" => "https://homestuck.bandcamp.com/",
+        "color" => "yellow",
+        "newtab" => true
+    ],
+    [
         "text" => "OPTIONS",
         "url" => "/options",
         "color" => "orange"
+    ],
+    [
+        "text" => "SECRETS",
+        "url" => "http://www.mspaintadventures.com/unlock.html",
+        "color" => "orange",
+        "newtab" => true
+    ],
+    [
+        "text" => "CREDITS",
+        "url" => "http://www.mspaintadventures.com/credits.html",
+        "color" => "orange",
+        "newtab" => true
     ],
 ];
 
@@ -576,11 +611,15 @@ if ((!isset($dont_change_theme) || !$dont_change_theme)
 $homosuck_link_overrides = [
     "WORTHLESS GARBAGE.",
     "STUPID.",
-    "BULLSHIT.",
+    "WHO CARES?",
     "WOW.",
     "NO.",
     "BORING.",
+    "BULLSHIT.",
+    "DUMB NOISE.",
     "WHO CARES?",
+    "WHATEVER.",
+    "MORONS."
 ];
 
 if ($data->theme == "homosuck")
