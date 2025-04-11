@@ -12,3 +12,13 @@ for MSPA and a desire for it to be accessible to those using mobile devices.
 ## Hosting
 To host MSPA To Go, you will need an Apache web server with support for at least PHP 8 (may be 8.1, I'm
 not sure) with the cURL plugin.
+
+## Docker
+To run it in Docker, you'll just need to clone the repository and do:
+
+```
+docker build -t mspa --no-cache=true .
+docker-compose up
+```
+
+And it should just work!
