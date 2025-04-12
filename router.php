@@ -415,6 +415,16 @@ if (isset($routerUrl->path[0]))
                 case 7208: // [S][A6I3] ==>
                 case 7298: // [S][A6I3] ==>
                     $data->gamepad = true;
+                    break;
+                case 7614: // [S] ACT 6 ACT 5 ACT 2
+                    $data->gamepad = "007614";
+                    break;
+                case 7640: // [S] ==> (trickster Roxy)
+                    $data->gamepad = "007640";
+                    break;
+                case 7659: // [S] ==> (trickster Dirk)
+                    $data->gamepad = "007659";
+                    break;
             }
 
             $data->page = $page;

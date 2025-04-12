@@ -92,7 +92,16 @@ onload="Sburb.initialize('JterniaDeploy', '{{ media.xml_url }}', false);"
 {% endif %}
 <div id="content" data-s="{{ data.s }}" data-p="{{ data.p }}">
 	{% if data.gamepad %}
-	{% include "include/gamepad.html" %}
+		{# Apparently true == "007614", so I have to use a strict comparison. I fucking hate Twig. #}
+		{% if data.gamepad is same as("007614") %}
+			{% include "include/gamepad_007614.html" %}
+		{% elseif data.gamepad is same as("007640") %}
+			{% include "include/gamepad_007640.html" %}
+		{% elseif data.gamepad is same as("007659") %}
+			{% include "include/gamepad_007659.html" %}
+		{% else %}
+			{% include "include/gamepad.html" %}
+		{% endif %}
 	{% endif %}
 	{% from "macros/read.html" import read_text, read_footer, read_commands %}
 	{{ read_text(data.page) }}

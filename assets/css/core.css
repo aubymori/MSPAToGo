@@ -570,7 +570,7 @@ button, input {
     aspect-ratio: 3/2;
 }
 
-#gamepad-space {
+#gamepad-space:not(.not-wide) {
     aspect-ratio: 6/2 !important;
 }
 
