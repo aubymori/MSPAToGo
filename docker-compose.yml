@@ -1,0 +1,5 @@
+services:
+  mspa:
+     image: mspa:latest
+     ports:
+        - "8080:80"
