@@ -1,3 +1,7 @@
+#content {
+    text-align: center;
+}
+
 .archive-adventure {
     display: flex;
     flex-direction: column;
