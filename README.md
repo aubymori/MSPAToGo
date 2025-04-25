@@ -2,7 +2,7 @@
 
 MSPA To Go is an application server that serves pages from MS Paint Adventures in a format
 digestible on mobile phones. With the original MS Paint Adventures site being discontinued,
-and the VIZ Media-run site being incredibly broken, here is no good way to read MSPA on mobile.
+and the VIZ Media-run site being incredibly broken, there is no good way to read MSPA on mobile.
 At least there wasn't until now!
 
 MS Paint Adventures is the work of Andrew Hussie, and I am not associated with MS Paint Adventures,
