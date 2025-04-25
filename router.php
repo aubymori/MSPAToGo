@@ -128,10 +128,13 @@ if (isset($routerUrl->path[0]))
                     header("Location: /read/6");
                     break;
                 case 2:
+                    $vp = $routerUrl->path[1];
                     if ($s == "3")
                         $p = "MC0001";
+                    else if ($s == "1" && $vp == "135")
+                        $p = "jb2_000000";
                     else
-                        $p = str_pad(strval(intval($routerUrl->path[1]) + $offset), 6, "0", STR_PAD_LEFT);
+                        $p = str_pad(strval(intval($vp) + $offset), 6, "0", STR_PAD_LEFT);
 
                     header("Location: /read/$s/$p");
                     break;
