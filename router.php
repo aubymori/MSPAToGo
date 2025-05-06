@@ -133,6 +133,9 @@ if (isset($routerUrl->path[0]))
                         $p = "MC0001";
                     else if ($s == "1" && $vp == "135")
                         $p = "jb2_000000";
+                    // Non-numeric pages (pony, darkcage)
+                    else if (intval($vp) != $vp)
+                        $p = $vp;
                     else
                         $p = str_pad(strval(intval($vp) + $offset), 6, "0", STR_PAD_LEFT);
 
