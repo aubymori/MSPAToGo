@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-classic">
+    <head>
+        {% include "include/meta.html" %}
+        <title>MSPA To Go</title>
+        <link rel="stylesheet" href="/assets/css/core.css">
+        <style>
+            #banner {
+                background: #eeeeee;
+            }
+
+            #banner img {
+                width: 80%;
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+    <body>
+        <a href="/" id="banner">
+            <img src="/assets/img/logo.gif" alt="MS Paint Adventures">
+        </a>
+        <div id="page">
+            {% block page %}{% endblock %}
+        </div>
+        {% include "include/footer.html" %}
+    </body>
+</html>

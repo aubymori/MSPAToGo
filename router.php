@@ -32,6 +32,7 @@ function replace_mspa_links(string &$str): void
     $str = str_replace("http://www.mspaintadventures.com/cascade.php?s=6&p=6009", "/read/6/006009", $str);
     $str = preg_replace('/"(?:http:\/\/www\.mspaintadventures\.com\/(?:(?:index|scratch|cascade|trickster|ACT6ACT5ACT1x2COMBO|ACT6ACT6)\.php|)|)\?s=(.*?)(?:&|&amp;)p=(.*?)"/m', "\"/read/$1/$2\"", $str);
     $str = preg_replace('/"(?:http:\/\/www\.mspaintadventures\.com\/(?:index\.php|)|)\?s=(.*?)"/m', "\"/read/$1\"", $str);
+    $str = preg_replace('/"http:\/\/www\.mspaintadventures\.com\/storyfiles\/hs2\/waywardvagabond\/(.*?)\/"/m', "\"/waywardvagabond/$1\"", $str);
     // For map:
     $str = str_replace("http://www.mspaintadventures.com/DOTA/", "/read/6/006715", $str);
     $str = str_replace("http://www.mspaintadventures.com/007395/", "/read/6/007395", $str);
@@ -40,6 +41,16 @@ function replace_mspa_links(string &$str): void
     $str = str_replace("http://www.mspaintadventures.com/collide.html", "/read/6/009987", $str);
     $str = str_replace("http://www.mspaintadventures.com/ACT7.html", "/read/6/010027", $str);
     $str = str_replace("http://www.mspaintadventures.com/endcredits.html", "/read/6/010030", $str);
+    // This is regularly just a full MSPA url in plaintext.
+    // I could hardcode the chadthundercock domain or use just
+    // "/oilretcon" but both of those aren't really good solutions.
+    // Just make it into a hyperlink. Selecting, copying, and pasting
+    // a link is kind of inconvenient for mobile devices anyway.
+    $str = str_replace(
+        "http://www.mspaintadventures.com/oilretcon.html",
+        '<a href="/oilretcon" style="color: #eeeeee">/oilretcon</a>',
+        $str
+    );
     $str = preg_replace("/http:\/\/(www\.|cdn\.|)mspaintadventures\.com\/(?!oilretcon\.html|storyfiles\/hs2\/waywardvagabond|sweetbroandhellajeff)/", "/mspa/", $str);
 }
 
@@ -511,33 +522,67 @@ if (isset($routerUrl->path[0]))
 
             $template = "search";
             break;
-            case "map":
-                if (count($routerUrl->path) > 2)
+        case "map":
+            if (count($routerUrl->path) > 2)
+            {
+                http_response_code(404);
+                break;
+            }
+
+            if (isset($routerUrl->path[1]))
+            {
+                $text = "";
+                $map = $routerUrl->path[1];
+                $status = http_get("http://www.mspaintadventures.com/maps/$map.html", $text);
+                if ($status != 200)
                 {
                     http_response_code(404);
                     break;
                 }
-    
-                if (isset($routerUrl->path[1]))
-                {
-                    $text = "";
-                    $map = $routerUrl->path[1];
-                    $status = http_get("http://www.mspaintadventures.com/maps/$map.html", $text);
-                    if ($status != 200)
-                    {
-                        http_response_code(404);
-                        break;
-                    }
-                    
-                    replace_mspa_links($text);
-                    $data->map_html = $text;
-                }
-                else
-                {
-                    $data->adventures = json_decode(file_get_contents("static/adventures.json"));
-                }
-                $template = "map";
+                
+                replace_mspa_links($text);
+                $data->map_html = $text;
+            }
+            else
+            {
+                $data->adventures = json_decode(file_get_contents("static/adventures.json"));
+            }
+            $template = "map";
+            break;
+        case "waywardvagabond":
+            $IMAGE_COUNTS = [
+                "anagitatedfinger" => 4,
+                "anunsealedtunnel" => 7,
+                "asentrywakens" => 5,
+                "astudiouseye" => 6,
+                "beneaththegleam" => 2,
+                "preparesforcompany" => 1,
+                "recordsastutteringstep" => 6,
+                "windsdownsideways" => 7
+            ];
+
+            $id = $routerUrl->path[1] ?? null;
+            if (count($routerUrl->path) != 2
+            || !isset($IMAGE_COUNTS[$id]))
+            {
+                http_response_code(404);
                 break;
+            }
+
+            $data->id = $id;
+            $data->image_count = $IMAGE_COUNTS[$id];
+
+            $template = "waywardvagabound";
+            break;
+        case "oilretcon":
+            if (count($routerUrl->path) != 1)
+            {
+                http_response_code(404);
+                break;
+            }
+
+            $template = "oilretcon";
+            break;
         default:
             http_response_code(404);
             $template = "404";

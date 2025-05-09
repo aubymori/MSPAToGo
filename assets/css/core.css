@@ -73,6 +73,12 @@
     --log-bg: var(--card-bg);
 }
 
+:root.theme-classic {
+    --page-bg: #dddddd;
+    --card-bg: #ffffff;
+    --footer-color: #000000;
+}
+
 :root.theme-cascade {
     --page-bg: #000000;
     --page-color: #ffffff;
@@ -169,7 +175,7 @@ button, input {
     font-size: 18px;
 }
 
-:root[class*="theme-"]:not(.theme-sbahj) a {
+:root[class*="theme-"]:not(.theme-sbahj, .theme-classic) a {
     color: var(--link-color);
 }
 

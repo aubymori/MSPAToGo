@@ -1,0 +1,18 @@
+{% extends "pageframe_min.html" %}
+
+{% block page %}
+<div id="media">
+    {% for i in range(1, data.image_count) %}
+        <img src="/mspa/storyfiles/hs2/waywardvagabond/{{ data.id }}/0{{ i }}.gif">
+    {% endfor %}
+</div>
+<div id="content">
+    <p class="comic-text"></p>
+    <div id="page-footer">
+        <ul id="page-footer-left">
+            <li><a href="javascript:void(0)"
+                   onclick="window.close();history.back()">Go Back</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

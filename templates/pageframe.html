@@ -1,15 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="{% if data.theme %}theme-{{ data.theme }}{% endif %}">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="MSPA To Go" property="og:title">
-        <meta content="MS Paint Adventures on your mobile phone!" property="og:description">
-        <meta content="/assets/img/embed.png" property="og:image">
-        <meta content="summary" name="twitter:card">
-        <meta content="MSPA To Go" property="twitter:title">
-        <meta content="MS Paint Adventures on your mobile phone!" property="twitter:description">
-        <meta content="/assets/img/embed.png" property="twitter:image">
+        {% include "include/meta.html" %}
         <title>MSPA To Go</title>
         <link rel="stylesheet" href="/assets/css/core.css">
         {% block css %}{% endblock %}
@@ -56,14 +48,7 @@
         <div id="page">
             {% block page %}{% endblock %}
         </div>
-        <div id="footer">
-            <div id="footer-image"></div>
-            <div id="footer-text">
-                &copy; 2007-2017 MSPaintAdventures.com
-                <br>
-                &copy; 2025 aubymori
-            </div>
-        </div>
+        {% include "include/footer.html" %}
         {% include "include/ruffle.html" %}
         <script src="/assets/js/core.js"></script>
         <script src="/assets/js/flash_size_fix.js"></script>
