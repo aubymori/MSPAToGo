@@ -33,6 +33,7 @@ function replace_mspa_links(string &$str): void
     $str = preg_replace('/"(?:http:\/\/www\.mspaintadventures\.com\/(?:(?:index|scratch|cascade|trickster|ACT6ACT5ACT1x2COMBO|ACT6ACT6)\.php|)|)\?s=(.*?)(?:&|&amp;)p=(.*?)"/m', "\"/read/$1/$2\"", $str);
     $str = preg_replace('/"(?:http:\/\/www\.mspaintadventures\.com\/(?:index\.php|)|)\?s=(.*?)"/m', "\"/read/$1\"", $str);
     $str = preg_replace('/"http:\/\/www\.mspaintadventures\.com\/storyfiles\/hs2\/waywardvagabond\/(.*?)\/"/m', "\"/waywardvagabond/$1\"", $str);
+    $str = preg_replace('/"http:\/\/www\.mspaintadventures\.com\/sweetbroandhellajeff\/\?cid=0*([0-9]+)\.(?:jpg|gif)"/', "\"/sbahj/$1\"", $str);
     // For map:
     $str = str_replace("http://www.mspaintadventures.com/DOTA/", "/read/6/006715", $str);
     $str = str_replace("http://www.mspaintadventures.com/007395/", "/read/6/007395", $str);
@@ -41,6 +42,7 @@ function replace_mspa_links(string &$str): void
     $str = str_replace("http://www.mspaintadventures.com/collide.html", "/read/6/009987", $str);
     $str = str_replace("http://www.mspaintadventures.com/ACT7.html", "/read/6/010027", $str);
     $str = str_replace("http://www.mspaintadventures.com/endcredits.html", "/read/6/010030", $str);
+    $str = str_replace("http://www.mspaintadventures.com/sweetbroandhellajeff/", "/sbahj", $str);
     // This is regularly just a full MSPA url in plaintext.
     // I could hardcode the chadthundercock domain or use just
     // "/oilretcon" but both of those aren't really good solutions.
@@ -582,6 +584,41 @@ if (isset($routerUrl->path[0]))
             }
 
             $template = "oilretcon";
+            break;
+        case "sbahj":
+            $FIRST_COMIC = 1;
+            $LAST_COMIC = 54;
+            $comic = isset($routerUrl->path[1]) ? intval($routerUrl->path[1]) : $FIRST_COMIC;
+            if (count($routerUrl->path) > 2
+            || $comic < $FIRST_COMIC || $comic > $LAST_COMIC)
+            {
+                http_response_code(404);
+                break;
+            }
+
+            $data->first = $FIRST_COMIC;
+            $data->prev = max($FIRST_COMIC, $comic - 1);
+            $data->next = min($LAST_COMIC, $comic + 1);
+            $data->last = $LAST_COMIC;
+
+            $GIFS = [ 21, 29, 34 ];
+            $ext = ".jpg";
+            if (in_array($comic, $GIFS))
+                $ext = ".gif";
+            
+            // Twig doesn't have a filter for this, this is for convenience
+            $data->img = str_pad($comic, 3, "0", STR_PAD_LEFT) . $ext;
+
+            $template = "sbahj";
+            break;
+        case "sbahjthemovie1":
+            if (count($routerUrl->path) != 1)
+            {
+                http_response_code(404);
+                break;
+            }
+
+            $template = "SBAHJthemovie1";
             break;
         default:
             http_response_code(404);

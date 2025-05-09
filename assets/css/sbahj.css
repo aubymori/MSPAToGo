@@ -1,0 +1,55 @@
+@font-face {
+    font-family: "Comic Sans MS";
+    font-weight: 400;
+    src: local("Comic Sans MS"), url("/assets/fonts/comic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Comic Sans MS";
+    font-weight: 700;
+    src: local("Comic Sans MS Bold"), url("/assets/fonts/comicbd.ttf") format("truetype");
+}
+
+body {
+    margin: 0;
+    background: #0707ec;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+    font-family: "Comic Sans MS", comic, sans-serif;
+}
+
+#page {
+    background: #f400ec;
+}
+
+#banner {
+    display: flex;
+}
+
+#banner img, #comic {
+    width: 100%;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.nav div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#comic-list {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    text-align: center;
+    background: #fff;
+    padding: 16px 16px 0;
+    overflow: hidden;
+    overflow-wrap: break-word;
+}
