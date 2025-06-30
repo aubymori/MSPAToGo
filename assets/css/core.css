@@ -569,7 +569,14 @@ button, input {
     table-layout: fixed;
     margin-top: 30px;
     user-select: none;
+    /* This prevents double tap from zooming on Webkit */
     touch-action: manipulation;
+}
+
+/* For some reason, Webkit lets you select the contents of a button
+   element, even with a parent that has user-select: none set. This fixes that. */
+#gamepad button {
+    user-select: none;
 }
 
 #gamepad button, #gamepad div {
