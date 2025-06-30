@@ -71,6 +71,9 @@
     --footer-color: #ffffff;
     --log-border: grey;
     --log-bg: var(--card-bg);
+    --button-bg: #e1e1e1;
+    --button-border: #adadad;
+    --button-bg-active: #bebebe;
 }
 
 :root.theme-classic {
@@ -173,6 +176,15 @@ body, table, td, th {
 
 button, input {
     font-size: 18px;
+}
+
+button {
+    background: var(--button-bg);
+    border: 1px solid var(--button-border);
+}
+
+button:active {
+    background: var(--button-bg-active);
 }
 
 :root[class*="theme-"]:not(.theme-sbahj, .theme-classic) a {

@@ -422,7 +422,6 @@ if (isset($routerUrl->path[0]))
             {
                 case 2153: // [S] YOU THERE. BOY.
                 case 2376: // [S] ==>
-                case 3258: // [S] ACT 4 ==>
                 case 4692: // [S] Past Karkat: Wake up.
                 case 4979: // [S] John: Enter village.
                 case 5221: // [S] Kanaya: Return to the core.
@@ -434,6 +433,9 @@ if (isset($routerUrl->path[0]))
                 case 7208: // [S][A6I3] ==>
                 case 7298: // [S][A6I3] ==>
                     $data->gamepad = true;
+                    break;
+                case 3258: // [S] ACT 4 ==>
+                    $data->gamepad = "003258";
                     break;
                 case 7614: // [S] ACT 6 ACT 5 ACT 2
                     $data->gamepad = "007614";

@@ -13,13 +13,18 @@
     -webkit-user-select: none;
 }
 
+#gamepad button.toggled {
+    background-color: #777;
+}
+
 #gamepad button, #gamepad div {
     min-width: 100%;
     min-height: 100%;
     aspect-ratio: 3/2;
 }
 
-#gamepad-space:not(.not-wide) {
+#gamepad-space:not(.not-wide),
+#gamepad-shift {
     aspect-ratio: 6/2 !important;
 }
 
@@ -43,4 +48,8 @@
 
 #gamepad-space::before {
     content: "SPACE";
+}
+
+#gamepad-shift::before {
+    content: "SHIFT";
 }

@@ -19,11 +19,23 @@ function registerButton(id, key, code)
     document.addEventListener("pointerup", () => sendInput(key, code, true));
 }
 
+function registerToggleButton(id, key, code)
+{
+    const btn = document.getElementById(id);
+    if (!btn) return;
+    btn.addEventListener("click", (e) => {
+        let btn = e.target;
+        let toggled = btn.classList.toggle("toggled");
+        sendInput(key, code, !toggled);
+    });
+}
+
 registerButton("gamepad-up", "ArrowUp", 38);
 registerButton("gamepad-down", "ArrowDown", 40);
 registerButton("gamepad-left", "ArrowLeft", 37);
 registerButton("gamepad-right", "ArrowRight", 39);
 registerButton("gamepad-space", " ", 32);
+registerToggleButton("gamepad-shift", "Shift", 16);
 
 // Sburb's reported mouse position is fucked when we resize the canvas, calculate manually.
 function onPointerMove(event)
