@@ -16,7 +16,7 @@ function registerButton(id, key, code)
     const btn = document.getElementById(id);
     if (!btn) return;
     btn.addEventListener("pointerdown", () => sendInput(key, code, false));
-    btn.addEventListener("pointerup", () => sendInput(key, code, true));
+    document.addEventListener("pointerup", () => sendInput(key, code, true));
 }
 
 registerButton("gamepad-up", "ArrowUp", 38);
