@@ -176,9 +176,12 @@ body, table, td, th {
 
 button, input {
     font-size: 18px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
 button {
+    appearance: none;
+    -webkit-appearance: none;
     background: var(--button-bg);
     border: 1px solid var(--button-border);
 }
