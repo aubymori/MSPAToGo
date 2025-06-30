@@ -183,6 +183,8 @@ button {
     appearance: none;
     -webkit-appearance: none;
     background: var(--button-bg);
+    border-radius: 0;
+    -webkit-border-radius: 0;
     border: 1px solid var(--button-border);
 }
 

@@ -24,7 +24,6 @@ function registerToggleButton(id, key, code)
     const btn = document.getElementById(id);
     if (!btn) return;
     btn.addEventListener("click", (e) => {
-        let btn = e.target;
         let toggled = btn.classList.toggle("toggled");
         sendInput(key, code, !toggled);
     });
