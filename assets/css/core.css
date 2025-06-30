@@ -560,6 +560,7 @@ button, input {
 #hscroll-arrow {
     font-size: 24px;
     user-select: none;
+    -webkit-user-select: none;
     margin: 4px;
     animation: blink 2s steps(2, start) infinite;
 }
@@ -569,6 +570,7 @@ button, input {
     table-layout: fixed;
     margin-top: 30px;
     user-select: none;
+    -webkit-user-select: none;
     /* This prevents double tap from zooming on Webkit */
     touch-action: manipulation;
 }
@@ -577,6 +579,7 @@ button, input {
    element, even with a parent that has user-select: none set. This fixes that. */
 #gamepad button {
     user-select: none;
+    -webkit-user-select: none;
 }
 
 #gamepad button, #gamepad div {
