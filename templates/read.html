@@ -18,6 +18,9 @@ onload="Sburb.initialize('JterniaDeploy', '{{ media.xml_url }}', false);"
 {% if data.fireflies %}
 <link rel="stylesheet" href="/assets/css/firefly.css">
 {% endif %}
+{% if data.gamepad %}
+<link rel="stylesheet" href="/assets/css/gamepad.css">
+{% endif %}
 {% endblock %}
 
 {% block page %}

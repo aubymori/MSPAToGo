@@ -1,0 +1,46 @@
+#gamepad {
+    width: 100%;
+    table-layout: fixed;
+    margin-top: 30px;
+    user-select: none;
+    -webkit-user-select: none;
+    /* This prevents double tap from zooming on Webkit */
+    touch-action: manipulation;
+}
+
+#gamepad button {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+#gamepad button, #gamepad div {
+    min-width: 100%;
+    min-height: 100%;
+    aspect-ratio: 3/2;
+}
+
+#gamepad-space:not(.not-wide) {
+    aspect-ratio: 6/2 !important;
+}
+
+/* I give up. Webkit fucking sucks and won't stop selecting the inner contents
+   of buttons, so I'll just make them non-selectable everywhere. */
+#gamepad-up::before {
+    content: "↑";
+}
+
+#gamepad-left::before {
+    content: "←";
+}
+
+#gamepad-right::before {
+    content: "→";
+}
+
+#gamepad-down::before {
+    content: "↓";
+}
+
+#gamepad-space::before {
+    content: "SPACE";
+}

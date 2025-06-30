@@ -565,33 +565,6 @@ button, input {
     animation: blink 2s steps(2, start) infinite;
 }
 
-#gamepad {
-    width: 100%;
-    table-layout: fixed;
-    margin-top: 30px;
-    user-select: none;
-    -webkit-user-select: none;
-    /* This prevents double tap from zooming on Webkit */
-    touch-action: manipulation;
-}
-
-/* For some reason, Webkit lets you select the contents of a button
-   element, even with a parent that has user-select: none set. This fixes that. */
-#gamepad button {
-    user-select: none;
-    -webkit-user-select: none;
-}
-
-#gamepad button, #gamepad div {
-    min-width: 100%;
-    min-height: 100%;
-    aspect-ratio: 3/2;
-}
-
-#gamepad-space:not(.not-wide) {
-    aspect-ratio: 6/2 !important;
-}
-
 #JterniaDeploy > div, #SBURBStage {
     width: 100vw !important;
     height: calc(100vw * (9 / 13)) !important;
