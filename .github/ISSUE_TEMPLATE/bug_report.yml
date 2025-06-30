@@ -1,0 +1,32 @@
+name: Bug report
+description: Something isn't working right.
+labels: [bug]
+body:
+  - type: input
+    attributes:
+      label: Browser
+      description: What browser are you using?
+      placeholder: e.g. Mozilla Firefox 140.0
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Device
+      description: What device are you usinbg
+      placeholder: e.g. Google Pixel 6
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Relevant page link
+      description: Please link a page that exhibits this issue.
+      placeholder: e.g. https://mspa.chadthundercock.com/read/6/001901
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: What's going on?
+      description: Describe the bug. Be sure to include any screenshots, videos, and whatever other details you can.
+      placeholder: Describe the bug
+    validations:
+      required: true
