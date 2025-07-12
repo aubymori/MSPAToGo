@@ -871,8 +871,8 @@ for (part of selectedParts)
                 let id = split[split.length - 1];
                 let swfPath = `${prefix}/${id.slice(id.length - 5)}.swf`;
                 let jsPath = `${prefix}/AC_RunActiveContent.js`;
-                await downloadFile(swfPath);
-                await downloadFile(jsPath);
+                await downloadFile(swfPath, false, true);
+                await downloadFile(jsPath, false, true);
             }
         
             for (const match of content.matchAll(SUPER_URL_REGEX))
