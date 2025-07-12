@@ -9,6 +9,18 @@ function mspa_funnel(string $uri, bool $nocdn = false)
         echo file_get_contents("static/cascade.swf");
         die();
     }
+    else if ($uri == "ACT7.webm")
+    {
+        header("Content-Type: video/webm");
+        echo file_get_contents("static/ACT7.webm");
+        die();
+    }
+    else if ($uri == "collide.webm")
+    {
+        header("Content-Type: video/webm");
+        echo file_get_contents("static/collide.webm");
+        die();
+    }
 
     if (Config::isOfflineMode())
     {
