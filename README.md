@@ -13,6 +13,9 @@ for MSPA and a desire for it to be accessible to those using mobile devices.
 To host MSPA To Go, you will need an Apache web server with support for at least PHP 8 (may be 8.1, I'm
 not sure) with the cURL plugin.
 
+## Reading offline
+See [OFFLINE-MODE.md](OFFLINE-MODE.md).
+
 ## Docker
 To run it in Docker, you'll just need to clone the repository and do:
 

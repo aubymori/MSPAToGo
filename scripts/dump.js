@@ -68,6 +68,12 @@ const ADVENTURES = {
             ...wvRange("preparesforcompany", 1),
             ...wvRange("recordsastutteringstep", 6),
             ...wvRange("windsdownsideways", 7),
+            // Header graphics
+            "images/collide_header.gif",
+            "images/act7_header.gif",
+            "images/header_cascade.gif",
+            "storyfiles/hs2/scratch/room.gif",
+            ...(range(2, 117).map(n => `storyfiles/hs2/scratch/room${String(n).padStart(2, "0")}.gif`)),
             // Misc. assets
             "storyfiles/hs2/scraps/pwimg.gif",
             // Misc. Flashes

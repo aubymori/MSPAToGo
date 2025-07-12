@@ -1,7 +1,7 @@
 // Make flashes fit to window
 function fixFlashSizes()
 {
-    for (const flash of document.querySelectorAll("embed, ruffle-embed, iframe"))
+    for (const flash of document.querySelectorAll("embed, ruffle-embed, iframe, video"))
     {
         // Reverse since we calculate by width and not height
         if (!flash.aspectRatio)

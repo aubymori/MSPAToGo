@@ -12,13 +12,25 @@ function mspa_funnel(string $uri, bool $nocdn = false)
     else if ($uri == "ACT7.webm")
     {
         header("Content-Type: video/webm");
-        echo file_get_contents("static/ACT7.webm");
+        $content = @file_get_contents("mspa_local/ACT7.webm");
+        if ($content === false)
+        {
+            http_response_code(404);
+            return;
+        }
+        echo $content;
         die();
     }
     else if ($uri == "collide.webm")
     {
         header("Content-Type: video/webm");
-        echo file_get_contents("static/collide.webm");
+        $content = @file_get_contents("mspa_local/collide.webm");
+        if ($content === false)
+        {
+            http_response_code(404);
+            return;
+        }
+        echo $content;
         die();
     }
 
