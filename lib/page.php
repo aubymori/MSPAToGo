@@ -1,11 +1,5 @@
 <?php
 
-function get_http_response_code($url)
-{
-    $headers = get_headers($url);
-    return substr($headers[0], 9, 3);
-}
-
 function get_page_data(string $s, string $p, bool $ignore_commands = false, bool $ignore_back = false): object|null
 {
     $response = (object)[];

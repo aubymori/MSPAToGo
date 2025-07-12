@@ -1,4 +1,5 @@
 <?php
+require "lib/config.php";
 // Determines template to use and renders.
 
 function betterParseUrl($url) {
