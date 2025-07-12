@@ -49,7 +49,7 @@
 <div id="content">
     <div class="adventure-list">
         {% for adv in data.adventures %}
-        {% if not adv.hidden %}
+        {% if not adv.hidden and has_adventure(adv.id) %}
         <a href="/map/{{ adv.id }}">{{ adv.title }}</a>
         {% endif %}
         {% endfor %}

@@ -25,12 +25,20 @@
 <div id="content">
     {# Unique from anything else, so static. #}
     <div class="adventure-list">
+        {% if has_adventure("6") %}
         <a href="/search/6_3">Homestuck Act 6</a>
         <a href="/search/6_2">Homestuck Act 5</a>
         <a href="/search/6_1">Homestuck Acts 1-4</a>
+        {% endif %}
+        {% if has_adventure("4") %}
         <a href="/search/4">Problem Sleuth</a>
+        {% endif %}
+        {% if has_adventure("2") %}
         <a href="/search/2">Bard Quest</a>
+        {% endif %}
+        {% if has_adventure("1") %}
         <a href="/search/1">Jailbreak</a>
+        {% endif %}
     </div>
 </div>
 {% endif %}

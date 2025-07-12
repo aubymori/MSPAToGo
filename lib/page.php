@@ -1,13 +1,24 @@
 <?php
+require_once "lib/config.php";
 
 function get_page_data(string $s, string $p, bool $ignore_commands = false, bool $ignore_back = false): object|null
 {
     $response = (object)[];
     $text = "";
-    $url = "http://www.mspaintadventures.com/$s/$p.txt";
-    $status = http_get($url, $text);
-    if ($status != 200)
-        return null;
+    if (Config::isOfflineMode())
+    {
+        $content = @file_get_contents("mspa_local/$s/$p.txt");
+        if ($content === false)
+            return null;
+        $text = $content;
+    }
+    else
+    {
+        $url = "http://www.mspaintadventures.com/$s/$p.txt";
+        $status = http_get($url, $text);
+        if ($status != 200)
+            return null;
+    }
 
     // Neutralize line endings and split data
     $text = str_replace("\r\n", "\n", $text);
@@ -201,7 +212,9 @@ function get_page_data(string $s, string $p, bool $ignore_commands = false, bool
             if ($cid == "X" || $cid == "O" || $cid == "?")
                 break;
 
-            $cmd_url = "http://www.mspaintadventures.com/$s/$cid.txt";
+            $cmd_url = Config::isOfflineMode()
+                ? "mspa_local/$s/$cid.txt"
+                : "http://www.mspaintadventures.com/$s/$cid.txt";
             $text = file_get_contents($cmd_url);
             $text = str_replace("\r\n", "\n", $text);
             $title = explode("\n###\n", $text)[0];
@@ -215,10 +228,25 @@ function get_page_data(string $s, string $p, bool $ignore_commands = false, bool
     if (!$ignore_back)
     {
         // Previous page
-        $back_url = "http://www.mspaintadventures.com/{$s}_back/$p.txt";
         $back_text = "";
-        $back_status = http_get($back_url, $back_text);
-        if ($back_status == 200)
+        $got_back = false;
+        if (Config::isOfflineMode())
+        {
+            $content = @file_get_contents("mspa_local/{$s}_back/$p.txt");
+            if ($content !== false)
+            {
+                $got_back = true;
+                $back_text = $content;
+            }
+        }
+        else
+        {
+            $back_url = "http://www.mspaintadventures.com/{$s}_back/$p.txt";
+            $back_status = http_get($back_url, $back_text);
+            $got_back = ($back_status == 200);
+        }
+        
+        if ($got_back)
             $response->prev_page = $back_text;
     }
 

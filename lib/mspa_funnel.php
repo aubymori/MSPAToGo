@@ -1,4 +1,5 @@
 <?php
+require_once "lib/config.php";
 
 function mspa_funnel(string $uri, bool $nocdn = false)
 {
@@ -6,6 +7,46 @@ function mspa_funnel(string $uri, bool $nocdn = false)
     {
         header("Content-Type: application/x-shockwave-flash");
         echo file_get_contents("static/cascade.swf");
+        die();
+    }
+
+    if (Config::isOfflineMode())
+    {
+        $content = @file_get_contents("mspa_local/" . $uri);
+        if ($content === false)
+        {
+            http_response_code(404);
+            return;
+        }
+        $split = explode(".", $uri);
+        $ext = $split[array_key_last($split)];
+
+        $content_type = match ($ext)
+        {
+            "js" => "text/javascript",
+            "css" => "text/css",
+            "json" => "application/json",
+            "txt" => "text/plain",
+            "html" => "text/html",
+            "php" => "text/html",
+            "xml" => "application/xml",
+            "swf" => "application/x-shockwave-flash",
+            "flv" => "video/x-flv",
+            "png" => "image/png",
+            "jpg" => "image/jpeg",
+            "jpeg" => "image/jpeg",
+            "gif" => "image/gif",
+            "bmp" => "image/bmp",
+            "svg" => "image/svg+xml",
+            "zip" => "application/zip",
+            "mp3" => "audio/mpeg",
+            "mp4" => "video/mp4",
+            default => mime_content_type($ext)
+        };
+
+        header("Content-Type: $content_type");
+
+        echo $content;
         die();
     }
 

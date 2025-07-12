@@ -8,6 +8,7 @@
 <h2 id="title">ARCHIVE</h2>
 <div id="content">
     <span>Adventures listed from newest to oldest.</span>
+    {% if has_adventure("6") %}
     <div class="archive-adventure">
         <a href="/read/6" class="archive-image">
             <img src="/assets//img/archive_hs.gif">
@@ -32,6 +33,8 @@
             </div>
         </div>
     </div>
+    {% endif %}
+    {% if has_adventure("4") %}
     <div class="archive-adventure">
         <a href="/read/4" class="archive-image">
             <img src="/assets/img/archive_ps.gif">
@@ -51,6 +54,8 @@
             <a href="/search/4">SEARCH</a>
         </div>
     </div>
+    {% endif %}
+    {% if has_adventure("2") %}
     <div class="archive-adventure">
         <a href="/read/2" class="archive-image">
             <img src="/assets/img/archive_bq.gif">
@@ -70,6 +75,8 @@
             <a href="/search/2">SEARCH</a>
         </div>
     </div>
+    {% endif %}
+    {% if has_adventure("1") %}
     <div class="archive-adventure">
         <a href="/read/1" class="archive-image">
             <img src="/assets/img/archive_jb.gif">
@@ -89,6 +96,8 @@
             <a href="/search/1">SEARCH</a>
         </div>
     </div>
+    {% endif %}
+    {% if has_adventure("6") %}
     <div class="archive-adventure">
         <a href="/sbahj" class="archive-image">
             <img src="/assets/img/archive_sbahj.gif">
@@ -103,5 +112,6 @@
             </span>
         </div>
     </div>
+    {% endif %}
 </div>
 {% endblock %}

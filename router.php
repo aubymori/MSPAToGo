@@ -1,6 +1,14 @@
 <?php
-require "lib/config.php";
+require_once "lib/config.php";
 // Determines template to use and renders.
+
+$has_adventure = new \Twig\TwigFunction("has_adventure", function(string $s): bool
+{
+    if (Config::isOfflineMode())
+        return is_dir("mspa_local/$s");
+    return true;
+});
+$twig->addFunction($has_adventure);
 
 function betterParseUrl($url) {
     $purl = parse_url($url);
@@ -483,12 +491,26 @@ if (isset($routerUrl->path[0]))
 
             $s = $routerUrl->path[1];
             $text = "";
-            $url = "http://www.mspaintadventures.com/logs/" . ($reverse ? "log_rev_" : "log_") . "$s.txt";
-            $status = http_get($url, $text);
-            if ($status != 200)
+            if (Config::isOfflineMode())
             {
-                http_response_code(404);
-                break;
+                $uri = "mspa_local/logs/" . ($reverse ? "log_rev_" : "log_") . "$s.txt";
+                $content = @file_get_contents($uri);
+                if ($content === false)
+                {
+                    http_response_code(404);
+                    break;
+                }
+                $text = $content;
+            }
+            else
+            {
+                $url = "http://www.mspaintadventures.com/logs/" . ($reverse ? "log_rev_" : "log_") . "$s.txt";
+                $status = http_get($url, $text);
+                if ($status != 200)
+                {
+                    http_response_code(404);
+                    break;
+                }
             }
             replace_mspa_links($text);
 
@@ -514,13 +536,26 @@ if (isset($routerUrl->path[0]))
             {
                 $text = "";
                 $search = $routerUrl->path[1];
-                $status = http_get("http://www.mspaintadventures.com/search/search_$search.txt", $text);
-                if ($status != 200)
+                if (Config::isOfflineMode())
                 {
-                    http_response_code(404);
-                    break;
+                    $content = @file_get_contents("mspa_local/search/search_$search.txt");
+                    if ($content === false)
+                    {
+                        http_response_code(404);
+                        break;
+                    }
+                    $text = $content;
                 }
-                
+                else
+                {
+                    $status = http_get("http://www.mspaintadventures.com/search/search_$search.txt", $text);
+                    if ($status != 200)
+                    {
+                        http_response_code(404);
+                        break;
+                    }
+                }
+                    
                 replace_mspa_links($text);
                 $data->search_html = $text;
             }
@@ -538,11 +573,24 @@ if (isset($routerUrl->path[0]))
             {
                 $text = "";
                 $map = $routerUrl->path[1];
-                $status = http_get("http://www.mspaintadventures.com/maps/$map.html", $text);
-                if ($status != 200)
+                if (Config::isOfflineMode())
                 {
-                    http_response_code(404);
-                    break;
+                    $content = @file_get_contents("mspa_local/maps/$map.html");
+                    if ($content === false)
+                    {
+                        http_response_code(404);
+                        break;
+                    }
+                    $text = $content;
+                }
+                else
+                {
+                    $status = http_get("http://www.mspaintadventures.com/maps/$map.html", $text);
+                    if ($status != 200)
+                    {
+                        http_response_code(404);
+                        break;
+                    }
                 }
                 
                 replace_mspa_links($text);
