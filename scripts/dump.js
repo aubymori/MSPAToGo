@@ -786,7 +786,7 @@ async function downloadFile(file, noCdn = false, noFail = false)
 
     let r = await fetch(`http://${noCdn ? "www" : "cdn"}.mspaintadventures.com/${file}`);
     if (r.status != 200 && !noCdn)
-        return await downloadFile(file, true);
+        return await downloadFile(file, true, noFail);
     else if (!noFail && r.status != 200)
     {
         console.log(`Failed to get file ${file} with status ${r.status}`);
