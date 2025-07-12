@@ -861,7 +861,7 @@ for (part of selectedParts)
                 let path = match[1];
                 if (path.endsWith("/") || path.endsWith(".html") || path.endsWith(".php"))
                     continue;
-                await downloadFile(path);
+                await downloadFile(path, false, true);
             }
 
             for (const match of content.matchAll(FLASH_URL_REGEX))
