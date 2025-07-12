@@ -853,6 +853,8 @@ for (part of selectedParts)
             for (const match of content.matchAll(IMAGE_URL_REGEX))
             {
                 let path = match[1];
+                if (path.endsWith("/") || path.endsWith(".html") || path.endsWith(".php"))
+                    continue;
                 await downloadFile(path);
             }
 
