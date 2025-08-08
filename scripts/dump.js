@@ -58,6 +58,14 @@ const ADVENTURES = {
             "darkcage",
             "darkcage2"
         ],
+        "externalAssets": {
+            "cascade_loader.swf": "https://uploads.ungrounded.net/582000/582345_cascade_loaderExt.swf",
+            "cascade_segment1.swf": "https://uploads.ungrounded.net/userassets/3591000/3591093/cascade_segment1.swf",
+            "cascade_segment2.swf": "https://uploads.ungrounded.net/userassets/3591000/3591093/cascade_segment2.swf",
+            "cascade_segment3.swf": "https://uploads.ungrounded.net/userassets/3591000/3591093/cascade_segment3.swf",
+            "cascade_segment4.swf": "https://uploads.ungrounded.net/userassets/3591000/3591093/cascade_segment4.swf",
+            "cascade_segment5.swf": "https://uploads.ungrounded.net/userassets/3591000/3591093/cascade_segment5.swf",
+        },
         "assets": [
             ...(range(1, 54).map(n => `sweetbroandhellajeff/archive/${String(n).padStart(3, "0")}.jpg`)),
             ...wvRange("anagitatedfinger", 4),
@@ -779,6 +787,24 @@ function makeDir(p)
     fs.mkdirSync(p, { recursive: true });
 }
 
+async function downloadExternalFile(url, file)
+{
+    if (fs.existsSync(OUTPUT_DIR + file))
+        return;
+
+    let r = await fetch(url);
+    if (r.status != 200)
+    {
+        console.log(`Failed to get file ${file} (${url}) with status ${r.status}`);
+        process.exit(0);
+    }
+
+    console.log(url);
+    let dir = file.substring(0, file.lastIndexOf("/") + 1);
+    makeDir(OUTPUT_DIR + dir);
+    fs.writeFileSync(OUTPUT_DIR + file, await r.bytes());
+}
+
 async function downloadFile(file, noCdn = false, noFail = false)
 {
     if (fs.existsSync(OUTPUT_DIR + file))
@@ -892,6 +918,16 @@ for (part of selectedParts)
         }
 
         console.log();
+    }
+
+    if ("externalAssets" in partData)
+    {
+        console.log(`Downloading misc. external files for adventure ${part}`);
+        for (asset in partData.externalAssets)
+        {
+            let url = partData.externalAssets[asset];
+            await downloadExternalFile(url, asset);
+        }
     }
 
     if ("assets" in partData)

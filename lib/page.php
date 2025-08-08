@@ -42,7 +42,7 @@ function get_page_data(string $s, string $p, bool $ignore_commands = false, bool
             $response->supercartridge = true;
             $response->media[] = [
                 "type" => "supercartridge",
-                "html" => file_get_contents(Config::isOfflineMode() ? "static/cascade_offline.html" : "static/cascade.html")
+                "html" => file_get_contents("static/cascade.html")
             ];
             break;
         case "009987":
