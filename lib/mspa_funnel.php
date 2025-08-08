@@ -99,7 +99,7 @@ function mspa_funnel(string $uri, bool $nocdn = false)
         CURLOPT_FOLLOWLOCATION => 0,
         CURLOPT_HEADER => 1,
         CURLOPT_RETURNTRANSFER => 1,
-        CURLOPT_USERAGENT => $_SERVER["HTTP_USER_AGENT"]
+        CURLOPT_USERAGENT => $_SERVER["HTTP_USER_AGENT"] . " MSPAToGo/1.0"
     ]);
 
     $response = curl_exec($ch);

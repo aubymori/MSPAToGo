@@ -7,7 +7,8 @@ function http_get(string $url, string &$body): int
     curl_setopt_array($ch, [
         CURLOPT_FOLLOWLOCATION => 0,
         CURLOPT_HEADER => 1,
-        CURLOPT_RETURNTRANSFER => 1
+        CURLOPT_RETURNTRANSFER => 1,
+        CURLOPT_USERAGENT => $_SERVER["HTTP_USER_AGENT"] . " MSPAToGo/1.0"
     ]);
 
     $response = curl_exec($ch);
