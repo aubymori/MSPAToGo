@@ -1,0 +1,22 @@
+{% extends "pageframe.html" %}
+
+{% block page %}
+<h2 id="title">PRIVACY</h2>
+<div id="content">
+    <p>
+        The MSPA To Go software itself does not collect any user data, user options are stored
+        only on the client in cookies, and temporarily on the server when making requests.
+    </p>
+    <p>
+        The main MSPA To Go instance (mspa.chadthundercock.com), however, does log information about
+        requests made to the server, including:
+    </p>
+    <ul>
+        <li>When the request was made, and how long it took</li>
+        <li>The client's public IP address</li>
+        <li>The URL requested by the client</li>
+        <li>HTTP headers, including the User Agent</li>
+        <li>Any request body sent by the client</li>
+    </ul>
+</div>
+{% endblock %}

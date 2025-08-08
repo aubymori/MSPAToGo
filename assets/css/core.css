@@ -358,6 +358,10 @@ button:active {
     font-size: .75em;
 }
 
+#footer a {
+    color: var(--footer-color) !important;
+}
+
 #footer-image {
     min-width: 102px;
     min-height: 102px;

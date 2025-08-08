@@ -84,6 +84,12 @@ if (isset($routerUrl->path[0]))
 
             $template = "home";
             break;
+        case "privacy":
+            $template = "privacy";
+            break;
+        case "legal":
+            $template = "legal";
+            break;
         case "archive":
             $template = "archive";
             break;
