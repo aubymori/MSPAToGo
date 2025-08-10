@@ -511,7 +511,7 @@ class ReadController extends PageController
             // It's fine if we don't get 200 here, just means the page has no previous page
             if ($backResponse->status == 200)
             {
-                $response->prev_page = $backResponse->body;
+                $response->prev_page = trim($backResponse->body);
             }
         }
 
