@@ -316,7 +316,7 @@ class ReadController extends PageController
             "path"        => "static/collide.html",
             "offlinePath" => "static/collide_offline.html"
         ],
-        "0100027" => [
+        "010027" => [
             "path"        => "static/ACT7.html",
             "offlinePath" => "static/ACT7_offline.html"
         ],
