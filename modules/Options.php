@@ -20,6 +20,8 @@ class Options
             "defaultValue" => "default",
             "options"      => [
                 "default"   => "Default",
+                "classic"   => "Classic",
+                "dark"      => "Dark",
                 "scratch"   => "Scratch",
                 "sbahj"     => "SBAHJ",
                 "cascade"   => "Cascade",

@@ -74,11 +74,27 @@
     --button-bg: #e1e1e1;
     --button-border: #adadad;
     --button-bg-active: #bebebe;
+    --link-color-active: var(--link-color);
+}
+
+:root.theme-dark {
+    --page-bg: #000000;
+    --page-color: #ffffff;
+    --card-bg: #393939;
+    --link-color: #5599ff;
+    --link-color-active: #f00;
 }
 
 :root.theme-classic {
     --page-bg: #dddddd;
     --card-bg: #ffffff;
+    --links-bg: #000000;
+    --links-color: #cccccc;
+    --links-white: #cccccc;
+    --links-green: #cccccc;
+    --links-blue: #cccccc;
+    --links-yellow: #cccccc;
+    --links-orange: #cccccc;
     --footer-color: #000000;
 }
 
@@ -194,6 +210,10 @@ button:active {
 
 :root[class*="theme-"]:not(.theme-sbahj, .theme-classic) a {
     color: var(--link-color);
+}
+
+:root[class*="theme-"]:not(.theme-sbahj, .theme-classic) a:active {
+    color: var(--link-color-active);
 }
 
 @keyframes scroll {
