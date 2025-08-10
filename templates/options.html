@@ -4,29 +4,22 @@
 <h2 id="title">OPTIONS</h2>
 <div id="content" style="padding: 20px 0">
     <form action="" method="post">
-        <input id="auto-open-logs" name="auto-open-logs" type="checkbox" {{ data.autologs_opt ? "checked" : "" }}>
-        <label for="auto-open-logs">Automatically open logs</label>
-        <br><br>
-        <label for="theme">Theme override:</label>
+        {% for name in data.optionSchema|keys %}
+        {% set option = data.optionSchema[name] %}
+        {% if option.type == "checkbox" %}
+        <input type="checkbox" id="{{ name }}" name="{{ name }}" {{ option.value ? "checked" }}>
+        <label for="{{ name }}">{{ option.name }}</label>
+        {% elseif option.type == "dropdown" %}
+        <label for="{{ name }}">{{ option.name }}:</label>
         <br>
-        {# Can't select a value with the select element itself. What a fucking joke. #}
-        {% macro opt(val, name, selected) %}
-        <option value="{{ val }}" {{ selected == val ? 'selected="selected"' : '' }}>{{ name }}</option>
-        {% endmacro %}
-        <select name="theme" id="theme">
-            {{ _self.opt("default", "Default", data.theme_opt) }}
-            {{ _self.opt("scratch", "Scratch", data.theme_opt) }}
-            {{ _self.opt("sbahj", "SBAHJ", data.theme_opt) }}
-            {{ _self.opt("cascade", "Cascade", data.theme_opt) }}
-            {{ _self.opt("trickster", "Trickster Mode", data.theme_opt) }}
-            {{ _self.opt("homosuck", "HOMOSUCK", data.theme_opt) }}
-            {{ _self.opt("collide", "Collide", data.theme_opt) }}
-            {{ _self.opt("act7", "ACT 7", data.theme_opt) }}
+        <select name="{{ name }}" id="{{ name }}">
+            {% for ddOption in option.options|keys %}
+            <option value="{{ ddOption }}" {{ option.value == ddOption ? 'selected="selected"' }}>{{ option.options[ddOption] }}</option>
+            {% endfor %}
         </select>
+        {% endif %}
         <br><br>
-        <input id="override-theme" name="override-theme" type="checkbox" {{ data.theme_override ? "checked" : "" }}>
-        <label for="override-theme">Override page-specific themes</label>
-        <br><br>
+        {% endfor %}
         <input type="submit" value="Save">
     </form>
 </div>

@@ -1,6 +1,49 @@
+{% macro flash(swf_url, js_url, width, height, bgcolor) %}
+<script>AC_FL_RunContent = 0;</script>
+<script src="{{ js_url }}"></script>
+<script language="javascript">
+	if (AC_FL_RunContent == 0)
+	{
+		alert("This page requires AC_RunActiveContent.js.");
+	}
+	else
+	{
+		AC_FL_RunContent(
+			"codebase", "http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0",
+			"width", "{{ width }}",
+			"height", "{{ height }}",
+			"src", "{{ swf_url }}",
+			"quality", "high",
+			"pluginspage", "http://www.macromedia.com/go/getflashplayer",
+			"align", "middle",
+			"play", "true",
+			"loop", "true",
+			"scale", "showall",
+			"wmode", "window",
+			"devicefont", "false",
+			"id", "{{ swf_url }}",
+			"bgcolor", "{{ bgcolor }}",
+			"name", "{{ swf_url }}",
+			"menu", "true",
+			"allowFullScreen", "false",
+			"allowScriptAccess","always",
+			"movie", "{{ swf_url }}",
+			"salign", ""
+		); //end AC code
+	}
+</script>
+<noscript>
+	<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="{{ width }}" height="{{ height }}" id="{{ swf_url }}" align="middle">
+	<param name="allowScriptAccess" value="sameDomain" />
+	<param name="allowFullScreen" value="false" />
+	<param name="movie" value="{{ swf_url }}" /><param name="quality" value="high" /><param name="bgcolor" value="{{ bgcolor }}" />	<embed src="{{ swf_url }}" quality="high" bgcolor="{{ bgcolor }}" width="{{ width }}" height="{{ height }}" name="{{ swf_url }}" align="middle" allowScriptAccess="sameDomain" allowFullScreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+	</object>
+</noscript>
+{% endmacro %}
+
 {% macro read_text(page) %}
 {% if page.log_type %}
-<div class="read-log {{ page.log_type == '|AUTHORLOG|' ? 'authorlog' : '' }} {{ data.autologs or page.log_type == '|AUTHORLOG|' ? 'open' : '' }}">
+<div class="read-log {{ page.log_type == '|AUTHORLOG|' ? 'authorlog' : '' }} {{ data.options.autologs or page.log_type == '|AUTHORLOG|' ? 'open' : '' }}">
     {% if page.log_type != "|AUTHORLOG|" %}
     <button class="log-show">Show {{ page.log_name }}</button>
     <button class="log-hide">Hide {{ page.log_name }}</button>

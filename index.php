@@ -1,27 +1,49 @@
 <?php
+namespace MSPAToGo\Controller;
 require "vendor/autoload.php";
+require "include/autoload.php";
 
-function http_get(string $url, string &$body): int
-{
-    $ch = curl_init($url);
-    curl_setopt_array($ch, [
-        CURLOPT_FOLLOWLOCATION => 0,
-        CURLOPT_HEADER => 1,
-        CURLOPT_RETURNTRANSFER => 1,
-        CURLOPT_USERAGENT => $_SERVER["HTTP_USER_AGENT"] . " MSPAToGo/1.0"
-    ]);
+use MSPAToGo\ServerConfig;
+use MSPAToGo\ControllerManager;
 
-    $response = curl_exec($ch);
-    $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
-    $headers = substr($response, 0, $header_size);
-    $body = substr($response, $header_size);
-    return intval(substr($headers, 9, 3));
-}
+ServerConfig::ensure();
 
-$twigLoader = new \Twig\Loader\FilesystemLoader("templates");
-$twig = new \Twig\Environment($twigLoader, []);
-
-$data = (object)[];
-$twig->addGlobal("data", $data);
-
-require "router.php";
+ControllerManager::route([
+    "/"                        => HomeController::class,
+    "/jailbreak"               => VIZRedirectController::class,
+    "/jailbreak/*"             => VIZRedirectController::class,
+    "/bard-quest"              => VIZRedirectController::class,
+    "/bard-quest/*"            => VIZRedirectController::class,
+    "/blood-spade"             => VIZRedirectController::class,
+    "/blood-spade/*"           => VIZRedirectController::class,
+    "/problem-sleuth"          => VIZRedirectController::class,
+    "/problem-sleuth/*"        => VIZRedirectController::class,
+    "/beta"                    => VIZRedirectController::class,
+    "/beta/*"                  => VIZRedirectController::class,
+    "/homestuck"               => VIZRedirectController::class,
+    "/homestuck/*"             => VIZRedirectController::class,
+    "/ryanquest"               => VIZRedirectController::class,
+    "/ryanquest/*"             => VIZRedirectController::class,
+    "/mspa/*"                  => MSPAFunnelController::class,
+    // Weird Openbound relative URLs
+    "/read/6/storyfiles/hs2/*" => MSPAFunnelController::class,
+    "/archive"                 => ArchiveController::class,
+    "/log"                     => LogController::class,
+    "/log/*"                   => LogController::class,
+    "/map"                     => MapController::class,
+    "/map/*"                   => MapController::class,
+    "/search"                  => SearchController::class,
+    "/search/*"                => SearchController::class,
+    "/read/*"                  => ReadController::class,
+    "/waywardvagabond/*"       => WVController::class,
+    "/oilretcon"               => OilRetconController::class,
+    "/privacy"                 => PrivacyController::class,
+    "/legal"                   => LegalController::class,
+    "/credits"                 => CreditsController::class,
+    "/options"                 => OptionsController::class,
+    "/sbahj"                   => SBAHJController::class,
+    "/sbahj/*"                 => SBAHJController::class,
+    "/SBAHJthemovie1"          => SBAHJMovieController::class,
+    "default"                  => NotFoundController::class,
+]);
+ControllerManager::run();

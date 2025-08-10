@@ -29,7 +29,7 @@
     {% from "macros/read.html" import read_text, read_footer, read_commands %}
     {% if not data.page.log_type or not data.page2.log_type %}
         {# Single text #}
-        {% if (data.page.log_type) %}
+        {% if data.page.log_type %}
         {{ read_text(data.page) }}
         {% elseif data.page2.log_type %}
         {{ read_text(data.page2) }}

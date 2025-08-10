@@ -33,46 +33,8 @@ onload="Sburb.initialize('JterniaDeploy', '{{ media.xml_url }}', false);"
 {% if media.type == "image" %}
 <img src="{{ media.url }}">
 {% elseif media.type == "flash" %}
-<script>AC_FL_RunContent = 0;</script>
-<script src="{{ media.js_url }}"></script>
-<script language="javascript">
-	if (AC_FL_RunContent == 0)
-	{
-		alert("This page requires AC_RunActiveContent.js.");
-	}
-	else
-	{
-		AC_FL_RunContent(
-			"codebase", "http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0",
-			"width", "{{ media.width }}",
-			"height", "{{ media.height }}",
-			"src", "{{ media.url }}",
-			"quality", "high",
-			"pluginspage", "http://www.macromedia.com/go/getflashplayer",
-			"align", "middle",
-			"play", "true",
-			"loop", "true",
-			"scale", "showall",
-			"wmode", "window",
-			"devicefont", "false",
-			"id", "{{ media.url }}",
-			"bgcolor", "#ffffff",
-			"name", "{{ media.url }}",
-			"menu", "true",
-			"allowFullScreen", "false",
-			"allowScriptAccess","always",
-			"movie", "{{ media.url }}",
-			"salign", ""
-		); //end AC code
-	}
-</script>
-<noscript>
-	<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="{{ media.width }}" height="{{ media.height }}" id="{{ media.url }}" align="middle">
-	<param name="allowScriptAccess" value="sameDomain" />
-	<param name="allowFullScreen" value="false" />
-	<param name="movie" value="{{ media.url }}" /><param name="quality" value="high" /><param name="bgcolor" value="#ffffff" />	<embed src="{{ media.url }}" quality="high" bgcolor="#ffffff" width="{{ media.width }}" height="{{ media.height }}" name="{{ media.url }}" align="middle" allowScriptAccess="sameDomain" allowFullScreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
-	</object>
-</noscript>
+{% from "macros/read.html" import flash %}
+{{ flash(media.url, media.js_url, media.width, media.height, "#ffffff") }}
 {% elseif media.type == "jternia" %}
 <div id="JterniaDeploy"></div>
 <script src="{{ media.js_url }}"></script>
@@ -95,17 +57,10 @@ onload="Sburb.initialize('JterniaDeploy', '{{ media.xml_url }}', false);"
 {% endif %}
 <div id="content" data-s="{{ data.s }}" data-p="{{ data.p }}">
 	{% if data.gamepad %}
-		{# Apparently true == "007614", so I have to use a strict comparison. I fucking hate Twig. #}
-		{% if data.gamepad is same as("003258") %}
-			{% include "include/gamepad_003258.html" %}
-		{% elseif data.gamepad is same as("007614") %}
-			{% include "include/gamepad_007614.html" %}
-		{% elseif data.gamepad is same as("007640") %}
-			{% include "include/gamepad_007640.html" %}
-		{% elseif data.gamepad is same as("007659") %}
-			{% include "include/gamepad_007659.html" %}
-		{% else %}
+		{% if data.gamepad is same as(true) %}
 			{% include "include/gamepad.html" %}
+		{% else %}
+			{% include "include/gamepad_" ~ data.gamepad ~ ".html" %}
 		{% endif %}
 	{% endif %}
 	{% from "macros/read.html" import read_text, read_footer, read_commands %}
