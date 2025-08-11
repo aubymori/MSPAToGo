@@ -18,7 +18,7 @@ class SearchController extends PageController
             return true;
 
         $s = $request->path[1];
-        $response = Network::mspaRequest("search/search_$s.txt");
+        $response = Network::mspaRequest("search/search_$s.txt", true);
         if ($response->status != 200)
             return false;
 

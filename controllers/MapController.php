@@ -21,7 +21,7 @@ class MapController extends PageController
         }
 
         $s = $request->path[1];
-        $response = Network::mspaRequest("maps/$s.html");
+        $response = Network::mspaRequest("maps/$s.html", true);
         if ($response->status != 200)
             return false;
         $this->data->map_html = MSPALinks::replaceMspaLinks($response->body);
