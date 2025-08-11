@@ -11,22 +11,26 @@ class Options
         "desktop" => [
             "type"         => "checkbox",
             "name"         => "Desktop mode",
+            "description"  => "Use a layout better suited for reading on a desktop computer.",
             "defaultValue" => false
         ],
         "viz-links" => [
             "type"         => "checkbox",
             "name"         => "Use Homestuck.com page numbers",
+            "description"  => "Makes URLs use the Homestuck.com page numbers instead of the MSPA page numbers.",
             "defaultValue" => false
         ],
         "auto-open-logs" => [
             "type"         => "checkbox",
             "name"         => "Automatically open logs",
+            "description"  => "Chat logs in Homestuck will start opened instead of collapsed.",
             "templateName" => "autologs",
             "defaultValue" => false
         ],
         "theme" => [
             "type"         => "dropdown",
             "name"         => "Page theme",
+            "description"  => "A theme to use instead of the default one. This will not override page-specific themes.",
             "defaultValue" => "default",
             "options"      => [
                 "default"   => "Default",
@@ -44,6 +48,7 @@ class Options
         "font" => [
             "type"         => "dropdown",
             "name"         => "Page font",
+            "description"  => "The font to use for page titles and text.",
             "defaultValue" => "courier",
             "options"      => [
                 "courier"      => "Courier New",
@@ -53,6 +58,7 @@ class Options
         "highcontrast" => [
             "type"         => "checkbox",
             "name"         => "High contrast text colors",
+            "description"  => "Use high contrast colors for colored text, such as chat logs in Homestuck.",
             "defaultValue" => false,
         ]
     ];

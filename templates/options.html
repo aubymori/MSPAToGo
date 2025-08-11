@@ -8,9 +8,13 @@
         {% set option = data.optionSchema[name] %}
         {% if option.type == "checkbox" %}
         <input type="checkbox" id="{{ name }}" name="{{ name }}" {{ option.value ? "checked" }}>
-        <label for="{{ name }}">{{ option.name }}</label>
+        <label for="{{ name }}"><b>{{ option.name }}</b></label>
+        <br>
+        <span>{{ option.description }}</span>
         {% elseif option.type == "dropdown" %}
-        <label for="{{ name }}">{{ option.name }}:</label>
+        <label for="{{ name }}"><b>{{ option.name }}</b></label>
+        <br>
+        <span>{{ option.description }}</span>
         <br>
         <select name="{{ name }}" id="{{ name }}">
             {% for ddOption in option.options|keys %}
