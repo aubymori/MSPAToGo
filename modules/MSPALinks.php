@@ -194,6 +194,24 @@ class MSPALinks
             }
         }
 
+        $matches = [];
+        if (preg_match_all(
+            '/"(?:http:\/\/www\.mspaintadventures\.com\/(?:index\.php|)|)\?s=(.*?)"/m',
+            $html,
+            $matches,
+            PREG_SET_ORDER | PREG_OFFSET_CAPTURE
+        ))
+        {
+            for ($i = count($matches) - 1; $i >= 0; $i--)
+            {
+                $s = $matches[$i][1][0];
+                $offset = $matches[$i][0][1];
+                $length = strlen($matches[$i][0][0]);
+                $newUrl = '"' . self::constructMspaLink($s) . '"';
+                $html = self::strSplice($html, $offset, $length, $newUrl);
+            }
+        }
+
         foreach (self::$miscRegexes as $mapping)
         {
             $html = preg_replace($mapping[0], $mapping[1], $html);
