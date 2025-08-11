@@ -653,6 +653,10 @@ body:not(.desktop) #page > img {
     justify-content: space-between;
 }
 
+body:not(.desktop) #page-footer-right {
+    margin-left: auto;
+}
+
 .desktop #page-footer {
     font-size: 10px;
 }
