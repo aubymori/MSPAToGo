@@ -25,16 +25,32 @@
                 font-size: 34px;
             }
 
+            body.desktop {
+                justify-content: flex-start;
+                margin-top: 129px;
+                align-items: center;
+                font-size: 32px;
+            }
+            
+            .desktop #command-container {
+                width: 600px;
+            }
+
             .command {
                 margin-top: 50px;
+            }
+
+            body:not(.desktop) .command {
                 margin-left: 50px;
             }
         </style>
     </head>
-    <body>
+    <body class="{{ data.options.desktop ? "desktop" }}">
         <iframe width="950" height="650" src="https://www.youtube.com/embed/rMZU89jY2j8" frameborder="0" allowfullscreen></iframe>
-        <div class="command">
-            &gt; <a href="/read/6">==&gt;</a>
+        <div id="command-container">
+            <div class="command">
+                &gt; <a href="/read/6">==&gt;</a>
+            </div>
         </div>
         {% if not data.options.desktop %}
         <script src="/assets/js/flash_size_fix.js"></script>

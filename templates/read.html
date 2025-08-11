@@ -76,7 +76,7 @@ onload="Sburb.initialize('JterniaDeploy', '{{ media.xml_url }}', false);"
 </div>
 {% endif %}
 <div id="content" data-s="{{ data.s }}" data-p="{{ data.p }}">
-	{% if data.gamepad %}
+	{% if data.gamepad and not data.options.desktop %}
 		{% if data.gamepad is same as(true) %}
 			{% include "include/gamepad.html" %}
 		{% else %}

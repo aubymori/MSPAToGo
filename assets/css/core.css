@@ -236,6 +236,7 @@ body {
 
 body.desktop {
     align-items: center;
+    min-height: 100vh;
 }
 
 .desktop #page-wrapper {
@@ -772,7 +773,7 @@ body:not(.desktop) #page > img {
 
 #media.hscroll img {
     margin: 0;
-    max-width: unset;
+    max-width: unset !important;
 }
 
 body:not(.desktop) #media.hscroll img {
