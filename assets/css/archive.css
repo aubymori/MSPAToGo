@@ -32,7 +32,7 @@
 }
 
 .archive-title {
-    font-family: "Courier New", Courier, monospace;
+    font-family: var(--comic-font);
     font-weight: 700;
     font-size: 36px;
     margin: 16px 0;
