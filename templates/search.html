@@ -8,9 +8,15 @@
         <b>
             Hey, welcome to the super cool low-tech search page!
             <br><br>
+            {% if data.options.desktop %}
+            To search for something, hit Ctrl+F (or Apple+F) and type what you're looking for.
+            Let your browser do all the work!!! If your text is in one of the commands or
+            captions, it'll show up here.
+            {% else %}
             To search for something, open your browser's menu, hit Find in page, and
             type what you're looking for. Let your browser do all the work!!! If your text
             is in one of the commands or captions, it'll show up here.
+            {% endif %}
             <br><br>
             Dang, it doesn't get much easier!
             <br><br>

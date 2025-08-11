@@ -9,8 +9,16 @@
     margin-top: 32px;
 }
 
+.desktop .archive-adventure {
+    flex-direction: row;
+}
+
 .archive-adventure:last-child {
     margin-bottom: 16px;
+}
+
+.desktop .archive-image {
+    margin-right: 10px;
 }
 
 .archive-info {
@@ -19,11 +27,19 @@
     text-align: center;
 }
 
+.desktop .archive-info {
+    flex: 1;
+}
+
 .archive-title {
     font-family: "Courier New", Courier, monospace;
     font-weight: 700;
     font-size: 36px;
     margin: 16px 0;
+}
+
+.desktop .archive-title {
+    font-size: 32px;
 }
 
 .archive-links {

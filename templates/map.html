@@ -6,6 +6,13 @@
 <div id="map">
     {{ data.map_html|raw }}
 </div>
+{% if data.options.desktop %}
+<script>
+    let hsMap = document.querySelector("table[width='500']");
+    if (hsMap)
+        hsMap.removeAttribute("width");
+</script>
+{% else %}
 <script>
     // Homestuck map is FUCKING HUGE!!!!!
     // And the table HTML is no good
@@ -37,6 +44,7 @@
     window.addEventListener("resize", fixMap);
     window.addEventListener("load", fixMap);
 </script>
+{% endif %}
 <style>
     /* Force the PS map to its actual size. This makes it use the above JS to fix its size.
        HTML maps aren't responsive! */

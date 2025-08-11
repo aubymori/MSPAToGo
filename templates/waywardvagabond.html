@@ -8,11 +8,13 @@
 </div>
 <div id="content">
     <p class="comic-text"></p>
+    {% if not data.options.desktop %}
     <div id="page-footer">
         <ul id="page-footer-left">
             <li><a href="javascript:void(0)"
                    onclick="window.close();history.back()">Go Back</a></li>
         </ul>
     </div>
+    {% endif %}
 </div>
 {% endblock %}

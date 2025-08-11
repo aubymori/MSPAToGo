@@ -23,11 +23,25 @@ body {
     background: #f400ec;
 }
 
-#banner {
-    display: flex;
+body.desktop {
+    display: block;
+    font-size: 12px;
+    margin: 0;
 }
 
-#banner img, #comic {
+.desktop #page {
+    width: min-content;
+    min-width: 800px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+#banner {
+    display: flex;
+    justify-content: center;
+}
+
+body:not(.desktop) #banner img, #comic {
     width: 100%;
 }
 
@@ -35,6 +49,10 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.desktop .nav {
+    flex-direction: row;
 }
 
 .nav div {
@@ -52,4 +70,8 @@ body {
     padding: 16px 16px 0;
     overflow: hidden;
     overflow-wrap: break-word;
+}
+
+.desktop #comic-list {
+    width: 600px;
 }

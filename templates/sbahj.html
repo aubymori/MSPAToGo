@@ -1,21 +1,27 @@
 {% set nav_html %}
 <div class="nav">
+    {% if not data.options.desktop %}
     <div class="nav-back">
+    {% endif %}
         <a href="/sbahj/{{ data.first }}">
             <img src="/assets/img/sbahj/first.jpg">
         </a>
         <a href="/sbahj/{{ data.prev }}">
             <img src="/assets/img/sbahj/back.jpg">
         </a>
+    {% if not data.options.desktop %}
     </div>
     <div class="nav-forward">
+    {% endif %}
         <a href="/sbahj/{{ data.next }}">
             <img src="/assets/img/sbahj/next.jpg">
         </a>
         <a href="/sbahj/{{ data.last }}">
             <img src="/assets/img/sbahj/new.jpg">
         </a>
+    {% if not data.options.desktop %}
     </div>
+    {% endif %}
 </div>
 {% endset %}
 
@@ -26,7 +32,7 @@
         <title>sweet bro and hella jeff</title>
         <link rel="stylesheet" href="/assets/css/sbahj.css">
     </head>
-    <body>
+    <body class="{{ data.options.desktop ? "desktop" }}">
         <div id="page">
             <a id="banner" href="/sbahj">
                 <img src="/assets/img/sbahj/logo.jpg">

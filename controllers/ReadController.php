@@ -3,6 +3,7 @@ namespace MSPAToGo\Controller;
 
 use MSPAToGo\MSPALinks;
 use MSPAToGo\Network;
+use MSPAToGo\Options;
 use MSPAToGo\RequestMetadata;
 use MSPAToGo\ServerConfig;
 
@@ -73,12 +74,12 @@ class ReadController extends PageController
         [ 10027, 10027,     "act7" ],
     ];
 
-    // min page, max page, image
+    // min page, max page, image, desktop image
     private static array $pageBanners = [
         [ 6009,  6009,      "/mspa/images/header_cascade.gif" ],
         [ 9987,  9987,      "/mspa/images/collide_header.gif" ],
         [ 10027, 10027,        "/mspa/images/act7_header.gif" ],
-        [ 7688,  7825,  "/assets/img/act6act5act1x2combo.gif" ],
+        [ 7688,  7825,  "/assets/img/act6act5act1x2combo.gif", "/assets/img/act6act5act1x2combo_desktop.gif" ],
     ];
 
     private static array $hscrollPages = [
@@ -89,6 +90,11 @@ class ReadController extends PageController
     private static array $fireflyPages = [
         [ 9000, 9024 ],
         [ 9298, 9303 ]
+    ];
+
+    private static array $extraBodyClasses = [
+        "009987" => [ "collide" ],
+        "010027" => [ "act7" ],
     ];
 
     // general gamepad (up down left right space)
@@ -156,6 +162,22 @@ class ReadController extends PageController
                 return true;
             }
 
+            if (Options::get("desktop"))
+            {
+                if ($p == "009987")
+                {
+                    $this->template = "collide_desktop";
+                    $this->usePageframe = false;
+                    return true;
+                }
+                else if ($p == "010027")
+                {
+                    $this->template = "ACT7_desktop";
+                    $this->usePageframe = false;
+                    return true;
+                }
+            }
+
             if (isset(self::$fullPageFlashes[$p]))
             {
                 $data = self::$fullPageFlashes[$p];
@@ -221,7 +243,8 @@ class ReadController extends PageController
             if (is_null($page2))
                 return false;
 
-            $this->template = "read_x2_combo";
+            $this->template = Options::get("desktop") ? "read_x2_combo_desktop" : "read_x2_combo";
+            $this->data->x2combo = true;
         }
         else
         {
@@ -266,8 +289,11 @@ class ReadController extends PageController
         {
             if ($pageNum >= $bannerDef[0] && $pageNum <= $bannerDef[1])
             {
+                $banner = $bannerDef[2];
+                if (Options::get("desktop") && isset($bannerDef[3]))
+                    $banner = $bannerDef[3];
                 $this->data->banner = [
-                    "image" => $bannerDef[2]
+                    "image" => $banner
                 ];
             }
         }
@@ -303,6 +329,11 @@ class ReadController extends PageController
             $this->data->gamepad = (self::$gamepadPages[$p] == self::GAMEPAD_SPECIFIC)
                 ? $p
                 : true;
+        }
+
+        if (isset(self::$extraBodyClasses[$p]))
+        {
+            $this->data->extra_body_classes = self::$extraBodyClasses[$p];
         }
         
         return true;
@@ -418,7 +449,7 @@ class ReadController extends PageController
                     // Image
                     default:
                         // really hacky but whatever man
-                        if ($media == "/mspa/storyfiles/hs2/05423_2.gif")
+                        if (!Options::get("desktop") && $media == "/mspa/storyfiles/hs2/05423_2.gif")
                         {
                             $response->media[] = [
                                 "type" => "supercartridge",
@@ -468,7 +499,7 @@ class ReadController extends PageController
 
         // Transcriptions
         $matches = null;
-        if (preg_match_all("/<img\s[^>]*?src\s*=\s*['\"]([^'\"]*?)['\"][^>]*?>/", $response->text, $matches, PREG_SET_ORDER))
+        if (!Options::get("desktop") && preg_match_all("/<img\s[^>]*?src\s*=\s*['\"]([^'\"]*?)['\"][^>]*?>/", $response->text, $matches, PREG_SET_ORDER))
         {
             foreach ($matches as $match)
             {

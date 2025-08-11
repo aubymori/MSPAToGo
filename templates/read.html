@@ -8,6 +8,21 @@ onload="Sburb.initialize('JterniaDeploy', '{{ media.xml_url }}', false);"
 {% endfor %}
 {% endblock %}
 
+{% block body_class %}
+{{ data.page.supercartridge ? "supercartridge" }}
+{% if data.extra_body_classes %}
+{% for class in data.extra_body_classes %}
+{{ class }}
+{% endfor %}
+{% endif %}
+{% endblock %}
+
+{% block before_page %}
+{% if data.page.supercartridge and data.options.desktop %}
+{{ data.page.media[0].html|raw }}
+{% endif %}
+{% endblock %}
+
 {% block js %}
 {% if data.fireflies %}
 <script src="/assets/js/firefly.js"></script>
@@ -15,6 +30,9 @@ onload="Sburb.initialize('JterniaDeploy', '{{ media.xml_url }}', false);"
 {% endblock %}
 
 {% block css %}
+{% if data.extra_stylesheet %}
+<link rel="stylesheet" href="{{ data.extra_stylesheet }}">
+{% endif %}
 {% if data.fireflies %}
 <link rel="stylesheet" href="/assets/css/firefly.css">
 {% endif %}
@@ -25,7 +43,9 @@ onload="Sburb.initialize('JterniaDeploy', '{{ media.xml_url }}', false);"
 
 {% block page %}
 {% if data.page.supercartridge %}
+{% if not data.options.desktop %}
 {{ data.page.media[0].html|raw }}
+{% endif %}
 {% else %}
 <h2 id="title">{{ data.page.title|raw }}</h2>
 <div id="media" class="{{ data.hscroll ? 'hscroll' : '' }}">

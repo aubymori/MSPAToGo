@@ -7,20 +7,30 @@
         <style>
             #banner {
                 background: #eeeeee;
+                display: block;
             }
 
             #banner img {
                 width: 80%;
+                display: block;
                 margin: 0 auto;
+            }
+
+            .desktop #banner img {
+                width: 388px;
             }
         </style>
     </head>
-    <body>
-        <a href="/" id="banner">
-            <img src="/assets/img/logo.gif" alt="MS Paint Adventures">
-        </a>
-        <div id="page">
-            {% block page %}{% endblock %}
+    <body class="{{ data.options.desktop ? "desktop" }}">
+        <div id="page-wrapper">
+            <a href="/" id="banner">
+                <img src="/assets/img/logo.gif" alt="MS Paint Adventures">
+            </a>
+            <div id="page-outer">
+                <div id="page">
+                    {% block page %}{% endblock %}
+                </div>
+            </div>
         </div>
         {% include "include/footer.html" %}
     </body>

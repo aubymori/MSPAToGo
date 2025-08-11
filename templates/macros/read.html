@@ -65,7 +65,23 @@
         <li><a href="/read/{{ data.s }}/{{ page.prev_page }}">Go Back</a></li>
     </ul>
     {% endif %}
-    <a id="options-link" href="javascript:void(0)">Options</a>
+	<ul id="page-footer-right">
+		{% if data.options.desktop %}
+		<li>
+			<a href="javascript:void(0)" id="save-game">Save Game</a>
+			<a href="javascript:void(0)" id="save-game-help">(?)</a>
+		</li>
+		<li>
+			<a href="javascript:void(0)" id="auto-save">Auto-Save!</a>
+			<a href="javascript:void(0)" id="auto-save-help">(?)</a>
+		</li>
+		<li><a href="javascript:void(0)" id="load-game">Load Game</a></li>
+		<li><a href="javascript:void(0)" id="delete-game-data">Delete Game Data</a></li>
+		{% else %}
+		<li><a id="options-link" href="javascript:void(0)">Options</a></li>
+		{% endif %}
+	</ul>
+    
 </div>
 {% endmacro %}
 

@@ -48,6 +48,8 @@
             </object>
         </noscript>
         {% include "include/ruffle.html" %}
+        {% if not data.options.desktop %}
         <script src="/assets/js/flash_size_fix.js"></script>
+        {% endif %}
     </body>
 </html>

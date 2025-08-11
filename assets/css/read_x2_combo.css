@@ -45,3 +45,24 @@
 #content.text-2 #text-1 {
     display: none;
 }
+
+.desktop #page-wrapper,
+.desktop #trickster-banner {
+    width: 1660px;
+}
+
+.desktop #page-outer {
+    flex-direction: row;
+}
+
+.desktop #page {
+    margin: 0;
+}
+
+.desktop #page:first-child {
+    margin-right: 25px;
+}
+
+.desktop #footer {
+    background-image: url("/assets/img/bannerframeX2.png");
+}

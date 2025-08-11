@@ -14,5 +14,6 @@ document.addEventListener("click", (event) =>
         return;
 
     window.scrollTo(0, 0);
-    document.getElementById("content").classList.toggle("text-2");
+    if (!document.body.classList.contains("desktop"))
+        document.getElementById("content").classList.toggle("text-2");
 });

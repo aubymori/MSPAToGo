@@ -22,7 +22,7 @@
                 height: 100%;
             }
 
-            body {
+            body:not(.desktop) {
                 justify-content: center;
             }
 
@@ -37,60 +37,31 @@
             #hscroll-arrow {
                 color: #ffffff;
             }
+
+            .desktop #echidna-sound-container {
+                display: flex;
+                height: 65px;
+                align-items: center;
+                justify-content: center;
+            }
         </style>
     </head>
-    <body>
+    <body class="{{ data.options.desktop ? "desktop" }}">
         <div id="page">
-            {% if data.page.supercartridge %}
-            {{ data.page.media[0].html|raw }}
-            {% else %}
-            <script>AC_FL_RunContent = 0;</script>
-            <script src="/mspa/storyfiles/hs2/echidna/AC_RunActiveContent.js"></script>
-            <script language="javascript">
-                if (AC_FL_RunContent == 0)
-                {
-                    alert("This page requires AC_RunActiveContent.js.");
-                }
-                else
-                {
-                    AC_FL_RunContent(
-                        "codebase", "http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0",
-                        "width", "30",
-                        "height", "30",
-                        "src", "/mspa/storyfiles/hs2/echidna/echidna",
-                        "quality", "high",
-                        "pluginspage", "http://www.macromedia.com/go/getflashplayer",
-                        "align", "middle",
-                        "play", "true",
-                        "loop", "true",
-                        "scale", "showall",
-                        "wmode", "window",
-                        "devicefont", "false",
-                        "id", "/mspa/storyfiles/hs2/echidna/echidna",
-                        "bgcolor", "#000000",
-                        "name", "/mspa/storyfiles/hs2/echidna/echidna",
-                        "menu", "true",
-                        "allowFullScreen", "false",
-                        "allowScriptAccess","always",
-                        "movie", "/mspa/storyfiles/hs2/echidna/echidna",
-                        "salign", ""
-                    ); //end AC code
-                }
-            </script>
-            <noscript>
-                <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="30" height="30" id="/mspa/storyfiles/hs2/echidna/echidna" align="middle">
-                <param name="allowScriptAccess" value="sameDomain" />
-                <param name="allowFullScreen" value="false" />
-                <param name="movie" value="/mspa/storyfiles/hs2/echidna/echidna" /><param name="quality" value="high" /><param name="bgcolor" value="#ffffff" />	<embed src="/mspa/storyfiles/hs2/echidna/echidna" quality="high" bgcolor="#ffffff" width="30" height="30" name="/mspa/storyfiles/hs2/echidna/echidna" align="middle" allowScriptAccess="sameDomain" allowFullScreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
-                </object>
-            </noscript>
+            <div id="echidna-sound-container">
+            {% from "macros/read.html" import flash %}
+            {{ flash(
+                "/mspa/storyfiles/hs2/echidna/echidna",
+                "/mspa/storyfiles/hs2/echidna/AC_RunActiveContent.js",
+                30, 30, "#000000"
+            ) }}
+            </div>
             <div id="media" class="hscroll">
             {% for media in data.page.media %}
             <img src="{{ media.url }}">
             {% endfor %}
             <div id="hscroll-arrow">==&gt;</div>
             </div>
-            {% endif %}
             <div id="content" data-s="{{ data.s }}" data-p="{{ data.p }}">
                 {% if data.gamepad %}
                 {% include "include/gamepad.html" %}

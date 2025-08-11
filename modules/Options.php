@@ -8,6 +8,11 @@ class Options
     private const COOKIE_EXPIRE_TIME = 34560000;
     
     private static array $options = [
+        "desktop" => [
+            "type"         => "checkbox",
+            "name"         => "Desktop mode",
+            "defaultValue" => false
+        ],
         "auto-open-logs" => [
             "type"         => "checkbox",
             "name"         => "Automatically open logs",
@@ -16,7 +21,7 @@ class Options
         ],
         "theme" => [
             "type"         => "dropdown",
-            "name"         => "Theme override",
+            "name"         => "Page theme",
             "defaultValue" => "default",
             "options"      => [
                 "default"   => "Default",
@@ -31,11 +36,20 @@ class Options
                 "act7"      => "ACT 7"
             ]
         ],
-        "override-theme" => [
-            "type"         => "checkbox",
-            "name"         => "Override page-specific themes",
-            "defaultValue" => false
+        "font" => [
+            "type"         => "dropdown",
+            "name"         => "Page font",
+            "defaultValue" => "courier",
+            "options"      => [
+                "courier"      => "Courier New",
+                "opendyslexic" => "OpenDyslexic"
+            ]
         ],
+        "highcontrast" => [
+            "type"         => "checkbox",
+            "name"         => "High contrast text colors",
+            "defaultValue" => false,
+        ]
     ];
 
     public static function loadFromCookies(): void

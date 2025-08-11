@@ -12,6 +12,12 @@ class ServerConfig
             return ServerConfig::hasAdventure($s);
         });
         ControllerManager::$twig->addFunction($has_adventure);
+
+        $is_offline_mode = new \Twig\TwigFunction("is_offline_mode", function(): bool
+        {
+            return ServerConfig::isOfflineMode();
+        });
+        ControllerManager::$twig->addFunction($is_offline_mode);
     }
 
     public static function ensure(): void

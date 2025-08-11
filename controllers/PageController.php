@@ -98,7 +98,7 @@ class PageController
         $this->data->options = Options::getAll();
         if ($this->usePageframe)
         {
-            if (!isset($this->data->theme) || Options::get("override-theme"))
+            if (!isset($this->data->theme))
             {
                 $userTheme = Options::get("theme");
                 $this->data->theme = ($userTheme == "default") ? null : $userTheme;
