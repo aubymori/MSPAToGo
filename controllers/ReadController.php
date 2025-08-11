@@ -6,6 +6,7 @@ use MSPAToGo\Network;
 use MSPAToGo\Options;
 use MSPAToGo\RequestMetadata;
 use MSPAToGo\ServerConfig;
+use OCILob;
 
 class ReadController extends PageController
 {
@@ -123,18 +124,66 @@ class ReadController extends PageController
 
     public function onGet(RequestMetadata $request): bool
     {
+        if (Options::get("viz-links") && $request->path[0] == "read")
+        {
+            $viz = MSPALinks::mspaToViz($request->path[1], @$request->path[2] ?? null);
+            if (is_null($viz))
+                return false;
+            $url = "/" . $viz->s;
+            if (isset($viz->p))
+                $url .= "/" . $viz->p;
+            header("Location: $url");
+            return true;
+        }
+        else if (!Options::get("viz-links") && $request->path[0] != "read")
+        {
+            $mspa = MSPALinks::vizToMspa($request->path[0], @$request->path[1] ?? null);
+            if (is_null($mspa))
+                return false;
+            $url = "/read/" . $mspa->s;
+            if (isset($mspa->p))
+                $url .= "/" . $mspa->p;
+            header("Location: $url");
+            return true;
+        }
+
         // Parse s and p
         $s = null; $p = null;
-        // /read/s/p
-        if (count($request->path) == 3)
+        if ($request->path[0] == "read")
         {
-            $s = $request->path[1];
-            $p = $request->path[2];
+            // /read/s/p
+            if (count($request->path) == 3)
+            {
+                $s = $request->path[1];
+                $p = $request->path[2];
+            }
+            // /read/s (go to first page)
+            else if (count($request->path) == 2)
+            {
+                $s = $request->path[1];
+            }
+            else
+            {
+                return false;
+            }
         }
-        // /read/s (go to first page)
-        else if (count($request->path) == 2)
+        else
         {
-            $s = $request->path[1];
+            if (count($request->path) != 1
+            && count($request->path) != 2)
+                return false;
+
+            $viz = MSPALinks::vizToMspa($request->path[0], @$request->path[1] ?? null);
+            if (is_null($viz))
+                return false;
+            $s = $viz->s;
+            if (isset($viz->p))
+                $p = $viz->p;
+        }
+
+        // Get first page if we don't have a p already
+        if (is_null($p))
+        {
             $adventures = json_decode(file_get_contents("static/adventures.json"));
             foreach ($adventures as $adv)
             {
@@ -147,10 +196,6 @@ class ReadController extends PageController
 
             if (is_null($p))
                 return false;
-        }
-        else
-        {
-            return false;
         }
 
         if ($s == "6")

@@ -5,7 +5,7 @@ class ServerConfig
 {
     private static ?object $config = null;
 
-    public static function __initStatic()
+    public static function registerTwigFunctions()
     {   
         $has_adventure = new \Twig\TwigFunction("has_adventure", function(string $s): bool
         {

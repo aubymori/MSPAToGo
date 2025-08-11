@@ -10,11 +10,11 @@
     <span>Adventures listed from newest to oldest.</span>
     {% if has_adventure("6") %}
     <div class="archive-adventure">
-        <a href="/read/6" class="archive-image">
+        <a href="{{ construct_mspa_link("6") }}" class="archive-image">
             <img src="/assets/img/archive_hs.gif">
         </a>
         <div class="archive-info">
-            <a href="/read/6" class="archive-title">HOMESTUCK</a>
+            <a href="{{ construct_mspa_link("6") }}" class="archive-title">HOMESTUCK</a>
             <span class="archive-desc">
                 A tale about a boy and his friends and a game they play together. About 8100 pages.
                 <b>[FINISHED]</b>
@@ -36,11 +36,11 @@
     {% endif %}
     {% if has_adventure("4") %}
     <div class="archive-adventure">
-        <a href="/read/4" class="archive-image">
+        <a href="{{ construct_mspa_link("4") }}" class="archive-image">
             <img src="/assets/img/archive_ps.gif">
         </a>
         <div class="archive-info">
-            <a href="/read/4" class="archive-title">PROBLEM SLEUTH</a>
+            <a href="{{ construct_mspa_link("4") }}" class="archive-title">PROBLEM SLEUTH</a>
             <span class="archive-desc">
                 An adventure about a hard boiled detective in his office. 22 chapters, about 1700 pages.
                 <b>[FINISHED]</b>
@@ -57,11 +57,11 @@
     {% endif %}
     {% if has_adventure("2") %}
     <div class="archive-adventure">
-        <a href="/read/2" class="archive-image">
+        <a href="{{ construct_mspa_link("2") }}" class="archive-image">
             <img src="/assets/img/archive_bq.gif">
         </a>
         <div class="archive-info">
-            <a href="/read/2" class="archive-title">BARD QUEST</a>
+            <a href="{{ construct_mspa_link("2") }}" class="archive-title">BARD QUEST</a>
             <span class="archive-desc">
                 A young bard's endeavor to slay some dragons. Branching "choose your own adventure" style. 47 pages.
                 <b>[CANCELLED]</b>
@@ -78,11 +78,11 @@
     {% endif %}
     {% if has_adventure("1") %}
     <div class="archive-adventure">
-        <a href="/read/1" class="archive-image">
+        <a href="{{ construct_mspa_link("1") }}" class="archive-image">
             <img src="/assets/img/archive_jb.gif">
         </a>
         <div class="archive-info">
-            <a href="/read/1" class="archive-title">JAILBREAK</a>
+            <a href="{{ construct_mspa_link("1") }}" class="archive-title">JAILBREAK</a>
             <span class="archive-desc">
                 A guy tries to escape from prison. 134 pages.
                 <b>[FINISHED?]</b>

@@ -5,25 +5,27 @@ require "include/autoload.php";
 
 use MSPAToGo\ServerConfig;
 use MSPAToGo\ControllerManager;
+use MSPAToGo\MSPALinks;
 
-ServerConfig::ensure();
+ServerConfig::registerTwigFunctions();
+MSPALinks::registerTwigFunctions();
 
 ControllerManager::route([
     "/"                        => HomeController::class,
-    "/jailbreak"               => VIZRedirectController::class,
-    "/jailbreak/*"             => VIZRedirectController::class,
-    "/bard-quest"              => VIZRedirectController::class,
-    "/bard-quest/*"            => VIZRedirectController::class,
-    "/blood-spade"             => VIZRedirectController::class,
-    "/blood-spade/*"           => VIZRedirectController::class,
-    "/problem-sleuth"          => VIZRedirectController::class,
-    "/problem-sleuth/*"        => VIZRedirectController::class,
-    "/beta"                    => VIZRedirectController::class,
-    "/beta/*"                  => VIZRedirectController::class,
-    "/homestuck"               => VIZRedirectController::class,
-    "/homestuck/*"             => VIZRedirectController::class,
-    "/ryanquest"               => VIZRedirectController::class,
-    "/ryanquest/*"             => VIZRedirectController::class,
+    "/jailbreak"               => ReadController::class,
+    "/jailbreak/*"             => ReadController::class,
+    "/bard-quest"              => ReadController::class,
+    "/bard-quest/*"            => ReadController::class,
+    "/blood-spade"             => ReadController::class,
+    "/blood-spade/*"           => ReadController::class,
+    "/problem-sleuth"          => ReadController::class,
+    "/problem-sleuth/*"        => ReadController::class,
+    "/beta"                    => ReadController::class,
+    "/beta/*"                  => ReadController::class,
+    "/homestuck"               => ReadController::class,
+    "/homestuck/*"             => ReadController::class,
+    "/ryanquest"               => ReadController::class,
+    "/ryanquest/*"             => ReadController::class,
     "/mspa/*"                  => MSPAFunnelController::class,
     // Weird Openbound relative URLs
     "/read/6/storyfiles/hs2/*" => MSPAFunnelController::class,

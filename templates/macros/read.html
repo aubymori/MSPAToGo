@@ -61,8 +61,8 @@
 <div id="page-footer">
     {% if page.prev_page %}
     <ul id="page-footer-left">
-        <li><a href="/read/{{ data.s }}">Start Over</a></li>
-        <li><a href="/read/{{ data.s }}/{{ page.prev_page }}">Go Back</a></li>
+        <li><a href="{{ construct_mspa_link(data.s) }}">Start Over</a></li>
+        <li><a href="{{ construct_mspa_link(data.s, page.prev_page) }}">Go Back</a></li>
     </ul>
     {% endif %}
 	<ul id="page-footer-right">
@@ -88,7 +88,7 @@
 {% macro read_commands(page) %}
 {% for command in page.commands %}
 <div class="command">
-    &gt; <a href="/read/{{ data.s }}/{{ command.page }}">
+    &gt; <a href="{{ construct_mspa_link(data.s, command.page) }}">
         {% if data.theme == "trickster" %}
         {{ command.title|replace({"==&gt;": '<img src="/assets/img/sucker.gif" border="0">'})|raw }}
         {% else %}

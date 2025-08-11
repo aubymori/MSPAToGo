@@ -9,8 +9,8 @@
         downloads since MS Paint Adventures site no longer works, and Homestuck.com is incredibly
         broken.
         <br><br>
-        Not familiar with MSPA page numbers? VIZ page numbers will redirect you to the right MSPA
-        page! For example, /homestuck/1 will take you to /read/6/001901.
+        If you want to use the Homestuck.com page numbers, desktop mode, a different theme or font,
+        and more, be sure to check out the <a href="/options">Options</a> page!
         <br><br>
         MS Paint Adventures is the work of Andrew Hussie, and this website's operator nor the author of the project (aubymori)
         are associated with MS Paint Adventures, What Pumpkin, VIZ Media, or the Homestuck Independent Creative Union. MSPA To Go
@@ -19,7 +19,7 @@
     <div class="commands">
         {% if has_adventure("6") %}
         <div class="command">
-            &gt; <a href="/read/6/001901">Read Homestuck.</a>
+            &gt; <a href="{{ construct_mspa_link("6", "001901") }}">Read Homestuck.</a>
         </div>
         {% endif %}
         <div class="command">

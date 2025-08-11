@@ -13,6 +13,11 @@ class Options
             "name"         => "Desktop mode",
             "defaultValue" => false
         ],
+        "viz-links" => [
+            "type"         => "checkbox",
+            "name"         => "Use Homestuck.com page numbers",
+            "defaultValue" => false
+        ],
         "auto-open-logs" => [
             "type"         => "checkbox",
             "name"         => "Automatically open logs",
