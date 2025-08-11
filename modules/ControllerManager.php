@@ -91,6 +91,7 @@ class ControllerManager
                 if (\fnmatch($url, explode("?", $_SERVER["REQUEST_URI"])[0]))
                 {
                     $match = $cpath;
+                    break;
                 }
             }
 

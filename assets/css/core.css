@@ -800,7 +800,8 @@ body:not(.desktop) #media.hscroll img {
     animation: blink 2s steps(2, start) infinite;
 }
 
-#JterniaDeploy > div, #SBURBStage {
+body:not(.desktop) #JterniaDeploy > div,
+body:not(.desktop) #SBURBStage {
     width: 100vw !important;
     height: calc(100vw * (9 / 13)) !important;
 }

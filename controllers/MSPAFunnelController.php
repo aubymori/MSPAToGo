@@ -34,6 +34,11 @@ class MSPAFunnelController
         {
             $uri = substr($uri, 8);
         }
+        // Ditto, VIZ URLs.
+        else if (strtolower($request->path[0]) == "homestuck")
+        {
+            $uri = substr($uri, 11);
+        }
 
         $file = @self::$internalUriMap[strtolower($uri)] ?? null;
         if (!is_null($file))
