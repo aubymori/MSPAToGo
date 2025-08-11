@@ -590,6 +590,7 @@ body:not(.desktop) #page > img {
 .desktop #title {
     max-width: 600px;
     padding: 14px 0;
+    margin: 0 auto;
 }
 
 :root.theme-cascade #title {
@@ -688,6 +689,7 @@ body:not(.desktop) #page > img {
     display: flex;
     flex-direction: column;
     text-align: center;
+    padding-top: 24px;
     font-size: 24px;
     padding-bottom: 150px;
 }
