@@ -172,45 +172,25 @@ class MSPALinks
             $html = str_replace($mapping[0], $text, $html);
         }
 
-        // Instead of performing a slow str_replace for each match, we grab the offset
-        // of each match, walk backwards as to not break the offsets, and then splice
-        // the string. It's fast and allows for complex replacement of the s and p.
-        $matches = [];
-        if (preg_match_all(
+        $html = preg_replace_callback(
             '/"(?:http:\/\/www\.mspaintadventures\.com\/(?:(?:index|scratch|cascade|trickster|ACT6ACT5ACT1x2COMBO|ACT6ACT6)\.php|)|)\?s=(.*?)(?:&|&amp;)p=(.*?)"/m',
-            $html,
-            $matches,
-            PREG_SET_ORDER | PREG_OFFSET_CAPTURE
-        ))
-        {
-            for ($i = count($matches) - 1; $i >= 0; $i--)
+            function(array $matches): string
             {
-                $s = $matches[$i][1][0];
-                $p = $matches[$i][2][0];
-                $offset = $matches[$i][0][1];
-                $length = strlen($matches[$i][0][0]);
-                $newUrl = '"' . self::constructMspaLink($s, $p) . '"';
-                $html = self::strSplice($html, $offset, $length, $newUrl);
-            }
-        }
+                return MSPALinks::constructMspaLink($matches[1], $matches[2]);
+            },
+            $html,
+            flags: PREG_SET_ORDER
+        );
 
-        $matches = [];
-        if (preg_match_all(
+        $html = preg_replace_callback(
             '/"(?:http:\/\/www\.mspaintadventures\.com\/(?:index\.php|)|)\?s=(.*?)"/m',
-            $html,
-            $matches,
-            PREG_SET_ORDER | PREG_OFFSET_CAPTURE
-        ))
-        {
-            for ($i = count($matches) - 1; $i >= 0; $i--)
+            function (array $matches): string
             {
-                $s = $matches[$i][1][0];
-                $offset = $matches[$i][0][1];
-                $length = strlen($matches[$i][0][0]);
-                $newUrl = '"' . self::constructMspaLink($s) . '"';
-                $html = self::strSplice($html, $offset, $length, $newUrl);
-            }
-        }
+                return MSPALinks::constructMspaLink($matches[1]);
+            },
+            $html,
+            flags: PREG_SET_ORDER
+        );
 
         foreach (self::$miscRegexes as $mapping)
         {
