@@ -176,7 +176,7 @@ class MSPALinks
             '/"(?:http:\/\/www\.mspaintadventures\.com\/(?:(?:index|scratch|cascade|trickster|ACT6ACT5ACT1x2COMBO|ACT6ACT6)\.php|)|)\?s=(.*?)(?:&|&amp;)p=(.*?)"/m',
             function(array $matches): string
             {
-                return MSPALinks::constructMspaLink($matches[1], $matches[2]);
+                return '"' . MSPALinks::constructMspaLink($matches[1], $matches[2]) . '"';
             },
             $html,
             flags: PREG_SET_ORDER
@@ -186,7 +186,7 @@ class MSPALinks
             '/"(?:http:\/\/www\.mspaintadventures\.com\/(?:index\.php|)|)\?s=(.*?)"/m',
             function (array $matches): string
             {
-                return MSPALinks::constructMspaLink($matches[1]);
+                return '"' . MSPALinks::constructMspaLink($matches[1]) . '"';
             },
             $html,
             flags: PREG_SET_ORDER
