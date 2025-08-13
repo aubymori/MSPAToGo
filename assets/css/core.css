@@ -715,6 +715,7 @@ body:not(.desktop) #page-footer-right {
 .search {
     text-align: center;
     padding-bottom: 150px;
+    overflow-wrap: break-word;
 }
 
 #map {
