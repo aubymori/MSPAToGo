@@ -9,10 +9,10 @@ class Options
     
     private static array $options = [
         "desktop" => [
-            "type"         => "checkbox",
-            "name"         => "Desktop mode",
-            "description"  => "Use a layout better suited for reading on a desktop computer.",
-            "defaultValue" => false
+            "type"                 => "checkbox",
+            "name"                 => "Desktop mode",
+            "description"          => "Use a layout better suited for reading on a desktop computer.",
+            "generateDefaultValue" => self::isDesktopBrowser
         ],
         "viz-links" => [
             "type"         => "checkbox",
@@ -63,6 +63,16 @@ class Options
         ]
     ];
 
+    // Hack for nicer syntax in options definition
+    private const isDesktopBrowser = self::class . "::isDesktopBrowser";
+    private static function isDesktopBrowser(): bool
+    {
+        return !preg_match(
+            "/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i",
+            $_SERVER["HTTP_USER_AGENT"]
+        );
+    }
+
     public static function loadFromCookies(): void
     {
         foreach (self::$options as $name => &$option)
@@ -78,6 +88,10 @@ class Options
                 }
                 
                 $option["value"] = $value;
+            }
+            else if (isset($option["generateDefaultValue"]))
+            {
+                self::set($name, $option["generateDefaultValue"]());
             }
         };
     }
