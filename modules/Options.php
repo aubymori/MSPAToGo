@@ -18,7 +18,7 @@ class Options
             "type"         => "checkbox",
             "name"         => "Use Homestuck.com page numbers",
             "description"  => "Makes URLs use the Homestuck.com page numbers instead of the MSPA page numbers.",
-            "defaultValue" => false
+            "defaultValue" => true
         ],
         "auto-open-logs" => [
             "type"         => "checkbox",
