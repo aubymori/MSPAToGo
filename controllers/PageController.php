@@ -7,9 +7,10 @@ use MSPAToGo\RequestMetadata;
 
 class PageController
 {
-    public bool $usePageframe = true;
+    protected bool $usePageframe = true;
     protected string $template = "404";
-    public object $data;
+    protected string $title = "";
+    protected object $data;
 
     private static array $links =  [
         [
@@ -114,6 +115,11 @@ class PageController
             }
         }
 
+        if (!empty(trim($this->title)))
+        {
+            $this->data->title = trim($this->title);
+        }
+
         ControllerManager::$twig->addGlobal("data", $this->data);
         echo ControllerManager::$twig->render($this->template . ".html", []);
         exit();
@@ -130,7 +136,8 @@ class PageController
 
         if (!$this->onGet($request))
         {
-            $this->template = "404";
+            $this->template     = "404";
+            $this->title        = "404 Not Found";
             $this->usePageframe = true;
             http_response_code(404);
         }
@@ -144,7 +151,9 @@ class PageController
 
         if (!$this->onPost($request))
         {
-            $this->template = "404";
+            $this->template     = "404";
+            $this->title        = "404 Not Found";
+            $this->usePageframe = true;
             http_response_code(404);
         }
 

@@ -17,6 +17,7 @@ class LogController extends PageController
         if (count($request->path) == 1)
         {
             $this->data->adventures = json_decode(file_get_contents("static/adventures.json"));
+            $this->title = "Select Log";
             return true;
         }
 
@@ -37,6 +38,8 @@ class LogController extends PageController
         $this->data->reversed = $reverse;
         $this->data->log_html = MSPALinks::replaceMspaLinks($response->body);
         $this->data->s = $s;
+
+        $this->title = "Adventure Log";
 
         return true;
     }

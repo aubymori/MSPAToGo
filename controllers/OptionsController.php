@@ -7,6 +7,7 @@ use MSPAToGo\RequestMetadata;
 class OptionsController extends PageController
 {
     public string $template = "options";
+    public string $title    = "Options";
 
     public function onGet(RequestMetadata $request): bool
     {

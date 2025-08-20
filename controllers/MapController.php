@@ -17,6 +17,7 @@ class MapController extends PageController
         if (count($request->path) == 1)
         {
             $this->data->adventures = json_decode(file_get_contents("static/adventures.json"));
+            $this->title = "Select Map";
             return true;
         }
 
@@ -25,6 +26,8 @@ class MapController extends PageController
         if ($response->status != 200)
             return false;
         $this->data->map_html = MSPALinks::replaceMspaLinks($response->body);
+        
+        $this->title = "Adventure Map";
 
         return true;
     }

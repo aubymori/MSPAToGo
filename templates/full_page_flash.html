@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
     {% include "include/meta.html" %}
-    <title>{{ data.title }}</title>
+    {% if data.title %}
+    <title>{{ data.title }} - MSPA To Go</title>
+    {% else %}
+    <title>MSPA To Go</title>
+    {% endif %}
     <style>
         body {
             margin: 0;

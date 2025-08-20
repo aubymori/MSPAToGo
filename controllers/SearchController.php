@@ -8,6 +8,7 @@ use MSPAToGo\RequestMetadata;
 class SearchController extends PageController
 {
     public string $template = "search";
+    public string $title    = "Search Story";
 
     public function onGet(RequestMetadata $request): bool
     {

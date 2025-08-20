@@ -27,7 +27,6 @@ class ReadController extends PageController
             "bgcolor" => "#000000"
         ],
         "007395" => [
-            "title"   => "MSPA To Go",
             "swfUrl"  => "/mspa/007395/05492",
             "jsUrl"   => "/mspa/007395/AC_RunActiveContent.js",
             "width"   => 950,
@@ -35,7 +34,6 @@ class ReadController extends PageController
             "bgcolor" => "#535353"
         ],
         "007680" => [
-            "title"   => "MSPA To Go",
             "swfUrl"  => "/mspa/007680/05777_2",
             "jsUrl"   => "/mspa/007680/AC_RunActiveContent.js",
             "width"   => 950,
@@ -226,7 +224,8 @@ class ReadController extends PageController
             if (isset(self::$fullPageFlashes[$p]))
             {
                 $data = self::$fullPageFlashes[$p];
-                $this->data->title   = $data["title"];
+                if (isset($data["title"]))
+                    $this->data->title = $data["title"];
                 $this->data->swf_url = $data["swfUrl"];
                 $this->data->js_url  = $data["jsUrl"];
                 $this->data->width   = $data["width"];
@@ -303,6 +302,8 @@ class ReadController extends PageController
             $this->data->page2 = $page2;
         $this->data->s = $s;
         $this->data->p = $p;
+
+        $this->title = htmlspecialchars_decode($page->title);
 
         if ($s =="6" && $p == "009535")
         {

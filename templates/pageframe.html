@@ -2,7 +2,11 @@
 <html lang="en" class="{% if data.theme %}theme-{{ data.theme }}{% endif %} font-{{ data.options.font }}">
     <head>
         {% include "include/meta.html" %}
+        {% if data.title %}
+        <title>{{ data.title }} - MSPA To Go</title>
+        {% else %}
         <title>MSPA To Go</title>
+        {% endif %}
         <link rel="stylesheet" href="/assets/css/core.css">
         {% if data.banner.imgtip %}
         <link rel="preload" href="{{ data.banner.imgtip }}" as="image">

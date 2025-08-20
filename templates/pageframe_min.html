@@ -2,7 +2,11 @@
 <html lang="en" class="theme-classic">
     <head>
         {% include "include/meta.html" %}
+        {% if data.title %}
+        <title>{{ data.title }} - MSPA To Go</title>
+        {% else %}
         <title>MSPA To Go</title>
+        {% endif %}
         <link rel="stylesheet" href="/assets/css/core.css">
         <style>
             #banner {
