@@ -1,8 +1,8 @@
-#media {
+body:not(.desktop) #media {
     flex-direction: row;
 }
 
-#media img:not(:last-child) {
+body:not(.desktop) #media img:not(:last-child) {
     margin-bottom: 10px;
 }
 
