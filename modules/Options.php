@@ -63,6 +63,15 @@ class Options
                 "opendyslexic" => "OpenDyslexic"
             ]
         ],
+        "font-size" => [
+            "type"         => "slider",
+            "name"         => "Font size",
+            "description"  => "The font size to use for comic text.",
+            "templateName" => "font_size",
+            "max"          => 6,
+            "defaultValue" => 1,
+            "valueNames"   => [ "0.85em", "1em", "1.15em", "1.3em", "1.45em", "1.6em", "1.75em" ],
+        ],
         "highcontrast" => [
             "type"         => "checkbox",
             "name"         => "High contrast text colors",
@@ -126,6 +135,9 @@ class Options
                     case "checkbox":
                         $value = ($value == "on");
                         break;
+                    case "slider":
+                        $value = intval($value);
+                        break;
                 }
                 self::set($name, $value);
             }
@@ -160,6 +172,10 @@ class Options
                 break;
             case "dropdown":
                 if (!is_string($value))
+                    return false;
+                break;
+            case "slider":
+                if (!is_int($value))
                     return false;
                 break;
         }

@@ -28,6 +28,19 @@
                     <option value="{{ ddOption }}" {{ option.value == ddOption ? 'selected="selected"' }}>{{ option.options[ddOption] }}</option>
                     {% endfor %}
                 </select>
+            {% elseif option.type == "slider" %}
+                <label for="{{ name }}"><b>{{ option.name }}</b>:</label>
+                <span id="{{ name }}-value">{{ option.valueNames[option.value] }}</span>
+                <br>
+                <span>{{ option.description }}</span>
+                <br>
+                <input type="range"
+                       name="{{ name }}"
+                       id="{{ name }}"
+                       value="{{ option.value }}"
+                       min="0"
+                       max="{{ option.max }}"
+                       data-value-names="{{ option.valueNames|join(",") }}">
             {% endif %}
             <br><br>
             {% endif %}
@@ -35,4 +48,5 @@
         <input type="submit" value="Save">
     </form>
 </div>
+<script src="/assets/js/options.js"></script>
 {% endblock %}
