@@ -105,6 +105,9 @@
         <script src="/assets/js/high_contrast.js"></script>
         {% endif %}
         <script src="/assets/js/viz_message.js"></script>
+        {% if data.options.desktop and data.options.keyboard_nav %}
+        <script src="/assets/js//keyboard_nav.js"></script>
+        {% endif %}
         {% block js %}{% endblock %}
     </body>
 </html>

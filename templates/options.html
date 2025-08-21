@@ -5,24 +5,32 @@
 <div id="content" style="padding: 20px 0">
     <form action="" method="post">
         {% for name in data.optionSchema|keys %}
-        {% set option = data.optionSchema[name] %}
-        {% if option.type == "checkbox" %}
-        <input type="checkbox" id="{{ name }}" name="{{ name }}" {{ option.value ? "checked" }}>
-        <label for="{{ name }}"><b>{{ option.name }}</b></label>
-        <br>
-        <span>{{ option.description }}</span>
-        {% elseif option.type == "dropdown" %}
-        <label for="{{ name }}"><b>{{ option.name }}</b></label>
-        <br>
-        <span>{{ option.description }}</span>
-        <br>
-        <select name="{{ name }}" id="{{ name }}">
-            {% for ddOption in option.options|keys %}
-            <option value="{{ ddOption }}" {{ option.value == ddOption ? 'selected="selected"' }}>{{ option.options[ddOption] }}</option>
-            {% endfor %}
-        </select>
-        {% endif %}
-        <br><br>
+            {% set option = data.optionSchema[name] %}
+
+            {% set available = (not option.platform)
+                or (data.options.desktop and option.platform == "desktop")
+                or (not data.options.desktop and option.platform == "mobile") %}
+
+            {% if available %}
+            
+            {% if option.type == "checkbox" %}
+                <input type="checkbox" id="{{ name }}" name="{{ name }}" {{ option.value ? "checked" }}>
+                <label for="{{ name }}"><b>{{ option.name }}</b></label>
+                <br>
+                <span>{{ option.description }}</span>
+            {% elseif option.type == "dropdown" %}
+                <label for="{{ name }}"><b>{{ option.name }}</b></label>
+                <br>
+                <span>{{ option.description }}</span>
+                <br>
+                <select name="{{ name }}" id="{{ name }}">
+                    {% for ddOption in option.options|keys %}
+                    <option value="{{ ddOption }}" {{ option.value == ddOption ? 'selected="selected"' }}>{{ option.options[ddOption] }}</option>
+                    {% endfor %}
+                </select>
+            {% endif %}
+            <br><br>
+            {% endif %}
         {% endfor %}
         <input type="submit" value="Save">
     </form>

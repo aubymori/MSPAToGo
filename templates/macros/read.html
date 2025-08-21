@@ -61,8 +61,8 @@
 <div id="page-footer">
     {% if page.prev_page %}
     <ul id="page-footer-left">
-        <li><a href="{{ construct_mspa_link(data.s) }}">Start Over</a></li>
-        <li><a href="{{ construct_mspa_link(data.s, page.prev_page) }}">Go Back</a></li>
+        <li><a id="start-over" href="{{ construct_mspa_link(data.s) }}">Start Over</a></li>
+        <li><a id="go-back" href="{{ construct_mspa_link(data.s, page.prev_page) }}">Go Back</a></li>
     </ul>
     {% endif %}
 	<ul id="page-footer-right">

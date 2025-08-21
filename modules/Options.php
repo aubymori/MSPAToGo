@@ -27,6 +27,14 @@ class Options
             "templateName" => "autologs",
             "defaultValue" => false
         ],
+        "keyboard-nav" => [
+            "type"         => "checkbox",
+            "name"         => "Keyboard navigation",
+            "description"  => "Use arrow keys to change pages and space to open/close logs.",
+            "templateName" => "keyboard_nav",
+            "defaultValue" => true,
+            "platform"     => "desktop"
+        ],
         "theme" => [
             "type"         => "dropdown",
             "name"         => "Page theme",
@@ -63,6 +71,17 @@ class Options
         ]
     ];
 
+    public static function __initStatic()
+    {
+        foreach (self::$options as $name => &$data)
+        {
+            if (isset($data["defaultValue"]))
+                $data["value"] = $data["defaultValue"];
+            else if (isset($data["generateDefaultValue"]))
+                $data["value"] = $data["generateDefaultValue"]();
+        }
+    }
+
     // Hack for nicer syntax in options definition
     private const isDesktopBrowser = self::class . "::isDesktopBrowser";
     private static function isDesktopBrowser(): bool
@@ -88,10 +107,6 @@ class Options
                 }
                 
                 $option["value"] = $value;
-            }
-            else if (isset($option["generateDefaultValue"]))
-            {
-                self::set($name, $option["generateDefaultValue"]());
             }
         };
     }
