@@ -327,7 +327,7 @@ body:not(.desktop) button:active {
 
 .desktop #menu-bar {
     font-size: 10px;
-    height: 20px;
+    height: 19px;
     justify-content: center;
 }
 
@@ -615,7 +615,8 @@ body:not(.desktop) #page > img {
     font-weight: 700;
     text-align: center;
     margin: 0;
-    padding: 30px 0;
+    padding-top: calc(20px + 1em);
+    padding-bottom: calc(17px + 1em);
     overflow: hidden;
     overflow-wrap: break-word;
     max-width: 100%;
@@ -646,7 +647,7 @@ body:not(.desktop) #page > img {
 }
 
 .commands {
-    padding-bottom: 30px;
+    padding-bottom: 38px;
     font-size: 26px;
 }
 
@@ -669,7 +670,7 @@ body:not(.desktop) #page > img {
 }
 
 #page-footer {
-    padding-bottom: 15px;
+    padding-bottom: 17px;
     font-size: .75em;
     font-weight: 700;
     display: flex;
@@ -704,9 +705,15 @@ body:not(.desktop) #page-footer-right {
     flex-direction: row;
 }
 
+#page-footer li {
+    display: flex;
+    flex-direction: row;
+}
+
 #page-footer li:not(:last-child)::after {
     content: "|";
-    margin: 0 .3em;
+    font-weight: 400;
+    margin: 0 .4em;
 }
 
 #options-link {
