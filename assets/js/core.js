@@ -8,7 +8,7 @@ function getCookie(name)
 function setCookie(name, value)
 {
     const date = new Date();
-    date.setTime(date.getTime() + (34560000)); // 400 days
+    date.setTime(date.getTime() + (400 * 24 * 60 * 60 * 1000)); // 400 days
     document.cookie = `${name}=${value};expires=${date.toUTCString()};path=/;SameSite=Strict`;
 }
 
