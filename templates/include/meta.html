@@ -2,10 +2,11 @@
 {% if not data.options.desktop %}
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 {% endif %}
-<meta content="MSPA To Go" property="og:title">
-<meta content="MS Paint Adventures anywhere you go!" property="og:description">
-<meta content="/assets/img/embed.png" property="og:image">
-<meta content="summary" name="twitter:card">
-<meta content="MSPA To Go" property="twitter:title">
-<meta content="MS Paint Adventures anywhere you go!" property="twitter:description">
-<meta content="/assets/img/embed.png" property="twitter:image">
+<meta property="og:site_name" content="MSPA To Go">
+<meta property="og:title" content="{{ data.title ? data.title : "MSPA To Go" }}">
+<meta property="og:description" content="{{ data.description ? data.description : "MS Paint Adventures anywhere you go!" }}">
+<meta property="og:image" content="/assets/img/embed.png">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="{{ data.title ? data.title ~ " - " }}MSPA To Go">
+<meta property="twitter:description" content="MS Paint Adventures anywhere you go!">
+<meta property="twitter:image" content="/assets/img/embed.png">

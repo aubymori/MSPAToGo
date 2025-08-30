@@ -304,6 +304,7 @@ class ReadController extends PageController
         $this->data->p = $p;
 
         $this->title = htmlspecialchars_decode($page->title);
+        $this->description = htmlspecialchars_decode($page->text);
 
         if ($s =="6" && $p == "009535")
         {

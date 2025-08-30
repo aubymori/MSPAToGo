@@ -18,6 +18,16 @@
     <img src="/assets/img/news.png" alt="NEWS">
 </div>
 <div id="news-content">
+    {{ _self.news_header(
+        title:      "Minor update pushed!",
+        date:       "29 August 2025",
+        author:     "Aubrey",
+        author_url: "https://github.com/aubymori"
+    ) }}
+    <div class="news-text">
+        This update just adds fancy text for the embeds instead of the generic text
+        for every page. Hope you enjoy!
+    </div>
     {{ _self.news_header({
         title:      "Welcome to the News page!",
         date:       "29 August 2025",

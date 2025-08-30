@@ -10,6 +10,7 @@ class PageController
     protected bool $usePageframe = true;
     protected string $template = "404";
     protected string $title = "";
+    protected string $description = "";
     protected object $data;
 
     private static array $links =  [
@@ -123,6 +124,16 @@ class PageController
         if (!empty(trim($this->title)))
         {
             $this->data->title = trim($this->title);
+        }
+
+        if (!empty(trim($this->description)))
+        {
+            $description = trim($this->description);
+            if (strlen($description) > 160)
+            {
+                $description = substr($description, 0, 157) . "...";
+            }
+            $this->data->description = $description;
         }
 
         ControllerManager::$twig->addGlobal("data", $this->data);
