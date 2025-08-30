@@ -24,6 +24,11 @@ class PageController
             "color" => "green"
         ],
         [
+            "text" => "NEWS",
+            "url" => "/news",
+            "color" => "green"
+        ],
+        [
             "text" => "GITHUB",
             "url" => "https://github.com/aubymori/MSPAToGo",
             "color" => "green",

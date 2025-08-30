@@ -47,6 +47,7 @@ ControllerManager::route([
     "/sbahj"                            => SBAHJController::class,
     "/sbahj/*"                          => SBAHJController::class,
     "/SBAHJthemovie1"                   => SBAHJMovieController::class,
+    "/news"                             => NewsController::class,
     "default"                           => NotFoundController::class,
 ]);
 ControllerManager::run();

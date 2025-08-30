@@ -1,0 +1,47 @@
+{% extends "pageframe.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="/assets/css/news.css">
+{% endblock %}
+
+{% macro news_header(data) %}
+<div class="news-title">
+    <b>{{ data.title }}</b>
+</div>
+<div class="news-date">
+    <i>Posted on {{ data.date }} by <a href="{{ data.author_url }}" target="_blank">{{ data.author }}</a></i>
+</div>
+{% endmacro %}
+
+{% block page %}
+<div id="news-title">
+    <img src="/assets/img/news.png" alt="NEWS">
+</div>
+<div id="news-content">
+    {{ _self.news_header({
+        title:      "Welcome to the News page!",
+        date:       "29 August 2025",
+        author:     "Aubrey",
+        author_url: "https://github.com/aubymori"
+    }) }}
+    <div class="news-text">
+        I'm not sure why I hadn't done this earlier. Previously, I simply showed off updates through
+        Twitter, but obviously, not everyone has Twitter. Any new updates will go here along with a
+        short Tweet telling people to check the News page to see the changelog.
+        <br><br>
+        Other than the news page, this update fixes a bug that caused certain cookies to expire just
+        around 9 hours after their creation.
+        <br><br>
+        Despite making MSPA To Go months ago and using it to read then, I don't believe I had ever
+        actually extensively used the Save/Load Game features (which were affected by this bug)
+        until very recently. My school has those shitty Yondr pouches this year, and I am confined
+        to using just the school Chromebook, so I've been reading Problem Sleuth using MSPA To Go
+        while bored in class. At first, I thought the bug was the shitty school-enrolled Chromebooks
+        wiping their cookies after a while, but using other sites made me realize it wasn't that.
+        <br><br>
+        So now we are here. I have fixed this incredibly inconvenient bug that slipped past me all
+        these months, simply because I had assumed that JavaScript date functions used seconds and 
+        not milliseconds.
+    </div>
+</div>
+{% endblock %}
