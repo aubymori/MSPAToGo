@@ -649,6 +649,8 @@ body:not(.desktop) #page > img {
 .commands {
     padding-bottom: 38px;
     font-size: 26px;
+    overflow: hidden;
+    overflow-wrap: break-word;
 }
 
 .collide .commands {
