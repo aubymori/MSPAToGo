@@ -235,12 +235,13 @@ body {
 }
 
 body.desktop {
-    align-items: center;
+    margin: 0 8px;
     min-height: 100vh;
 }
 
 .desktop #page-wrapper {
     width: 950px;
+    margin: 0 auto;
 }
 
 * {
@@ -305,6 +306,7 @@ body:not(.desktop) button:active {
 
 .desktop #trickster-banner {
     width: 950px;
+    margin: 0 auto;
 }
 
 #banner {
@@ -313,6 +315,11 @@ body:not(.desktop) button:active {
 
 #banner img {
     width: 100%;
+}
+
+.desktop #banner {
+    width: 950px;
+    margin: 0 auto;
 }
 
 #menu-bar {
