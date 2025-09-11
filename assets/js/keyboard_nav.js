@@ -7,7 +7,8 @@ function isBadElement(el)
 
 document.addEventListener("keydown", (e) =>
 {
-    if (isBadElement(e.target))
+    if (isBadElement(e.target)
+    || e.ctrlKey || e.shiftKey || e.altKey)
         return;
 
     // Space to toggle logs
@@ -24,7 +25,8 @@ document.addEventListener("keydown", (e) =>
 
 document.addEventListener("keyup", (e) =>
 {
-    if (isBadElement(e.target))
+    if (isBadElement(e.target)
+    || e.ctrlKey || e.shiftKey || e.altKey)
         return;
 
     // Left to go back
