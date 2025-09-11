@@ -41,7 +41,8 @@ body.desktop {
     justify-content: center;
 }
 
-body:not(.desktop) #banner img, #comic {
+body:not(.desktop) #banner img,
+body:not(.desktop) #comic {
     width: 100%;
 }
 

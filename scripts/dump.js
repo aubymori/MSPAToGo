@@ -12,7 +12,12 @@ function mspaRange(from, to)
 
 function wvRange(id, count)
 {
-    return range(0, count).map(n => `storyfiles/hs2/waywardvagabond/${id}/0${n}.gif`);
+    return range(1, count).map(n => `storyfiles/hs2/waywardvagabond/${id}/0${n}.gif`);
+}
+
+function sbahjRange(from, to)
+{
+    return range(from, to).map(n => `sweetbroandhellajeff/archive/${String(n).padStart(3, "0")}.jpg`);
 }
 
 // Missing pages: http://readmspa.org/stats/missing.html
@@ -67,7 +72,17 @@ const ADVENTURES = {
             "cascade_segment5.swf": "https://uploads.ungrounded.net/userassets/3591000/3591093/cascade_segment5.swf",
         },
         "assets": [
-            ...(range(1, 54).map(n => `sweetbroandhellajeff/archive/${String(n).padStart(3, "0")}.jpg`)),
+            ...sbahjRange(1, 20),
+            "sweetbroandhellajeff/archive/021.gif",
+            ...sbahjRange(22, 28),
+            "sweetbroandhellajeff/archive/029.gif",
+            ...sbahjRange(30, 33),
+            "sweetbroandhellajeff/archive/034.gif",
+            ...sbahjRange(35, 38),
+            // gap
+            ...sbahjRange(40, 48),
+            "sweetbroandhellajeff/archive/049.gif",
+            ...sbahjRange(50, 54),
             ...wvRange("anagitatedfinger", 4),
             ...wvRange("anunsealedtunnel", 7),
             ...wvRange("asentrywakens", 5),
@@ -784,7 +799,8 @@ console.log("");
 
 function makeDir(p)
 {
-    fs.mkdirSync(p, { recursive: true });
+    if (!fs.existsSync(p))
+        fs.mkdirSync(p, { recursive: true });
 }
 
 async function downloadExternalFile(url, file)
@@ -831,7 +847,7 @@ async function downloadFile(file, noCdn = false, noFail = false)
 const OUTPUT_DIR = __dirname + "/../mspa_local/";
 makeDir(OUTPUT_DIR);
 
-const IMAGE_URL_REGEX = /(?<!F\||S\|)http:\/\/(?:cdn.|www.|)mspaintadventures.com\/([^\?]*?)(?:$|\"|\'|<)/gm;
+const IMAGE_URL_REGEX = /(?<!F\||S\||J\|)http:\/\/(?:cdn.|www.|)mspaintadventures.com\/([^\?]*?)(?:$|\"|\'|<)/gm;
 const FLASH_URL_REGEX = /(?<=F\|)http:\/\/(?:cdn.|www.|)mspaintadventures.com\/([^\?]*?)(?:$|\")/gm;
 const SUPER_URL_REGEX = /(?<=S\|)http:\/\/(?:cdn.|www.|)mspaintadventures.com\/([^\?]*?)(?:$|\")/gm;
 
@@ -935,7 +951,6 @@ for (part of selectedParts)
         console.log(`Downloading misc. files for adventure ${part}`);
         for (asset of partData.assets)
         {
-            console.log(asset);
             await downloadFile(asset);
         }
     }
