@@ -546,7 +546,7 @@ class ReadController extends PageController
 
         // Transcriptions
         $matches = null;
-        if (!Options::get("desktop") && preg_match_all("/<img\s[^>]*?src\s*=\s*['\"]([^'\"]*?)['\"][^>]*?>/", $response->text, $matches, PREG_SET_ORDER))
+        if (Options::get("transcripts") && preg_match_all("/<img\s[^>]*?src\s*=\s*['\"]([^'\"]*?)['\"][^>]*?>/", $response->text, $matches, PREG_SET_ORDER))
         {
             foreach ($matches as $match)
             {

@@ -848,6 +848,54 @@ body:not(.desktop) #SBURBStage {
 }
 
 /* Transcripts */
+@keyframes ultimate-reward {
+    0%,
+    55.5555%,
+    81.4815%,
+    to {
+        color: initial;
+        text-shadow: -1px -1px 0 #eee,
+                     0px -1px 0 #eee,
+                     1px -1px 0 #eee,
+                     -1px 0px 0 #eee,
+                     1px 0px 0 #eee,
+                     -1px 1px 0 #eee,
+                     0px 1px 0 #eee,
+                     1px 1px 0 #eee;
+    }
+
+    72.2222%,
+    74.0741%,
+    75.9259% {
+        color: #fff601;
+        text-shadow: -1px -1px 0 #f70000,
+                     0px -1px 0 #f70000,
+                     1px -1px 0 #f70000,
+                     -1px 0px 0 #f70000,
+                     1px 0px 0 #f70000,
+                     -1px 1px 0 #f70000,
+                     0px 1px 0 #f70000,
+                     1px 1px 0 #f70000;
+    }
+    
+    73.5185%,
+    75.3704% {
+        color: #fefefe;
+        text-shadow: -1px -1px 0 black,
+                     0px -1px 0 black,
+                     1px -1px 0 black,
+                     -1px 0px 0 black,
+                     1px 0px 0 black,
+                     -1px 1px 0 black,
+                     0px 1px 0 black,
+                     1px 1px 0 black;
+    }
+}
+
+.ultimatereward-text {
+    animation: ultimate-reward 5.4s steps(9,jump-none) infinite;
+}
+
 @keyframes green-sun {
     from {
         color: #00ed4f;
@@ -860,6 +908,34 @@ body:not(.desktop) #SBURBStage {
 .greensun-text {
     color: #00ed4f;
     animation: green-sun 100ms steps(2, start) infinite;
+}
+
+@keyframes universe-blue {
+    from {
+        color: #001e82;
+    }
+    to {
+        color: #003bff;
+    }
+}
+
+.universeblue-text {
+    color: #001e82;
+    animation: universe-blue 100ms steps(2, start) infinite;
+}
+
+@keyframes universe-red {
+    from {
+        color: #b30000;
+    }
+    to {
+        color: #f20000;
+    }
+}
+
+.universered-text {
+    color: #b30000;
+    animation: universe-red 100ms steps(2, start) infinite;
 }
 
 /* Why does this have to be based on percentages? Why can't I just

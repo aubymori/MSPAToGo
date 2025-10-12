@@ -14,6 +14,12 @@ class Options
             "description"          => "Use a layout better suited for reading on a desktop computer.",
             "generateDefaultValue" => self::isDesktopBrowser
         ],
+        "transcripts" => [
+            "type"         => "checkbox",
+            "name"         => "Image-to-text transcriptions",
+            "description"  => "Some text in Homestuck is displayed as GIF images to have special effects. This option will display them as real text with modern CSS effects.",
+            "defaultValue" => true
+        ],
         "viz-links" => [
             "type"         => "checkbox",
             "name"         => "Use Homestuck.com page numbers",
