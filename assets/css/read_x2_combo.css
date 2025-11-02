@@ -47,7 +47,8 @@ body:not(.desktop) #media img:not(:last-child) {
 }
 
 .desktop #page-wrapper,
-.desktop #trickster-banner {
+.desktop #trickster-banner,
+.desktop #banner {
     width: 1660px;
 }
 
