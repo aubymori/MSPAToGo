@@ -18,6 +18,10 @@ body:not(.desktop) #media img:not(:last-child) {
     width: 100%;
 }
 
+.command.has-tilted-arrow {
+    padding-top: var(--arrow-padding);
+}
+
 .tilted-arrow {
     display: inline-block;
     text-decoration: none;

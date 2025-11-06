@@ -16,11 +16,11 @@
     <img src="{{ media.url }}">
     {% endfor %}
 </div>
-<div id="content">
+<div id="content" data-s="{{ data.s }}" data-p="{{ data.p }}">
     {% from "macros/read.html" import read_text, read_footer, read_commands %}
     {{ read_text(data.page) }}
     <div class="commands">
-        <div class="command">
+        <div class="command has-tilted-arrow">
             &gt;
             <a href="javascript:void(0)" class="tilted-arrow">
                 <div>==&gt;&emsp;</div><div class="tilted-arrow-link">==&gt;</div>
