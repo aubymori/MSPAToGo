@@ -23,7 +23,7 @@ class Options
         "viz-links" => [
             "type"         => "checkbox",
             "name"         => "Use Homestuck.com page numbers",
-            "description"  => "Makes URLs use the Homestuck.com page numbers instead of the MSPA page numbers.",
+            "description"  => "Makes URLs use the Homestuck.com page numbers (pre-2025) instead of the MSPA page numbers.",
             "defaultValue" => true
         ],
         "auto-open-logs" => [
