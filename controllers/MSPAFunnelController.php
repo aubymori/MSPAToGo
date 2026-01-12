@@ -7,6 +7,14 @@ use MSPAToGo\ServerConfig;
 
 class MSPAFunnelController
 {
+    /**
+     * Headers received from MSPA that should NOT be reflected
+     * in our response.
+     */
+    private static array $illegalResponseHeaders = [
+        "transfer-encoding",
+    ];
+
     private static array $internalUriMap = [
         "act7.webm"    => "mspa_local/ACT7.webm",
         "collide.webm" => "mspa_local/collide.webm" 
@@ -72,7 +80,8 @@ outputResponse:
         http_response_code($response->status);
         foreach ($response->headers as $name => $value)
         {
-            header("$name: $value");
+            if (!in_array($name, self::$illegalResponseHeaders))
+                header("$name: $value");
         }
         echo $response->body;
     }

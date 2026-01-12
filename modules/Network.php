@@ -26,8 +26,14 @@ class Network
         $body = substr($cr, $headerSize);
         $status = intval(substr($headers, 9, 3));
 
+        // Split header array and skip HTTP response code
+        // (e.g. HTTP/1.1 200 OK)
+        $headers = str_replace("\r\n", "\n", $headers);
+        $splitHeaders = explode("\n", $headers);
+        array_shift($splitHeaders);
+        
         $headerArr = [];
-        foreach (explode("\n", $headers) as $header)
+        foreach ($splitHeaders as $header)
         {
             $split = explode(":", $header);
             $name = strtolower(trim($split[0]));

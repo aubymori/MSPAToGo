@@ -19,6 +19,22 @@
 </div>
 <div id="news-content">
     {{ _self.news_header({
+        title:      "Openbound is fixed now",
+        date:       "11 January 2026",
+        author:     "Aubrey",
+        author_url: "https://github.com/aubymori"
+    }) }}
+    <div class="news-text">
+        Openbound should work again now. Sorry for the long wait. I don't know why this issue didn't pop up earlier than
+        it did, and the fix was odd. I couldn't even replicate it on my local Apache2 instance, so I had to spin up a
+        Debian VM and run the Docker container there. Basically, MSPA was giving the <code>transfer-encoding</code>
+        header, which tells the client how the data is to be transferred. The issue is that we were replicating this header
+        to the MSPA To Go response while not using the same method of data transfer, causing the browser to freak out and
+        reject the response. I've fixed this by just not copying over the <code>transfer-encoding</code> header.
+        <br><br>
+        Hope you enjoy!
+    </div>
+    {{ _self.news_header({
         title:      "Transcriptions update",
         date:       "12 October 2025",
         author:     "Aubrey",
