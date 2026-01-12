@@ -23,7 +23,10 @@ class ControllerManager
     public static function __initStatic()
     {
         self::$twigLoader = new \Twig\Loader\FilesystemLoader("templates");
-        self::$twig = new \Twig\Environment(self::$twigLoader, []);
+        self::$twig = new \Twig\Environment(self::$twigLoader, [
+            "cache" => $_SERVER["DOCUMENT_ROOT"] . "/cache/templates",
+            "auto_reload" => true,
+        ]);
     }
 
     /**
