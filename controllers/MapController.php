@@ -26,6 +26,7 @@ class MapController extends PageController
         if ($response->status != 200)
             return false;
         $this->data->map_html = MSPALinks::replaceMspaLinks($response->body);
+        $this->data->s = $s;
         
         $this->title = "Adventure Map";
 

@@ -13,20 +13,21 @@
         hsMap.removeAttribute("width");
 </script>
 {% else %}
+{% set mapWidth = (data.s == "6") ? 835 : 610 %}
+{% set mapHeight = (data.s == "6") ? 12019 : 2444 %}
 <script>
-    // Homestuck map is FUCKING HUGE!!!!!
-    // And the table HTML is no good
-    // Gotta resize it with JS :/
     function fixMap()
     {
         const page = document.getElementById("page");
         const map = document.getElementById("map");
-        // fuck you hussie
+        const MAP_WIDTH = {{ mapWidth }};
+        const MAP_HEIGHT = {{ mapHeight }};
+
         if (map.children[0].getAttribute("width") == "500")
         {
             map.children[0].setAttribute("width", "835");
         }
-        if (map.children[0].clientWidth <= page.clientWidth)
+        if (MAP_WIDTH <= page.clientWidth)
         {
             map.style.transform = null;
             map.style.transformOrigin = null;
@@ -34,24 +35,23 @@
             return;
         }
 
-        let height = map.children[0].clientHeight;
         let ratio = page.clientWidth / map.children[0].clientWidth;
         map.style.transform = `scale(${ratio})`;
         map.style.transformOrigin = "top left";
-        map.style.height = `${height * ratio + 30}px`;
+        map.style.height = `${MAP_HEIGHT * ratio + 30}px`;
     }
 
     window.addEventListener("resize", fixMap);
-    window.addEventListener("load", fixMap);
+    fixMap();
 </script>
-{% endif %}
 <style>
     /* Force the PS map to its actual size. This makes it use the above JS to fix its size.
-       HTML maps aren't responsive! */
+    HTML maps aren't responsive! */
     img[src="/mspa/maps/map_04.gif"] {
         min-width: 610px;
     }
 </style>
+{% endif %}
 {% else %}
 <h2 id="title">Select Map</h2>
 <div id="content">
