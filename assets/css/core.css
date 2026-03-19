@@ -725,6 +725,35 @@ body:not(.desktop) #page-footer-right {
     margin: 0 .4em;
 }
 
+#page-secondary-footer {
+    font-size: .75em;
+    margin-top: -7px;
+    padding-bottom: 17px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    opacity: .5;
+}
+
+.desktop #page-secondary-footer {
+    font-size: 10px;
+}
+
+#page-time::after {
+	content: "|";
+	font-weight: 400;
+	margin: 0 .4em;
+}
+
+#mspa-link {
+    color: inherit !important;
+    text-decoration: none;
+}
+
+#mspa-link:hover {
+    text-decoration: underline;
+}
+
 #options-link {
     margin-left: auto;
 }

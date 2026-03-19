@@ -84,9 +84,32 @@
 		{% else %}
 		<li><a id="options-link" href="javascript:void(0)">Options</a></li>
 		{% endif %}
-	</ul>
-    
+	</ul>    
 </div>
+{% if data.options.secondary_footer and (data.page.time or not (data.s == "3")) %}
+	<div id="page-secondary-footer">
+		{% if data.page.time %}
+			<span id="page-time">{{ data.page.time }}</span>
+		{% endif %}
+		{% if data.s == "ryanquest" %}
+			{% if data.p|slice(4, 1) == "1" %}
+				{% set ryanp = data.p|slice(4, 2) %}
+			{% else %}
+				{% set ryanp = data.p|slice(5, 1) %}
+			{% endif %}
+			{% set mspa_uri = "/ryanquest/" ~ ryanp %}
+		{% elseif data.s == "4" %}
+			{% set mspa_uri = "/problemsleuth/" ~ data.p %}
+		{% elseif data.s == "2" %}
+			{% set mspa_uri = "/bardquest/" ~ data.p %}
+		{% elseif data.s == "1" %}
+			{% set mspa_uri = "/jailbreak/" ~ data.p %}
+		{% else %}
+			{% set mspa_uri = "/" ~ data.p %}
+		{% endif %}
+		<a id="mspa-link" href="https://homestuck.com{{ mspa_uri }}">{{ mspa_uri }}</a>
+	</div>
+{% endif %}
 {% endmacro %}
 
 {% macro read_commands(page) %}

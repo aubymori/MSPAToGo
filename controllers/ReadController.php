@@ -418,6 +418,15 @@ class ReadController extends PageController
         // Title
         $response->title = $split[0];
 
+        // Timestamp
+        if (!empty(trim($split[2])))
+        {
+            $dt = new \DateTime;
+            $dt->setTimezone(new \DateTimeZone("America/New_York"));
+            $dt->setTimestamp((int)trim($split[2]));
+            $response->time = $dt->format("m/d/Y, g:i A \E\D\T");
+        }
+
         // Media
         $response->media = [];
         if (isset(self::$customPages[$p]))

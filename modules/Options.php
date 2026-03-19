@@ -14,6 +14,13 @@ class Options
             "description"          => "Use a layout better suited for reading on a desktop computer.",
             "generateDefaultValue" => self::isDesktopBrowser
         ],
+        "secondary-footer" => [
+            "type"         => "checkbox",
+            "name"         => "Show secondary footer",
+            "description"  => "Show a secondary footer containing the date and time the page was posted along with a link to it on Homestuck.com.",
+            "templateName" => "secondary_footer",
+            "defaultValue" => true
+        ],
         "transcripts" => [
             "type"         => "checkbox",
             "name"         => "Image-to-text transcriptions",
