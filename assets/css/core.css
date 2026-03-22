@@ -882,7 +882,7 @@ body:not(.desktop) #SBURBStage {
     55.5555%,
     81.4815%,
     to {
-        color: initial;
+        color: #a10000;
         text-shadow: -1px -1px 0 #eee,
                      0px -1px 0 #eee,
                      1px -1px 0 #eee,
@@ -922,6 +922,7 @@ body:not(.desktop) #SBURBStage {
 }
 
 .ultimatereward-text {
+    color: #a10000;
     animation: ultimate-reward 5.4s steps(9,jump-none) infinite;
 }
 
