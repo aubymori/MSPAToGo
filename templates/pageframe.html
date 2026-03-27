@@ -12,6 +12,16 @@
         <link rel="preload" href="{{ data.banner.imgtip }}" as="image">
         {% endif %}
         {% block css %}{% endblock %}
+        {# Ruffle does not wait for these to be fully downloaded before
+           the Cascade loading animation ends. Clicking Play before they are loaded
+           will result in an error. #}
+        {% if data.s == "6" and data.p == "006009" %}
+        <link rel="preload" href="/mspa/cascade_segment1.swf" as="fetch" type="application/x-shockwave-flash" crossorigin="">
+        <link rel="preload" href="/mspa/cascade_segment2.swf" as="fetch" type="application/x-shockwave-flash" crossorigin="">
+        <link rel="preload" href="/mspa/cascade_segment3.swf" as="fetch" type="application/x-shockwave-flash" crossorigin="">
+        <link rel="preload" href="/mspa/cascade_segment4.swf" as="fetch" type="application/x-shockwave-flash" crossorigin="">
+        <link rel="preload" href="/mspa/cascade_segment5.swf" as="fetch" type="application/x-shockwave-flash" crossorigin="">
+        {% endif %}
     </head>
     <body class="{{ data.options.desktop ? "desktop" }} {% block body_class %}{% endblock %}" {% block body_attrs %}{% endblock %}>
         {% if data.theme == "trickster" %}
