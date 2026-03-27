@@ -86,6 +86,7 @@
     --page-color: #000000;
     --card-bg: #efefef;
     --card-bg-dark: #c6c6c6;
+    --card-bg-darker: #a6a6a6;
     --links-bg: #5a5a5a;
     --links-color: #ffffff;
     --links-white: #ffffff;
@@ -118,6 +119,7 @@
     --page-color: #ffffff;
     --card-bg: #393939;
     --card-bg-dark: #262626;
+    --card-bg-darker: #161616;
     --link-color: #5599ff;
     --link-color-active: #f00;
 }
@@ -126,6 +128,7 @@
     --page-bg: #dddddd;
     --card-bg: #ffffff;
     --card-bg-dark: #eeeeee;
+    --card-bg-darker: #d9d9d9;
     --links-bg: #000000;
     --links-color: #cccccc;
     --links-white: #cccccc;
@@ -141,6 +144,7 @@
     --page-color: #ffffff;
     --card-bg: #262626;
     --card-bg-dark: #262626;
+    --card-bg-darker: #262626;
     --link-color: #0066ff;
 }
 
@@ -149,6 +153,7 @@
     --page-color: #ffffff;
     --card-bg: #0e4603;
     --card-bg-dark: #082a00;
+    --card-bg-darker: #061e00;
     --links-bg: #000000;
     --links-green: #ffffff;
     --links-blue: #ffffff;
@@ -165,6 +170,7 @@
     --page-bg: #0707ec;
     --card-bg: #14ff23;
     --card-bg-dark: #f400ec;
+    --card-bg-darker: #ffff00;
     --links-bg: #000000;
     --footer-image: url("/assets/img/sbahj_footer.png");
     --footer-image-desktop: url("/assets/img/bannerframe_sbahj.gif");
@@ -179,6 +185,7 @@
     --page-color: #f9fd6b;
     --card-bg: #ff73fd;
     --card-bg-dark: url("/assets/img/bluetile.gif");
+    --card-bg-darker: #14ff23;
     --links-bg: #000000;
     --link-color: #fb060b;
     --footer-image: url("/assets/img/footer_trickster.gif");
@@ -190,6 +197,7 @@
     --page-color: #ffffff;
     --card-bg: #262626;
     --card-bg-dark: #454545;
+    --card-bg-darker: #161616;
     --link-color: #ff0000;
 }
 
@@ -197,6 +205,7 @@
     --page-bg: #ffffff;
     --footer-color: #000000;
     --card-bg: #dbdbdb;
+    --card-bg-darker: #b6b6b6;
     --link-color: #ffffff;
     --links-bg: #f2f2f2;
     --links-color: #000000;
@@ -208,6 +217,7 @@
     --page-color: #2ed73a;
     --card-bg: #073c00;
     --card-bg-dark: #168500;
+    --card-bg-darker: #061e00;
     --link-color: #2ed73a;
     --links-bg: #042300;
     --links-white: #2ed73a;
@@ -548,12 +558,15 @@ body:not(.desktop) button:active {
     padding: 4px;
 }
 
-.desktop #page-outer {
-    background: var(--card-bg-dark);
+#page-outer {
     display: flex;
     flex-direction: column;
     flex: 0 1 auto;
     justify-content: center;
+}
+
+.desktop #page-outer {
+    background: var(--card-bg-dark);
     padding-top: 7px;
     padding-bottom: 23px;
     align-items: flex-start;
@@ -1081,4 +1094,25 @@ body:not(.desktop) #SBURBStage {
 :root.message-box-open #message-box {
     opacity: 1;
     pointer-events: auto;
+}
+
+.desktop .news-page {
+    max-width: 650px !important;
+}
+
+#news-title {
+    padding: 18px 0;
+    text-align: center;
+}
+
+#news-content {
+    padding: 0 10px 10px;
+}
+
+.news-text {
+    text-align: justify;
+    padding: calc(1em + 3px) 3px 3px;
+    margin-top: 3px;
+    margin-bottom: calc(1em + 5px);
+    border-top: 1px solid var(--card-bg-dark);
 }

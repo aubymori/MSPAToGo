@@ -1,0 +1,141 @@
+{% macro news_header(data) %}
+<div class="news-title">
+    <b>{{ data.title }}</b>
+</div>
+<div class="news-date">
+    <i>Posted on {{ data.date }} by <a href="{{ data.author_url }}" target="_blank">{{ data.author }}</a></i>
+</div>
+{% endmacro %}
+
+<div id="news-title">
+    <img src="/assets/img/news.png" alt="NEWS">
+</div>
+<div id="news-content">
+    {{ _self.news_header({
+        title:      "Homepage overhaul",
+        date:       "27 March 2026",
+        author:     "Aubrey",
+        author_url: "https://github.com/aubymori"
+    }) }}
+    <div class="news-text">
+        This was long overdue. The old one really sucked. The new one is a bit like the real MSPA homepage, showing the
+        first page of Homestuck, the adventure selector, and the news. I decided to omit the latest pages list since it
+        was really only useful while Homestuck was still being updated, as well as it not really working well for mobile.
+        It also has a banner at the top linking to a new contact page! Hopefully people will report issues to me in a way
+        that is meaningful instead of mumbling about it on Discord or opening a GitHub issue (I love you for doing that,
+        but GitHub sucks at email notifications).
+        <br><br>
+        I also fixed a few bugs, those being Cascade failing to load sometimes and a broken link on one of the Homestuck
+        pages. (Both of these issues were on GitHub since last year and I somehow only today learned about them!)
+        <br><br>
+        Hope you enjoy!
+    </div>
+    {{ _self.news_header({
+        title:      "Openbound is fixed now",
+        date:       "11 January 2026",
+        author:     "Aubrey",
+        author_url: "https://github.com/aubymori"
+    }) }}
+    <div class="news-text">
+        Openbound should work again now. Sorry for the long wait. I don't know why this issue didn't pop up earlier than
+        it did, and the fix was odd. I couldn't even replicate it on my local Apache2 instance, so I had to spin up a
+        Debian VM and run the Docker container there. Basically, MSPA was giving the <code>transfer-encoding</code>
+        header, which tells the client how the data is to be transferred. The issue is that we were replicating this header
+        to the MSPA To Go response while not using the same method of data transfer, causing the browser to freak out and
+        reject the response. I've fixed this by just not copying over the <code>transfer-encoding</code> header.
+        <br><br>
+        Hope you enjoy!
+    </div>
+    {{ _self.news_header({
+        title:      "Transcriptions update",
+        date:       "12 October 2025",
+        author:     "Aubrey",
+        author_url: "https://github.com/aubymori"
+    }) }}
+    <div class="news-text">
+        I just added some more transcriptions to the site, as well as making it <a href="/options">an option</a> whether
+        you want to use them. So now, you can use the transcriptions on desktop! Or you could not use them on mobile, if you're
+        a weirdo.
+        <br><br>
+        Hope you enjoy!
+    </div>
+    {{ _self.news_header({
+        title:      "Endorsed by the Huss",
+        date:       "27 September 2025",
+        author:     "Aubrey",
+        author_url: "https://github.com/aubymori"
+    }) }}
+    <div class="news-text">
+        If you look at <a href="https://linktr.ee/andrewhussie" target="_blank">Andrew Hussie's Linktree</a>,
+        you will notice that MSPA To Go is now linked there! If you're coming from there, welcome, and have a good
+        time on this site! The unfathomable amount of traffic to this site along with the huge amount of people
+        sharing it and recommending it to their friends was enough to make me go crazy. Being shared and endorsed
+        by Andrew Hussie himself is on a completely different level. Thank all of you for your usage of this site
+        and support over the past 5 months. It was a lot of fun making this site, fixing bugs, and adding new features.
+        Your support means everything to me.
+        <br><br>
+        Love, Aubrey &lt;3
+    </div>
+    {{ _self.news_header({
+        title:      "Regarding the Homestuck.com rerelease",
+        date:       "11 September 2025",
+        author:     "Aubrey",
+        author_url: "https://github.com/aubymori"
+    }) }}
+    <div class="news-text">
+        As many of you know, the folks over at <a href="https://homestuck.com/" target="_blank">Homestuck.com</a>
+        have begun slowly releasing a complete rewrite of the site as of today. I will be trying
+        out the site extensively as updates get pushed out, and I will relay my feedback to the
+        developers of the site in the
+        <a href="https://discord.com/invite/hsofficial" target="_blank">official Homestuck discord server</a>.
+        <br><br>
+        My eventual goal is for MSPA To Go to no longer be needed for most cases, and maybe
+        to stop providing a public instance. MSPA To Go will not go away forever, however. I am already
+        working to make my own local archive of the files from the MSPA server that MSPA To Go needs,
+        should mspaintadventures.com be stripped of its comic content. I made the tools to download
+        needed files and use them on an instance of MSPA To Go months ago, when a friend needed it for
+        an airplane trip.
+        <br><br>
+        If this is in fact the end, then I want to thank all of you. Thank you for using my site that
+        I originally made only to read Homestuck at school. Thank you for giving me the opportunity to
+        make a forever impact on the Homestuck and MSPA community. Thank you for reporting bugs and issues
+        so that I can provide the best, most polished reading experience for desktop and mobile devices.
+        <br><br>
+        - Aubrey
+    </div>
+    {{ _self.news_header({
+        title:      "Minor update pushed!",
+        date:       "29 August 2025",
+        author:     "Aubrey",
+        author_url: "https://github.com/aubymori"
+    }) }}
+    <div class="news-text">
+        This update just adds fancy text for the embeds instead of the generic text
+        for every page. Hope you enjoy!
+    </div>
+    {{ _self.news_header({
+        title:      "Welcome to the News page!",
+        date:       "29 August 2025",
+        author:     "Aubrey",
+        author_url: "https://github.com/aubymori"
+    }) }}
+    <div class="news-text">
+        I'm not sure why I hadn't done this earlier. Previously, I simply showed off updates through
+        Twitter, but obviously, not everyone has Twitter. Any new updates will go here along with a
+        short Tweet telling people to check the News page to see the changelog.
+        <br><br>
+        Other than the news page, this update fixes a bug that caused certain cookies to expire just
+        around 9 hours after their creation.
+        <br><br>
+        Despite making MSPA To Go months ago and using it to read then, I don't believe I had ever
+        actually extensively used the Save/Load Game features (which were affected by this bug)
+        until very recently. My school has those shitty Yondr pouches this year, and I am confined
+        to using just the school Chromebook, so I've been reading Problem Sleuth using MSPA To Go
+        while bored in class. At first, I thought the bug was the shitty school-enrolled Chromebooks
+        wiping their cookies after a while, but using other sites made me realize it wasn't that.
+        <br><br>
+        So now we are here. I have fixed this incredibly inconvenient bug that slipped past me all
+        these months, simply because I had assumed that JavaScript date functions used seconds and 
+        not milliseconds.
+    </div>
+</div>

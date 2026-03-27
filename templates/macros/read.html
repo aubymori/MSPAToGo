@@ -57,7 +57,7 @@
 {% endif %}
 {% endmacro %}
 
-{% macro read_footer(page) %}
+{% macro read_footer(page, no_secondary_footer = false) %}
 <div id="page-footer">
     {% if page.prev_page %}
     <ul id="page-footer-left">
@@ -86,7 +86,7 @@
 		{% endif %}
 	</ul>    
 </div>
-{% if data.options.secondary_footer and (data.page.time or not (data.s == "3")) %}
+{% if (not no_secondary_footer) and data.options.secondary_footer and (data.page.time or not (data.s == "3")) %}
 	<div id="page-secondary-footer">
 		{% if data.page.time %}
 			<span id="page-time">{{ data.page.time }}</span>

@@ -1,0 +1,31 @@
+#home-banner {
+    background-color: var(--card-bg-darker);
+    padding: 8px;
+    text-align: center;
+}
+
+#home-bottom {
+    background: var(--card-bg-darker);
+    text-align: center;
+    padding: 16px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#view-all-pages {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.desktop #view-all-pages {
+    font-size: 16px;
+}
+
+.news-page {
+    margin-top: 16px !important;
+}
+
+.desktop .news-page {
+    margin-top: 12px !important;
+}

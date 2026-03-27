@@ -16,6 +16,12 @@ class HomeController extends PageController
             header("Location: /read/" . $_COOKIE["s_cookie"] . "/" . $_COOKIE["p_cookie"]);
             die();
         }
+
+        $this->data->s = "6";
+        $this->data->p = "001901";
+        $this->data->page = ReadController::getPageData("6", "001901");
+        $this->data->adventures = json_decode(file_get_contents("static/adventures.json"));
+
         return true;
     }
 }

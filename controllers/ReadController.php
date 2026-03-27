@@ -401,7 +401,7 @@ class ReadController extends PageController
     ];
 
 
-    private static function getPageData(
+    public static function getPageData(
         string $s,
         string $p,
         bool   $ignoreCommands = false,

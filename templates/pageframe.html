@@ -98,7 +98,7 @@
         </div>
         <div id="page-outer">
             {% block before_page %}{% endblock %}
-            <div id="page">
+            <div id="page" class="{% block page_class %}{% endblock %}">
                 {% block page %}{% endblock %}
             </div>
             {% block after_page %}{% endblock %}

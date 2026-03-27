@@ -1,6 +1,41 @@
 {% extends "pageframe.html" %}
 
+{% block css %}
+<link rel="stylesheet" href="/assets/css/home.css">
+{% endblock %}
+
 {% block page %}
+<div id="home-banner">
+    If you encounter any issues, please don't hesitate to <a href="/contact">contact me</a>!
+</div>
+<h2 id="title">{{ data.page.title|raw }}</h2>
+<div id="media">
+    <img src="{{ data.page.media[0].url }}">
+</div>
+<div id="content" data-s="6" data-p="001901">
+    {% from "macros/read.html" import read_text, read_footer, read_commands %}
+    {{ read_text(data.page) }}
+	<div class="commands">
+        {{ read_commands(data.page) }}
+	</div>
+    {{ read_footer(data.page, true) }}
+</div>
+<div id="home-bottom">
+    <a href="/log/6" id="view-all-pages">VIEW ALL PAGES</a>
+    <div id="jump-to-adventure-container">
+        <span>--</span>
+        <select id="jump-to-adventure" onchange="location.href = '/read/' + this.value;void(0)">
+            <option value="" selected="">Jump to adventure!</option>
+            {% for adv in data.adventures %}
+            {% if not adv.hidden and has_adventure(adv.id) %}
+            <option value="{{ adv.id }}">{{ adv.title }}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+        <span>--</span>
+    </div>
+</div>
+{#
 <h2 id="title">MSPA TO GO</h2>
 <div id="content">
     <p class="comic-text">
@@ -29,5 +64,12 @@
             &gt; <a href="/archive">Read other adventures.</a>
         </div>
     </div>
+</div>
+#}
+{% endblock %}
+
+{% block after_page %}
+<div id="page" class="news-page">
+    {% include "include/news.html" %}
 </div>
 {% endblock %}
