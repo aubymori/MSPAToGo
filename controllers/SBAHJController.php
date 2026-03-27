@@ -15,7 +15,9 @@ class SBAHJController extends PageController
 
     public function onGet(RequestMetadata $request): bool
     {
-        $comic = isset($request->path[1]) ? intval($request->path[1]) : self::FIRST_COMIC;
+        $comic = isset($request->path[1]) && !empty(trim($request->path[1])) 
+            ? intval($request->path[1])
+            : self::FIRST_COMIC;
         if (count($request->path) > 2
         || $comic < self::FIRST_COMIC || $comic > self::LAST_COMIC
         || $comic == 39) // There is a gap in SBAHJ numbers.

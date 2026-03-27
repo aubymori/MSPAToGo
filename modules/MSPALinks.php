@@ -151,7 +151,7 @@ class MSPALinks
     // regex, replace
     private static array $miscRegexes = [
         [ '/"http:\/\/www\.mspaintadventures\.com\/storyfiles\/hs2\/waywardvagabond\/(.*?)\/"/m', "\"/waywardvagabond/$1\"" ],
-        [ '/"http:\/\/www\.mspaintadventures\.com\/sweetbroandhellajeff\/\?cid=0*([0-9]+)\.(?:jpg|gif)"/', "\"/sbahj/$1\"" ],
+        [ '/"http:\/\/www\.mspaintadventures\.com\/sweetbroandhellajeff\/(?:|\?cid=0*([0-9]+)\.(?:jpg|gif))"/', "\"/sbahj/$1\"" ],
         [ "/http:\/\/(www\.|cdn\.|)mspaintadventures\.com\/(?!oilretcon\.html|storyfiles\/hs2\/waywardvagabond)/", "/mspa/" ],
     ];
 
