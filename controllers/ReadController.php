@@ -332,6 +332,11 @@ class ReadController extends PageController
             }
         }
 
+        if ($pageNum >= 5664 && $pageNum <= 5981)
+        {
+            $this->data->is_scratch_page = true;
+        }
+
         foreach (self::$pageBanners as $bannerDef)
         {
             if ($pageNum >= $bannerDef[0] && $pageNum <= $bannerDef[1])

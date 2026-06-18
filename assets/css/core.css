@@ -254,6 +254,10 @@ body.desktop {
     margin: 0 auto;
 }
 
+.scratch-page .desktop #page-wrapper {
+    width: 940px;
+}
+
 * {
     image-rendering: pixelated;
 }
@@ -330,6 +334,10 @@ body:not(.desktop) button:active {
 .desktop #banner {
     width: 950px;
     margin: 0 auto;
+}
+
+.scratch-page .desktop #banner {
+    width: 940px;
 }
 
 #menu-bar {
@@ -539,6 +547,10 @@ body:not(.desktop) button:active {
     background: no-repeat var(--footer-image-desktop);
 }
 
+.scratch-page .desktop #footer {
+    min-width: 940px;
+}
+
 .desktop #footer-image {
     display: none;
 }
@@ -581,6 +593,10 @@ body:not(.desktop) button:active {
     min-width: 650px;
     max-width: 950px;
     margin: 0 auto;
+}
+
+.scratch-page .desktop #page {
+    max-width: 940px;
 }
 
 #page {
