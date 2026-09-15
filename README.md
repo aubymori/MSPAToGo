@@ -1,7 +1,7 @@
 # MSPA To Go
 
 MSPA To Go is an application server that serves pages from the MS Paint Adventures server
-in a format that is digestible on desktop computers and mobile devices without any externa
+in a format that is digestible on desktop computers and mobile devices without any external
 downloads since MS Paint Adventures site no longer works, and Homestuck.com is incredibly
 broken.
 
