@@ -31,7 +31,7 @@ class LogController extends PageController
 
         $s = $request->path[1];
         
-        $response = Network::mspaRequest("logs/" . ($reverse ? "log_rev_" : "log_") . "$s.txt", true);
+        $response = Network::mspaRequest("logs/" . ($reverse ? "log_rev_" : "log_") . "$s.txt");
         if ($response->status != 200)
             return false;
 

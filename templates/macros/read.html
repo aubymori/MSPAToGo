@@ -1,6 +1,6 @@
-{% macro flash(swf_url, js_url, width, height, bgcolor) %}
+{% macro flash(swf_url, width, height, bgcolor) %}
 <script>AC_FL_RunContent = 0;</script>
-<script src="{{ js_url }}"></script>
+<script src="/assets/js/AC_RunActiveContent.js"></script>
 <script language="javascript">
 	if (AC_FL_RunContent == 0)
 	{

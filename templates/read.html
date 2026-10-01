@@ -54,7 +54,7 @@ onload="Sburb.initialize('JterniaDeploy', '{{ media.xml_url }}', false);"
 <img src="{{ media.url }}">
 {% elseif media.type == "flash" %}
 {% from "macros/read.html" import flash %}
-{{ flash(media.url, media.js_url, media.width, media.height, "#ffffff") }}
+{{ flash(media.url, media.width, media.height, "#ffffff") }}
 {% elseif media.type == "jternia" %}
 <div id="JterniaDeploy"></div>
 <script src="{{ media.js_url }}"></script>

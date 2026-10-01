@@ -19,7 +19,7 @@
     </style>
     <body>
         {% from "macros/read.html" import flash %}
-        {{ flash(data.swf_url, data.js_url, data.width, data.height, data.bgcolor) }}
+        {{ flash(data.swf_url, data.width, data.height, data.bgcolor) }}
         {% include "include/ruffle.html" %}
         {% if not data.options.desktop %}
         <script src="/assets/js/flash_size_fix.js"></script>

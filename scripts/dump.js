@@ -101,19 +101,12 @@ const ADVENTURES = {
             "storyfiles/hs2/scraps/pwimg.gif",
             // Misc. Flashes
             "007395/05492.swf",
-            "007395/AC_RunActiveContent.js",
             "007680/05777_2.swf",
-            "007680/AC_RunActiveContent.js",
             "DOTA/04812.swf",
-            "DOTA/AC_RunActiveContent.js",
             "storyfiles/hs2/echidna/echidna.swf",
-            "storyfiles/hs2/echidna/AC_RunActiveContent.js",
             "GAMEOVER/06898.swf",
-            "GAMEOVER/AC_RunActiveContent.js",
             "sweetbroandhellajeff/movies/SBAHJthemovie1.swf",
-            "sweetbroandhellajeff/movies/AC_RunActiveContent.js",
             "shes8ack/07402.swf",
-            "shes8ack/AC_RunActiveContent.js",
             // Alterniabound
             "storyfiles/hs2/songs/alterniaboundsongs/A%20Tender%20Moment.mp3",
             "storyfiles/hs2/songs/alterniaboundsongs/Alterniabound.mp3",
@@ -912,9 +905,7 @@ for (part of selectedParts)
                 let split = prefix.split("/");
                 let id = split[split.length - 1];
                 let swfPath = `${prefix}/${id.slice(id.length - 5)}.swf`;
-                let jsPath = `${prefix}/AC_RunActiveContent.js`;
                 await downloadFile(swfPath, false, true);
-                await downloadFile(jsPath, false, true);
             }
         
             for (const match of content.matchAll(SUPER_URL_REGEX))

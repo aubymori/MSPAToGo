@@ -80,41 +80,30 @@ class Network
     }
 
     /**
-     * Performs a GET request to the MSPA server, or if in offline mode, gets
-     * the according file.
+     * Gets the according file from the MSPA archive.
      * 
-     * @param string $path   Path on the MSPA server to get.
-     * @param bool   $noCdn  If in online mode, do not try cdn.mspaintadventures.com.
+     * @param string $path   Path in the MSPA archive to get.
      */
-    public static function mspaRequest(string $path, bool $noCdn = false): Response
+    public static function mspaRequest(string $path): Response
     {
-        if (ServerConfig::isOfflineMode())
+        $content = @file_get_contents("mspa_local/$path");
+        $response = new Response;
+        if ($content === false)
         {
-            $content = @file_get_contents("mspa_local/$path");
-            $response = new Response;
-            if ($content === false)
-            {
-                $response->status = 404;
-                $response->body = "";
-                $response->headers = [
-                    "content-type" => "text/html"
-                ];
-            }
-            else
-            {
-                $response->status = 200;
-                $response->headers = [
-                    "content-type" => self::getMimeType($path)
-                ];
-                $response->body = $content;
-            }
-            return $response;
+            $response->status = 404;
+            $response->body = "";
+            $response->headers = [
+                "content-type" => "text/html"
+            ];
         }
-
-        $url = ($noCdn ? "http://www.mspaintadventures.com/" : "http://cdn.mspaintadventures.com/") . $path;
-        $response = self::urlRequest($url);
-        if (!$noCdn && $response->status != 200)
-            return self::mspaRequest($path, true);
+        else
+        {
+            $response->status = 200;
+            $response->headers = [
+                "content-type" => self::getMimeType($path)
+            ];
+            $response->body = $content;
+        }
         return $response;
     }
 }

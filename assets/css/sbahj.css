@@ -46,6 +46,11 @@ body:not(.desktop) #comic {
     width: 100%;
 }
 
+#comic {
+    display: block;
+    margin: 0 auto;
+}
+
 .nav {
     display: flex;
     flex-direction: column;

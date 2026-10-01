@@ -21,21 +21,18 @@ class ReadController extends PageController
         "006715" => [
             "title"   => "DOTA",
             "swfUrl"  => "/mspa/DOTA/04812",
-            "jsUrl"   => "/mspa/DOTA/AC_RunActiveContent.js",
             "width"   => 950,
             "height"  => 650,
             "bgcolor" => "#000000"
         ],
         "007395" => [
             "swfUrl"  => "/mspa/007395/05492",
-            "jsUrl"   => "/mspa/007395/AC_RunActiveContent.js",
             "width"   => 950,
             "height"  => 1160,
             "bgcolor" => "#535353"
         ],
         "007680" => [
             "swfUrl"  => "/mspa/007680/05777_2",
-            "jsUrl"   => "/mspa/007680/AC_RunActiveContent.js",
             "width"   => 950,
             "height"  => 1160,
             "bgcolor" => "#535353"
@@ -43,7 +40,6 @@ class ReadController extends PageController
         "008801" => [
             "title"   => "GAME OVER",
             "swfUrl"  => "/mspa/storyfiles/hs2/GAMEOVER/06898",
-            "jsUrl"   => "/mspa/GAMEOVER/AC_RunActiveContent.js",
             "width"   => 950,
             "height"  => 786,
             "bgcolor" => "#042300"
@@ -51,7 +47,6 @@ class ReadController extends PageController
         "009305" => [
             "title"   => "shes8ack",
             "swfUrl"  => "/mspa/shes8ack/07402",
-            "jsUrl"   => "/mspa/shes8ack/AC_RunActiveContent.js",
             "width"   => 950,
             "height"  => 650,
             "bgcolor" => "#ffffff"
@@ -413,7 +408,7 @@ class ReadController extends PageController
         bool   $ignoreBack = false): ?object
     {
         $response = (object)[];
-        $pageResponse = Network::mspaRequest("$s/$p.txt", true);
+        $pageResponse = Network::mspaRequest("$s/$p.txt");
         if ($pageResponse->status != 200)
             return null;
 
@@ -460,7 +455,6 @@ class ReadController extends PageController
                         $media = substr(trim($media), 2);
                         $flashFilename = substr($media, -5);
                         $flashLink = "$media/$flashFilename";
-                        $jsLink = "$media/AC_RunActiveContent.js";
 
                         $flashHeight = 450;
                         $flashHeightMap = json_decode(file_get_contents("static/flash_heights.json"));
@@ -470,7 +464,6 @@ class ReadController extends PageController
                         $response->media[] = [
                             "type" => "flash",
                             "url" => $flashLink,
-                            "js_url" => $jsLink,
                             "width" => 650,
                             "height" => $flashHeight
                         ];
@@ -586,7 +579,7 @@ class ReadController extends PageController
                 if ($cid == "X" || $cid == "O" || $cid == "?")
                     break;
 
-                $cmdResponse = Network::mspaRequest("$s/$cid.txt", true);
+                $cmdResponse = Network::mspaRequest("$s/$cid.txt");
                 if ($cmdResponse->status != 200)
                     return null;
                 $title = explode("\n###\n", str_replace("\r\n", "\n", $cmdResponse->body))[0];
@@ -599,7 +592,7 @@ class ReadController extends PageController
 
         if (!$ignoreBack)
         {
-            $backResponse = Network::mspaRequest("{$s}_back/{$p}.txt", true);
+            $backResponse = Network::mspaRequest("{$s}_back/{$p}.txt");
             // It's fine if we don't get 200 here, just means the page has no previous page
             if ($backResponse->status == 200)
             {

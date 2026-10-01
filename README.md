@@ -1,3 +1,9 @@
+> [!IMPORTANT]
+> As of October 1, 2026, mspaintadventures.com will be shutting down soon, and as such, MSPA To Go will no longer
+> pull content from it. An archive of all the files needed has been created and will be used on the main instance
+> (mspa.chadthundercock.com). If you need these files in order to selfhost your own instance, contact me and I will
+> provide them for you. They will not be available for public download.
+
 # MSPA To Go
 
 MSPA To Go is an application server that serves pages from the MS Paint Adventures server
