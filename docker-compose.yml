@@ -1,5 +1,7 @@
 services:
-  mspa:
-     image: mspa:latest
-     ports:
-        - "8080:80"
+    mspa:
+        image: mspa:latest
+        ports:
+            - "8080:80"
+    volumes:
+        - ./mspa_local: /var/www/localhost/htdocs/mspa_local
