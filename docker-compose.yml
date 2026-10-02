@@ -4,4 +4,4 @@ services:
         ports:
             - "8080:80"
     volumes:
-        - ./mspa_local: /var/www/localhost/htdocs/mspa_local
+        ./mspa_local: /var/www/localhost/htdocs/mspa_local
