@@ -75,6 +75,7 @@ class Network
             "zip" => "application/zip",
             "mp3" => "audio/mpeg",
             "mp4" => "video/mp4",
+            "wav" => "audio/vnd.wave",
             default => mime_content_type($ext)
         };
     }
